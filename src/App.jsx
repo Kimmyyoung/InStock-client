@@ -1,15 +1,18 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Warehouses from "./pages/Warehouses/Warehouses";
+import Inventory from "./pages/Inventory/Inventory";
+import AddEdit from "./pages/Add-Edit/Add-Edit";
 
-import './App.css'
+import "./App.scss";
 
-function App() {
-
+export default function App() {
   return (
-    <>
-      <div>
-        <h1>App</h1>
-      </div>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Warehouses />} />
+        <Route path="/inventory" element={<Inventory />} />
+        <Route path="add-edit" element={<AddEdit />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-export default App
