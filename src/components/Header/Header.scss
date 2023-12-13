@@ -8,6 +8,7 @@
     flex-direction: column;
     align-items: center;
     background-color: $navHeader;
+    width: 100%;
 
     @include tablet {
         flex-direction: row;
@@ -16,7 +17,10 @@
     }
 
     @include desktop {
-        padding: 1.5rem 5rem;
+        // padding: 1.5rem 5rem;
+        max-width: 1020px;
+        margin: 0 auto;
+
     }
 
     &__logo-container {
@@ -33,9 +37,9 @@
     &__pages {
 
         display: flex;
-        justify-content: space-around;
-        padding: 0rem 1rem;
-        width: 20rem;
+        justify-content: space-between;
+        width: 100%;
+        // width: 20rem;
 
         @include tablet {
             justify-content: flex-end;
@@ -46,18 +50,23 @@
     }
 
 
-    p {
+    &__pages-name {
 
         border-radius: 1rem;
         display: flex;
         justify-content: center;
-        color: silver;
+        color: $oultines;
         align-items: center;
         font-size: 0.8125rem;
         width: 10.25rem;
         height: 2.25rem;
 
         &:hover {
+            text-decoration: underline;
+            color: $white;
+        }
+
+        &:active {
             color: $white;
             background-color: #13182C;
         }
