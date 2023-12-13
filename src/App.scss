@@ -11,8 +11,9 @@
 }
 
 body{
-  background: linear-gradient(to bottom, #232940 30%, #F7F8F9 30%);
-  padding: 0px auto;
+  background: linear-gradient(to bottom, #232940 10%, #F7F8F9 10%);
+  height: 100vh;
+  padding: 0px 32px;
  
   @include tablet {
     padding: 0px 32px;

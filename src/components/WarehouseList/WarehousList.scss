@@ -1,0 +1,30 @@
+.list {
+  height: 76px;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 40px 24px 40px;
+  width: 100%;
+  border-collapse: collapse;
+
+  &:hover{
+    background: rgba(46, 102, 229, 0.07);
+    cursor: pointer;
+    border-collapse: collapse;
+  }
+  &__name {
+    color: var(--Instock-Indigo, #2E66E5);
+    font-size: 14px; 
+  }
+  & td {
+    padding: 32px 40px 24px 40px;
+    text-align: left;
+    border-collapse: collapse;
+    border-bottom: 1px solid var(--Cloud, #BDC5D5);
+  }
+  & img {
+    margin-right: 5px;
+  }
+  & td:not(:last-child) {
+    border-right:none;
+  }
+}
