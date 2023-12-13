@@ -1,5 +1,4 @@
 import logo from "./../../assets/Logo/inStock-Logo_2x.png";
-// import logoTablet from "./../../assets/Logo/inStock-Logo_2x.png";
 import './Header.scss';
 
 const Header = () => {
