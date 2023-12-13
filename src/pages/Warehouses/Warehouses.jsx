@@ -1,4 +1,6 @@
-import WarehouseList from '../components/WarehouseList/WarehouseList'
+import WarehouseList from './../../components/WarehouseList/WarehouseList'
+import Footer from "../../components/Footer/Footer";
+import './Warehouses.scss';
 
 const Warehouses = () => {
 
