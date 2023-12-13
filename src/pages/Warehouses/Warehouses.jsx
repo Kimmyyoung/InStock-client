@@ -107,18 +107,22 @@ const Warehouses = () => {
         </div>
 
       <div className="warehouses__content">
+
       <table className="warehouses__table">
-        <tr className="warehouses__table__header">
-          <th>Warehouse</th>
-          <th>Address</th>
-          <th>Contact Name</th>
-          <th>Contact Information</th>
-          <th>Actions</th>
+        <tr className="warehouses__table__header hideMob">
+          <th id="name">Warehouse</th>
+          <th id="address">Address</th>
+          <th id="contact">Contact Name</th>
+          <th id="contact-info">Contact Information</th>
+          <th id="action">Actions</th>
         </tr>
         {fakeData.map((warehouse) => (
           <WarehouseList key={warehouse.id} props={warehouse} />
         ))}
       </table>
+
+
+      
       </div>
      </main>
 

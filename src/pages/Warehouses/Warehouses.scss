@@ -1,8 +1,6 @@
 @use '../../styles/partials/mixins' as *;
 
-body {
-  height: 100vh;
-}
+
  
   .warehouses {
     display: flex;
@@ -13,17 +11,38 @@ body {
     background: var(--White, #FFF);
     box-shadow: 0px 2px 5px 0px rgba(19, 24, 44, 0.10);
     width: 65rem;
-    margin: auto;
+    margin: 0 auto;
+    
+
+    @include tablet {
+      width: 44rem;
+      height: max-content;
+    }
+
+    @include mobile { 
+     margin: 0 auto;
+    }
+
     
     
   &__header {
     display: flex;
     flex-direction: row;
-    width: 100%;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     padding: 32px 40px 24px 40px;
 
+    @include tablet {
+      width: 44rem;
+      font-size: 0.875rem;
+    }
+
+    @include mobile {
+      width: 21rem;
+      display: flex;
+      flex-direction: column;
+    }
 
     & h1{
       color: var(--Instock-Black, #13182C);
@@ -31,6 +50,9 @@ body {
       font-style: normal;
       font-weight: 600;
       line-height: 36px;
+      @include tablet {
+        font-size: 2rem;
+      }
     }
 
     & input {
@@ -41,6 +63,9 @@ body {
       border: 1px solid var(--Cloud, #BDC5D5);
       background: var(--White, #FFF);
       padding: 0px 16px;
+      @include tablet {
+        width: 11.5625rem;
+      }
     }
 
     & button {
@@ -56,6 +81,11 @@ body {
   }
 }
 
+.hideMob {
+  @include mobile {
+    display:none;
+  }
+}
 .warehouses__header__search {
   align-items: center;
   width: max-content;
@@ -63,24 +93,63 @@ body {
   flex-direction: row;
   gap: 16px;
   padding: 0px;
+  @include mobile {
+    display: flex;
+    flex-direction: column;
+  }
+
 }
 
 .warehouses__content {
   width: 100%;
+
+  @include tablet {
+    width: 44rem;
+    font-size: 0.875rem;
+  }
 }
 
 .warehouses__table {
-  width: 100%;
   border-collapse: collapse;
+  align-items: center;
+  width: 100%;
+
+  @include tablet {
+    width: 44rem;
+  }
 
   &__header {
     background: rgba(247, 248, 249, 0.70);
-    width: 100%;
     height: 30px;
     color: var(--Slate, #5C667E);
     font-size: 12px;
     font-weight: 600;
     line-height: 18px; /* 150% */
     text-transform: uppercase;
+    @include tablet {
+    }
   }
+}
+
+
+// th 
+
+#name {
+  width: 30%;
+}
+
+#address {
+  width: 20%;
+}
+
+#contact {
+  width:10%;
+}
+
+#contact-info {
+  width: 30%;
+}
+
+#actions {
+  
 }

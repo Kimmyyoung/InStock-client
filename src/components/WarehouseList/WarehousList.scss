@@ -1,25 +1,70 @@
+@use '../../styles/partials/mixins' as *;
+
+
 .list {
   height: 76px;
   align-items: center;
   justify-content: center;
-  padding: 32px 40px 24px 40px;
-  width: 100%;
   border-collapse: collapse;
+  width: 100%;
+
+
+  @include mobile {
+      table-layout: auto;
+      margin-top: 0rem;
+      border-top: 1px solid var(--Cloud, #BDC5D5);
+
+      & th, td {
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        box-sizing: border-box;
+      }
+      & tbody{
+        display: block;
+        height: max-content;
+      }
+      & .forMob {
+        display: flex;
+        height: max-content
+      }
+      & .hideMob {
+        display: none;
+      }
+
+    
+  }
 
   &:hover{
     background: rgba(46, 102, 229, 0.07);
     cursor: pointer;
     border-collapse: collapse;
   }
-  &__name {
+
+  &__name{
     color: var(--Instock-Indigo, #2E66E5);
     font-size: 14px; 
   }
+
+
   & td {
     padding: 32px 40px 24px 40px;
     text-align: left;
     border-collapse: collapse;
     border-bottom: 1px solid var(--Cloud, #BDC5D5);
+    width: max-content;
+
+    @include tablet {
+      padding: 2rem;
+      height: max-content;
+      font-size: 0.75rem;
+    }
+
+    @include mobile {
+      border: none;
+    }
+  
   }
   & img {
     margin-right: 5px;
@@ -28,3 +73,56 @@
     border-right:none;
   }
 }
+
+
+.icon-container {
+  display: flex;
+  flex-direction: row;
+}
+
+
+// td
+
+#name {
+  width: 30%;
+}
+
+#address {
+  width: 20%;
+}
+
+#contact {
+  width:10%;
+}
+
+#contact-info {
+  width: 30%;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+
+// table					              { display:block;
+//   > *,tr,td,th              { display:block }
+  
+//   thead                     { display:none }
+//   tbody tr                  { height:auto; padding:8px 0;
+//     td                      { padding-left:45%; margin-bottom:12px;
+//       &:last-child          { margin-bottom:0 }
+//       &:before              { 
+//         position:absolute;
+//         font-weight:700;
+//         width:40%;
+//         left:10px;
+//         top:0
+//       }
+      
+//       &:nth-child(1):before { content:"Code";}
+//       &:nth-child(2):before { content:"Stock";}
+//       &:nth-child(3):before { content:"Cap";}
+//       &:nth-child(4):before { content:"Inch";}
+//       &:nth-child(5):before { content:"Box Type";}
+//     }        
