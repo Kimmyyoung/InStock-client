@@ -1,4 +1,5 @@
-import WarehouseList from '../components/WarehouseList/WarehouseList'
+import WarehouseList from '../../components/WarehouseList/WarehouseList'
+import './Warehouses.scss';
 
 const Warehouses = () => {
 
@@ -94,16 +95,20 @@ const Warehouses = () => {
   ]
   
   return (
-    <div>
-      <div>
-        <h1>Warehouses</h1>
-        <input type="text" placeholder="Search..." />
-        <button type="button">+ Add New Warehouse</button> 
-      </div>
 
-      <div>
-      <table>
-        <tr>
+      <main className="warehouses">
+      
+        <div className="warehouses__header">
+          <h1>Warehouses</h1>
+          <div className="warehouses__header__search">
+            <input type="text" placeholder="Search..." />
+            <button type="button">+ Add New Warehouse</button> 
+          </div>
+        </div>
+
+      <div className="warehouses__content">
+      <table className="warehouses__table">
+        <tr className="warehouses__table__header">
           <th>Warehouse</th>
           <th>Address</th>
           <th>Contact Name</th>
@@ -115,9 +120,9 @@ const Warehouses = () => {
         ))}
       </table>
       </div>
+     </main>
 
 
-    </div>
   )
 }
 

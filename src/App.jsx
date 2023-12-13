@@ -1,11 +1,7 @@
 
-<<<<<<< HEAD
-import './App.css'
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import Warehouses from './pages/Warehouses';
-=======
+import Warehouses from './pages/Warehouses/Warehouses';
 import './App.scss'
->>>>>>> develop
 
 function App() {
 

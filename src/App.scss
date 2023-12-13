@@ -9,3 +9,16 @@
   font-family: "Titillium";
   margin: 0;
 }
+
+body{
+  background: linear-gradient(to bottom, #232940 30%, #F7F8F9 30%);
+  padding: 0px auto;
+ 
+  @include tablet {
+    padding: 0px 32px;
+  }
+
+  @include mobile {
+    padding: 0px 16px;
+  }
+}
