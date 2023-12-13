@@ -1,0 +1,10 @@
+
+.header {
+    background-color: navy;
+
+    p {
+        &:active {
+            background-color: black;
+        }
+    }
+}
