@@ -1,0 +1,26 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/colors" as *;
+
+.footer {
+    font-size: 0.6875rem;
+    background-color: $pageBackground;
+    line-height: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    width: 100%;
+
+    @include tablet {
+        padding: 2rem;
+    }
+
+    &__content {
+        @include desktop {
+            max-width: 1020px;
+            margin: auto;
+        }
+    }
+
+}
