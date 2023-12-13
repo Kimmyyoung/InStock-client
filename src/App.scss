@@ -1,0 +1,11 @@
+@use "./styles/partials/breakpoints" as *;
+@use "./styles/partials/colors" as *;
+@use "./styles/partials/mixins" as *;
+@use "./styles/partials/typography" as * ;
+
+
+* {
+  box-sizing: border-box;
+  font-family: "Titillium";
+  margin: 0;
+}
