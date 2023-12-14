@@ -10,6 +10,7 @@ import AddNewInventoryItemOutOfStock from "./pages/AddNewInventoryItemOutOfStock
 import "./App.scss";
 import AddNewWarehouse from "./pages/AddNewWarehouse/AddNewWarehouse";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 export default function App() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
 
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

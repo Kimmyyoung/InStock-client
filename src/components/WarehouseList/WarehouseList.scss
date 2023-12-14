@@ -1,138 +1,223 @@
-@use '../../styles/partials/mixins' as *;
-@use '../../styles/partials/colors' as *;
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/breakpoints" as *;
 
-.list {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-  padding: 1.5rem 2rem 1rem 2rem;
-  gap: 8rem;
-  justify-content: center;
 
-  @include tablet {
-    gap: 1rem;
-  }
 
-  @include mobile {
+.warehouse {
+  &__text {
     display: flex;
-    flex-direction: column;
-    border-top: 1px solid gray;
-      table-layout: auto;
-      margin-top: 0rem;
-      height: max-content;
-  }
-
-  &:hover{
-    background: rgba(46, 102, 229, 0.07);
-    cursor: pointer;
-    border-collapse: collapse;
-  }
-
-  & p {
-    width: max-content;
-    margin: 0px;
-    width: 140px;   
-    
+    flex-direction: row;
+    width: 100%;
     @include tablet {
-      width: 80px;
+      display: flex;
+      flex-direction: row;
+      width: 85%;
+    }
+    // @include desktop{
+    //     width: 90%;
+    // }
+  }
+
+  &__left {
+    width: 50%;
+    padding-right: 2rem;
+
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+      width: 50%;
+      padding-right: 0;
     }
   }
 
-  &__contact_info {
+  &__right {
+    width: 50%;
+
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+      width: 50%;
+    }
+  }
+  &__link {
     display: flex;
-    padding: 0px;
     flex-direction: column;
-  }
+    padding-bottom: 1rem;
+    text-decoration: none;
 
-  &__items {
-    display: flex;
-    flex-direction : row;
-    align-items: center;
-    gap: 2rem;
-  
-    @include mobile {
-      gap: 1rem;
-      align-items:flex-start;
+    &::before {
+      padding-bottom: 0.25rem;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 0.6875rem;
+      line-height: 1rem;
+      color: $tableHeader;
+      content: "WAREHOUSE";
+
+      @include tablet {
+        display: none;
+      }
+    }
+    @include tablet {
+      width: 50%;
+      justify-content: center;
+      padding-bottom: 0;
     }
   }
-}
-
-.list_items_name {
-  gap: 1rem;
-}
-
-.name {
-  color: $interactiveElements;
-}
-
-.list__items_p {
-    width: 125px !important;
-}
-
-
-.icon-container {
-  display: flex;
-  flex-direction: row;
-  margin-left: 2rem;
-}
-
-
-// mobile 
-
-.mob_icon {
-  padding : 1rem 2.5rem;
-  align-items: center;
-  width: 100%;
-  display: flex !important;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.title {
-  text-transform: uppercase;
-  color: gray;
-}
-
-.flex-row {
-  display: flex;
-  flex-direction: row;
-}
-
-.flex-col {
-  width: 50%;
-  flex: 1;
-  box-sizing: border-box;
-}
-
-.forMob {
-  display: none !important;
-  @include mobile {
-    display: flex !important;
-  }
-}
-
-.hideMob {
-  display: flex !important;
-  @include mobile {
-    display: none !important;
-  }
-}
-
-
-@include mobile {
-  .forMob {
+  &__nameAndArrow {
     display: flex;
+    align-items: center;
+    flex-direction: row;
+    &:hover .warehouse__rightArrow {
+      transform: translate(4px);
+    }
+  }
+  &__name {
+    font-style: normal;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    color: $interactiveElements;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    @include tablet {
+      font-style: normal;
+      font-size: 0.875rem;
+      line-height: 1.375rem;      
+      font-weight: 600;
+    }
   }
 
-  .flex-mob-row {
+  &__rightArrow {
+    height: 1.25rem;
+    transition: transform 200ms;
+  }
+
+  &__address {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    color: $globalText;
     display: flex;
-    flex-direction : row;
+    flex-direction: column;
+    padding-bottom: 1rem;
+    &::before {
+      padding-bottom: 0.25rem;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 0.6875rem;
+      line-height: 1rem;
+      color: $tableHeader;
+      content: "ADDRESS";
+      @include tablet {
+        display: none;
+      }
+    }
+    @include tablet {
+      width: 50%;
+      justify-content: center;
+      padding-bottom: 0;
+      padding-right: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 0.875rem;
+      line-height: 1.375rem;
+    }
+  }
+  &__contact {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    color: $globalText;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+    &::before {
+      padding-bottom: 0.25rem;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 0.6875rem;
+      line-height: 1rem;
+      color: $tableHeader;
+      content: "CONTACT NAME";
+      @include tablet {
+        display: none;
+      }
+    }
+    @include tablet {
+      width: 50%;
+      justify-content: center;
+      padding-bottom: 0;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 0.875rem;
+      line-height: 1.375rem;
+    }
+  }
+  &__contactinfo {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+    &::before {
+      padding-bottom: 0.25rem;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 0.6875rem;
+      line-height: 1rem;
+      color: $tableHeader;
+      content: "CONTACT INFORMATION";
+      @include tablet {
+        display: none;
+      }
+    }
+    @include tablet {
+      width: 50%;
+      justify-content: center;
+      padding-bottom: 0;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 0.875rem;
+      line-height: 1.375rem;
+    }
+  }
+
+  &__icons {
+    display: flex;
     justify-content: space-between;
+
+    @include tablet {
+      width: 15%;
+      height: 1.5rem;
+      justify-content: flex-end;
+    }
+    // @include desktop {
+    //     width: 10%;
+    //     height: 1.5rem;
+    //     justify-content: flex-end;
+    // }
   }
 
-  .flex-mob-col {
-    display: flex;
-    flex-direction : column;
+  &__deleteicon {
+    margin-right: 1rem;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__editicon {
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
