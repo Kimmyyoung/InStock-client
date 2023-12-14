@@ -5,16 +5,15 @@
   &__header {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
     width: 100%;
     padding: 32px 40px 24px 40px;
 
     @include tablet {
-      // width: 44rem;
       font-size: 0.875rem;
       display: flex;
       flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
     }
 
     &__header-title {
@@ -29,27 +28,30 @@
     }
 
     & input {
-      width: 274px;
+      width: 100%;
       height: 38px;
       flex-shrink: 0;
       border-radius: 20px;
-      border: 1px solid $oultines;
-      background: $white;
+      border: 1px solid #bdc5d5;
+      background: #ffffff;
       padding: 0px 16px;
+
       @include tablet {
         width: 11.5625rem;
       }
     }
 
     & button {
-      width: max-content;
       color: $white;
       border: none;
-      display: inline-flex;
       padding: 8px 16px;
-      align-items: center;
       border-radius: 20px;
       background: $interactiveElements;
+      width: 100%;
+
+      @include tablet {
+        max-width: 10rem;
+      }
     }
   }
 
@@ -59,54 +61,142 @@
   }
 
   &__row {
-    display: flex;
-    flex-direction: row;
     background-color: #f0f0f0;
     font-weight: bold;
     padding: 8px;
+    display: none;
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+    }
   }
 
   &__title {
     flex: 1;
     padding: 8px;
     text-align: center;
+
+    &::after {
+      content: "";
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      background-image: url("./../../../src/assets/Icons/sort-24px.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin-left: 8px;
+    }
   }
 
-
-  &__header__search {
+  &__header-search {
     align-items: center;
-    width: max-content;
-    display:flex;
+    display: flex;
     flex-direction: column;
     gap: 16px;
     padding: 0px;
+    width: 100%;
 
     @include tablet {
-        display:flex;
-        flex-direction: row;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      max-width: 25rem;
     }
-
-  
   }
 
+  &__input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
 
-  
-}
+  &__input-wrap &__input {
+    width: 100%;
+    height: 2.375rem;
+    border-radius: 1.25rem;
+    border: 0.0625rem solid #bdc5d5;
+    background: #ffffff;
+    padding: 0 1rem;
+    padding-right: 2.5rem;
+  }
 
+  &__input-wrap &__search-icon {
+    position: absolute;
+    top: 50%;
+    right: 0.625rem;
+    transform: translateY(-50%);
+    width: 1.5rem;
+    height: 1.5rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
 
+  &__list {
+    border-bottom: 1px solid #ccc;
+    padding: 8px;
+    display: none;
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+      border-bottom: 1px solid #ccc;
+      padding: 8px;
+      display: flex;
+      flex-direction: row;
+    }
+  }
 
-
-
-
-.inventory-row {
-  display: flex;
-  flex-direction: row;
-  border-bottom: 1px solid #ccc;
-  padding: 8px;
+  #item_name{
+ 
+    &::after {
+        content: "";
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background-image: url("./../../../src/assets/Icons/chevron_right-24px.svg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin-left: 8px;
+      }
+     
+  }
 
   &__item {
     flex: 1;
     padding: 8px;
     text-align: center;
   }
+
+
+  .inventory__list-mobile {
+    padding: 0 2.5rem;
+
+  @include tablet {
+    display: none;
+  }
+}
+&__row1-mobile,
+&__row2-mobile,
+&__row3-mobile,
+&__row4-mobile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+&__block1,
+&__block2,
+&__block3,
+&__block4,
+&__block5 {
+  display: flex;
+  flex-direction: column;
+}
+
+&__row4-mobile {
+        border-bottom: 1px solid #ccc;  
+    }
+
 }

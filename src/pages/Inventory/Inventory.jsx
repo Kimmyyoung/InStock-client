@@ -1,4 +1,5 @@
 import InventoryList from "../../components/InventoryList/InventoryList";
+import searchIcon from "./../../../src/assets/Icons/search-24px.svg";
 
 const Inventory = () => {
   const fakeData = [
@@ -702,39 +703,55 @@ const Inventory = () => {
 
   return (
     <main className="inventory">
-      <div className="inventory__header">
-        <h1 className="inventory__header-title">Inventory</h1>
-        <div className="inventory__header-search">
-          <input type="text" placeholder="Search..." />
-          <button type="button">+ Add New Item</button>
-        </div>
-      </div>
+      <div className="inventory__wrap">
+        <div className="inventory__header">
+          <div className="inventory__header-title-wrap">
+            <h1 className="inventory__header-title">Inventory</h1>
+          </div>
 
-      <div className="inventory__content">
-        <div className="inventory__row">
-          <div id="" className="inventory__title">
-            Inventory Item
-          </div>
-          <div id="" className="inventory__title">
-            Category
-          </div>
-          <div id="" className="inventory__title">
-            Status
-          </div>
-          <div id="" className="inventory__title">
-            Qty
-          </div>
-          <div id="" className="inventory__title">
-            Warehouse
-          </div>
-          <div id="" className="inventory__title">
-            Actions
+          <div className="inventory__header-search">
+            <div className="inventory__input-wrap">
+              <input
+                className="inventory__input"
+                type="text"
+                placeholder="Search..."
+              />
+              <span
+                className="inventory__search-icon"
+                style={{ backgroundImage: `url(${searchIcon})` }}
+              ></span>
+            </div>
+
+            <button type="button">+ Add New Item</button>
           </div>
         </div>
 
-        {fakeData.map((item) => (
-          <InventoryList key={item.id} item={item} />
-        ))}
+        <div className="inventory__content">
+          <div className="inventory__row">
+            <div id="1" className="inventory__title">
+              Inventory Item
+            </div>
+            <div id="2" className="inventory__title">
+              Category
+            </div>
+            <div id="3" className="inventory__title">
+              Status
+            </div>
+            <div id="3" className="inventory__title">
+              Qty
+            </div>
+            <div id="5" className="inventory__title">
+              Warehouse
+            </div>
+            <div id="6" className="inventory__title">
+              Actions
+            </div>
+          </div>
+
+          {fakeData.map((item) => (
+            <InventoryList key={item.id} item={item} />
+          ))}
+        </div>
       </div>
     </main>
   );
