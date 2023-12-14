@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-import AddWarehouse from "../AddNewWarehouse/AddNewWarehouse";
-=======
 import "./Warehouses.scss";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -8,7 +5,6 @@ import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
 import editIcon from "../../assets/Icons/edit-24px.svg";
 import rightArrow from "../../assets/Icons/chevron_right-24px.svg";
 import sortArrow from "../../assets/Icons/sort-24px.svg";
->>>>>>> develop
 
 const Home = () => {
   const [deleteWarehouse, setDeleteWarehouse] = useState([""]); 
