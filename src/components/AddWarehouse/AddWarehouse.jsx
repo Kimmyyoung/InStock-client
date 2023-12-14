@@ -1,18 +1,21 @@
 import { useState } from 'react';
 import arrow_back from "../../assets/Icons/arrow_back-24px.svg";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import "./AddWarehouse.scss";
+import axios from "axios";
 
 const AddWarehouse = () => {
+    const navigate = useNavigate();
+
     const [warehouseDetails, setWarehouseDetails] = useState({
-        warehouseName: '',
-        streetAddress: '',
+        warehouse_name: '',
+        address: '',
         city: '',
         country: '',
-        contactName: '',
-        position: '',
-        phoneNumber: '',
-        email: '',
+        contact_name: '',
+        contact_position: '',
+        contact_phone: '',
+        contact_email: '',
     });
 
     const handleChange = (e) => {
@@ -24,13 +27,28 @@ const AddWarehouse = () => {
     };
 
     // Handle cancel Button
-    const handleCancel = () => {
-        console.log('Cancelled');
+    const handleCancel = (e) => {
+        e.preventDefault();
+        navigate("/");
     };
 
     // Handle add warehouse Button
-    const handleAddWarehouse = () => {
-        console.log('Added Warehouse', warehouseDetails);
+    const handleAddWarehouse = async (e) => {
+        e.preventDefault();
+        console.log("Values: ", warehouseDetails);
+        //Validation still required
+        try {
+            const response = await axios.post('http://localhost:8080/warehouses', warehouseDetails);
+
+            if (response.status === 201) {
+                console.log('Added Warehouse', response.data);
+                navigate("/");
+            } else {
+                console.error('Error adding warehouse:', response.data);
+            }
+        } catch (error) {
+            console.error('Error adding warehouse:', error.message);
+        }
     };
 
     return (
@@ -49,7 +67,7 @@ const AddWarehouse = () => {
 
                 <div className='AddWarehouse__main-container'>
 
-                    <form className='AddWarehouse__components-container'>
+                    <form className='AddWarehouse__components-container' onSubmit={handleAddWarehouse}>
                         <div className='AddWarehouse__subcontainer'>
                             <div className='AddWarehouse__warehouse-container'>
                                 <h2 className='AddWarehouse__sub-title'>Warehouse Details</h2>
@@ -60,9 +78,9 @@ const AddWarehouse = () => {
                                         <input
                                             type="text"
                                             id="warehouseName"
-                                            name="warehouseName"
+                                            name="warehouse_name"
                                             placeholder="Warehouse Name"
-                                            value={warehouseDetails.warehouseName}
+                                            value={warehouseDetails.warehouse_name}
                                             onChange={handleChange}
                                         />
                                     </div>
@@ -72,9 +90,9 @@ const AddWarehouse = () => {
                                         <input
                                             type="text"
                                             id="streetAddress"
-                                            name="streetAddress"
+                                            name="address"
                                             placeholder="Street Address"
-                                            value={warehouseDetails.streetAddress}
+                                            value={warehouseDetails.address}
                                             onChange={handleChange}
                                         />
                                     </div>
@@ -112,9 +130,9 @@ const AddWarehouse = () => {
                                     <input
                                         type="text"
                                         id="contactName"
-                                        name="contactName"
+                                        name="contact_name"
                                         placeholder="Contact Name"
-                                        value={warehouseDetails.contactName}
+                                        value={warehouseDetails.contact_name}
                                         onChange={handleChange}
                                     />
                                 </div>
@@ -124,9 +142,9 @@ const AddWarehouse = () => {
                                     <input
                                         type="text"
                                         id="position"
-                                        name="position"
+                                        name="contact_position"
                                         placeholder="Position"
-                                        value={warehouseDetails.position}
+                                        value={warehouseDetails.contact_position}
                                         onChange={handleChange}
                                     />
                                 </div>
@@ -136,9 +154,9 @@ const AddWarehouse = () => {
                                     <input
                                         type="text"
                                         id="phoneNumber"
-                                        name="phoneNumber"
+                                        name="contact_phone"
                                         placeholder="Phone Number"
-                                        value={warehouseDetails.phoneNumber}
+                                        value={warehouseDetails.contact_phone}
                                         onChange={handleChange}
                                     />
                                 </div>
@@ -148,9 +166,9 @@ const AddWarehouse = () => {
                                     <input
                                         type="email"
                                         id="email"
-                                        name="email"
+                                        name="contact_email"
                                         placeholder="Email"
-                                        value={warehouseDetails.email}
+                                        value={warehouseDetails.contact_email}
                                         onChange={handleChange}
                                     />
                                 </div>
@@ -163,7 +181,7 @@ const AddWarehouse = () => {
                             <button className='AddWarehouse__cancel-btn' type="button" onClick={handleCancel}>
                                 Cancel
                             </button>
-                            <button className='AddWarehouse__add-btn' type="button" onClick={handleAddWarehouse}>
+                            <button className='AddWarehouse__add-btn' type="submit" >
                                 + Add Warehouse
                             </button>
                         </div>

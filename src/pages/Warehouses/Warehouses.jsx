@@ -1,4 +1,4 @@
-import AddWarehouse from "../AddWarehouse/AddWarehouse";
+import AddWarehouse from "../AddNewWarehouse/AddNewWarehouse";
 
 export default function Warehouses() {
 
@@ -8,7 +8,6 @@ export default function Warehouses() {
   
     return (
       <>
-      <AddWarehouse />
   <h1>This is the Warehouses Page</h1>
       </>
     );
