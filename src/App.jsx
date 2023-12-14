@@ -8,12 +8,17 @@ import InventoryItemDetails from "./pages/InventoryItemDetails/InventoryItemDeta
 import EditInventoryOutOfStock from "./pages/EditIventoryOutOfStock/EditIventoryOutOfStock";
 import AddNewInventoryItemOutOfStock from "./pages/AddNewInventoryItemOutOfStock/AddNewInventoryItemOutOfStock";
 import "./App.scss";
+<<<<<<< HEAD
 import AddNewWarehouse from "./pages/AddNewWarehouse/AddNewWarehouse";
+=======
+import Header from "./components/Header/Header";
+>>>>>>> develop
 
 export default function App() {
   return (
 
     <BrowserRouter>
+      <Header/>
       <Routes>
         <Route path="/" element={<Warehouses />} />
         {/* <Route path="/warehouse/:warehouseId" element={<Warehouses />} /> */}
