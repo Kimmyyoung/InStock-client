@@ -1,0 +1,138 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/colors' as *;
+
+.list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding: 1.5rem 2rem 1rem 2rem;
+  gap: 8rem;
+  justify-content: center;
+
+  @include tablet {
+    gap: 1rem;
+  }
+
+  @include mobile {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid gray;
+      table-layout: auto;
+      margin-top: 0rem;
+      height: max-content;
+  }
+
+  &:hover{
+    background: rgba(46, 102, 229, 0.07);
+    cursor: pointer;
+    border-collapse: collapse;
+  }
+
+  & p {
+    width: max-content;
+    margin: 0px;
+    width: 140px;   
+    
+    @include tablet {
+      width: 80px;
+    }
+  }
+
+  &__contact_info {
+    display: flex;
+    padding: 0px;
+    flex-direction: column;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction : row;
+    align-items: center;
+    gap: 2rem;
+  
+    @include mobile {
+      gap: 1rem;
+      align-items:flex-start;
+    }
+  }
+}
+
+.list_items_name {
+  gap: 1rem;
+}
+
+.name {
+  color: $interactiveElements;
+}
+
+.list__items_p {
+    width: 125px !important;
+}
+
+
+.icon-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 2rem;
+}
+
+
+// mobile 
+
+.mob_icon {
+  padding : 1rem 2.5rem;
+  align-items: center;
+  width: 100%;
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.title {
+  text-transform: uppercase;
+  color: gray;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-col {
+  width: 50%;
+  flex: 1;
+  box-sizing: border-box;
+}
+
+.forMob {
+  display: none !important;
+  @include mobile {
+    display: flex !important;
+  }
+}
+
+.hideMob {
+  display: flex !important;
+  @include mobile {
+    display: none !important;
+  }
+}
+
+
+@include mobile {
+  .forMob {
+    display: flex;
+  }
+
+  .flex-mob-row {
+    display: flex;
+    flex-direction : row;
+    justify-content: space-between;
+  }
+
+  .flex-mob-col {
+    display: flex;
+    flex-direction : column;
+  }
+}
