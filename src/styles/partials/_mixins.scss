@@ -1,7 +1,7 @@
 @use "./breakpoints" as *;
 
 @mixin mobile {
-    @media only screen and (max-width: $breakpoint-tablet - 1px) {
+    @media only screen and (max-width: #{$breakpoint-tablet - 1px}) {
         @content;
     }
 }
