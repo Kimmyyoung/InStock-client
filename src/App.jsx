@@ -9,6 +9,7 @@ import EditInventoryOutOfStock from "./pages/EditIventoryOutOfStock/EditIventory
 import AddNewInventoryItemOutOfStock from "./pages/AddNewInventoryItemOutOfStock/AddNewInventoryItemOutOfStock";
 import "./App.scss";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
         {/* <Route path="/inStock/:inStockId" element={<AddNewInventoryItemOutOfStock  />} /> */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

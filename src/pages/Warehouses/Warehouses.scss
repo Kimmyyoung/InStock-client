@@ -114,10 +114,11 @@
     color: white;
     border-radius: 1.25rem;
     height: 2.25rem;
-    background-color: $placeholder;
+    background-color: $interactiveElements;
     border: none;
     padding: 0.5rem;
     text-align: center;
+    text-decoration: none;
     @include tablet {
       font-style: normal;
       font-weight: 400;
@@ -126,7 +127,7 @@
       height: 2.375rem;
     }
     &:hover {
-      background-color: $tableHeader-background;
+      background-color: $interactiveElements;
     }
   }
   &__categories {
