@@ -1,0 +1,80 @@
+@import './../../styles/partials/colors';
+@import './../../styles/partials/mixins';
+
+.header {
+
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    align-items: center;
+    background-color: $navHeader;
+    width: 100%;
+
+    @include tablet {
+        flex-direction: row;
+        padding: 1.5rem 2rem;
+        justify-content: space-between;
+    }
+
+    @include desktop {
+        padding: 1.5rem 5rem;
+        // max-width: 1020px;
+        margin: 0 auto;
+
+    }
+
+    &__logo-container {
+        padding: 0.5rem 0.5rem;
+        padding-bottom: 1rem;   
+    }
+
+    &__logo {
+        height: 1.75rem;
+        width: 8.03688rem;
+    }
+
+
+    &__pages {
+
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        // width: 20rem;
+
+        @include tablet {
+            justify-content: flex-end;
+            padding: 0rem;
+            gap: 0.5rem;
+        }
+
+    }
+
+
+    &__pages-name {
+
+        border-radius: 1rem;
+        display: flex;
+        justify-content: center;
+        color: $oultines;
+        align-items: center;
+        font-size: 0.8125rem;
+        width: 10.25rem;
+        height: 2.25rem;
+
+        &:hover {
+            text-decoration: underline;
+            color: $white;
+        }
+
+        &:active {
+            color: $white;
+            background-color: #13182C;
+        }
+
+        @include tablet {
+            width: 6.6875rem;
+            height: 2.375rem;
+            font-size: 0.875rem;
+        }
+    }
+}
