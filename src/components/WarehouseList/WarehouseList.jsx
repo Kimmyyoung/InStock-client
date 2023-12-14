@@ -3,6 +3,7 @@ import React from 'react'
 // icons 
 import delete_icon from '../../assets/icons/delete_outline-24px.svg';
 import edit from '../../assets/icons/edit-24px.svg';
+import './WarehoustList.scss';
 
 const WarehouseList = ({ props }) => {
   const { warehouse_name, address, contact_name, contact_phone, contact_email } = props;
