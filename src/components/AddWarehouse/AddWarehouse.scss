@@ -125,6 +125,12 @@
         color: $placeholder;
         align-items: center;
 
+        :hover {
+            background: $white;
+            border: 1px solid $buttonHover;
+            color: $buttonHover;
+        }
+
         @include tablet {
             height: 2.375rem;
             width: 4.5rem;
@@ -133,7 +139,7 @@
 
     &__add-btn {
         border-radius: 1.25rem;
-        background: var(--Instock-Indigo, #2E66E5);
+        background: $interactiveElements;
         font-size: 0.8125rem;
         font-weight: 600;
         line-height: 1.25rem;
@@ -142,6 +148,10 @@
         border: none;
         color: $white;
         align-items: center;
+
+        :hover {
+            background: $buttonHover;
+        }
 
         @include tablet {
             height: 2.375rem;
