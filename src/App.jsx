@@ -8,6 +8,7 @@ import InventoryItemDetails from "./pages/InventoryItemDetails/InventoryItemDeta
 import EditInventoryOutOfStock from "./pages/EditIventoryOutOfStock/EditIventoryOutOfStock";
 import AddNewInventoryItemOutOfStock from "./pages/AddNewInventoryItemOutOfStock/AddNewInventoryItemOutOfStock";
 import "./App.scss";
+import AddWarehouse from "./pages/AddWarehouse/AddWarehouse";
 
 export default function App() {
   return (
@@ -26,6 +27,10 @@ export default function App() {
         {/* <Route path="/inStock/:inStockId" element={<EditInventoryOutOfStock  />} /> */}
         <Route path="/addNewInventoryOutOfStock" element={<AddNewInventoryItemOutOfStock />} /> 
         {/* <Route path="/inStock/:inStockId" element={<AddNewInventoryItemOutOfStock  />} /> */}
+
+        {/* Add New Warehouse */}
+        <Route path= "./addWarehouse" element={<AddWarehouse />} />
+        
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
