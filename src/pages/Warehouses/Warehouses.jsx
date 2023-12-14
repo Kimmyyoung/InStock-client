@@ -1,7 +1,15 @@
-import WarehouseList from '../../components/WarehouseList/WarehouseList'
-import './Warehouses.scss';
+import "./Warehouses.scss";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
+import editIcon from "../../assets/Icons/edit-24px.svg";
+import rightArrow from "../../assets/Icons/chevron_right-24px.svg";
+import sortArrow from "../../assets/Icons/sort-24px.svg";
 
-const Warehouses = () => {
+const Home = () => {
+  const [deleteWarehouse, setDeleteWarehouse] = useState([""]); 
+  const [sort, setSort] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const fakeData = [
     {
@@ -93,41 +101,160 @@ const Warehouses = () => {
       contact_email: 'vmendoza@instock.com',
     },
   ]
-  
+
+
+  const sortData = (e) => {
+    const delHandle = (name, id) => {
+      setDeleteWarehouse([name, id]);
+    };
+    const newWarehouses = [...fakeData];
+
+    const fieldName =
+      e.target.innerText !== "" ? e.target.innerText : e.target.name;
+
+    let field = "";
+
+    switch (fieldName) {
+      case "WAREHOUSE":
+        field = "name";
+        break;
+      case "ADDRESS":
+        field = "address";
+        break;
+    }
+
+    if (!sort) {
+      const compare = (a, b) => {
+        if (a[field] < b[field]) {
+          return -1;
+        }
+        if (a[field] > b[field]) {
+          return 1;
+        }
+        return 0;
+      };
+      setSort(true);
+      
+      return;
+    }
+
+    if (sort) {
+      const compare = (a, b) => {
+        if (a[field] < b[field]) {
+          return 1;
+        }
+        if (a[field] > b[field]) {
+          return -1;
+        }
+        return 0;
+      };
+      setSort(false);
+    }
+  };
+
+
   return (
-
-      <main className="warehouses">
-      
-        <div className="warehouses__header">
-          <h1>Warehouses</h1>
-          <div className="warehouses__header__search">
-            <input type="text" placeholder="Search..." />
-            <button type="button">+ Add New Warehouse</button> 
-          </div>
+    <>
+    <div className="warehouse__container">
+    
+      <div className="warehouse__top">
+        <h1 className="warehouse__title">Warehouses</h1>
+        <div className="warehouse__topright">
+          <input
+            type="text"
+            className="warehouse__search"
+            placeholder="Search..."
+            onChange={(event) => {
+              setSearchTerm(event.target.value);
+            }}
+          ></input>
+          <Link to="/warehouses/new" className="warehouse__button">
+            + Add New Warehouse
+          </Link>
         </div>
-
-      <div className="warehouses__content">
-
-      <table className="warehouses__table">
-        <tr className="warehouses__table__header hideMob">
-          <th id="name">Warehouse</th>
-          <th id="address">Address</th>
-          <th id="contact">Contact Name</th>
-          <th id="contact-info">Contact Information</th>
-          <th id="action">Actions</th>
-        </tr>
-        {fakeData.map((warehouse) => (
-          <WarehouseList key={warehouse.id} props={warehouse} />
-        ))}
-      </table>
-
-
-      
       </div>
-     </main>
 
+      <div className="warehouse__categories">
+        <div className="warehouse__categoryAndArrow warehouse__categoryAndArrow-sort">
+          <span className="warehouse__category " onClick={sortData}>
+            WAREHOUSE
+          </span>
+          <img
+            src={sortArrow}
+            alt="sort arrow"
+            className="warehouse__sortArrow"
+          />
+        </div>
+        <div className="warehouse__categoryAndArrow warehouse__categoryAndArrow-sort">
+          <span className="warehouse__category" onClick={sortData}>
+            ADDRESS
+          </span>
+          <img
+            src={sortArrow}
+            className="warehouse__sortArrow"
+            alt="sort arrow"
+          />
+        </div>
+        <div className="warehouse__categoryAndArrow">
+          <span className="warehouse__category">CONTACT NAME</span>
+        </div>
+        <div className="warehouse__categoryAndArrow">
+          <span className="warehouse__category">CONTACT INFORMATION</span>
+        </div>
+        <span className="warehouse__category--right">ACTIONS</span>
+      </div>
 
+      {fakeData
+        .map((warehouse) => (
+          <div className="warehouse" key={warehouse.id}>
+            <div className="warehouse__text">
+              <div className="warehouse__left">
+                <Link
+                  to={`/warehouses/${warehouse.id}`}
+                  className="warehouse__link"
+                >
+                  <div className="warehouse__nameAndArrow">
+                    <p className="warehouse__name">{warehouse.warehouse_name}</p>
+
+                    <img
+                      src={rightArrow}
+                      className="warehouse__rightArrow"
+                      alt="right arrow"
+                    />
+                  </div>
+                </Link>
+                <p className="warehouse__address">
+                  {warehouse.address}, {warehouse.city}, {warehouse.country}
+                </p>
+              </div>
+              <div className="warehouse__right">
+                <p className="warehouse__contact">{warehouse.contact_name}</p>
+                <p className="warehouse__contactinfo">
+                  <span>{warehouse.contact_phone}</span>
+                  <span>{warehouse.contact_email}</span>
+                </p>
+              </div>
+            </div>
+            <div className="warehouse__icons">
+              <img
+                onClick={() => delHandle(warehouse.name, warehouse.id)} 
+                src={deleteIcon}
+                alt="delete icon"
+                className="warehouse__deleteicon"
+              />
+              <Link to={`edit-warehouse/${warehouse.id}`}>
+                <img
+                  src={editIcon}
+                  alt="edit icon"
+                  className="warehouse__editicon"
+                />
+              </Link>
+            </div>
+          </div>
+        ))}
+    </div>
+    </>
   )
 }
 
-export default Warehouses
+export default Home
