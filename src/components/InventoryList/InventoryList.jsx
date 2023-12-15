@@ -13,7 +13,7 @@ const InventoryList = ({ inventory }) => {
     <div>
       <div className="inventory__list" key={inventory.id}>
         <div className="inventory__item inventory__item-icon warehouse__nameAndArrow ">
-          <Link to={`/inventories/${inventory.id}`} className="inventory__item-link">
+          <Link to={`/inventory/${inventory.id}`} className="inventory__item-link">
             <p id="item_name" className="item__name">
               {item_name}
             </p>
