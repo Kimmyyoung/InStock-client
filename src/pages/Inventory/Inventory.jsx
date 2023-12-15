@@ -57,7 +57,6 @@ const Inventory = () => {
                 style={{ backgroundImage: `url(${searchIcon})` }}
               ></span>
             </div>
-
             <Link to="inventory/add" className="inventory__button-link">
               + Add Inventory
             </Link>
