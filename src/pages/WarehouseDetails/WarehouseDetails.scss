@@ -586,3 +586,24 @@
 
 
 }
+
+
+body{
+    // background: black;
+    background: linear-gradient(to bottom, #232940 1.75%, #F7F8F9 1.75%);
+    background-repeat: no-repeat;
+  
+    width: 100%;
+   
+    @include tablet {
+        background: linear-gradient(to bottom, #232940 2.5%, #F7F8F9 1.75%);
+        background-repeat: no-repeat;
+    }
+    
+    @include desktop {
+        background: linear-gradient(to bottom, #232940 5%, #F7F8F9 1.75%);
+        background-repeat: no-repeat;
+    }
+  
+  }
+
