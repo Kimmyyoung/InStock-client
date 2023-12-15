@@ -540,8 +540,7 @@
         display: flex;
         justify-content: space-between;
         gap: 1rem;
-        padding-bottom: 2rem;
-        border-bottom: 1px solid silver;
+        padding-bottom: 0.5rem;
 
         @include tablet {
 
@@ -551,8 +550,8 @@
             padding-bottom: 1rem;
             padding-left: 2rem;
             margin-top: 1rem;
-            border-left: 1px solid silver;
-            border-bottom: none;
+            margin-bottom: 1rem;
+            border-left: 1px solid silver;        
 
         }
     }

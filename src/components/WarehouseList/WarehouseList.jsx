@@ -1,49 +1,64 @@
-import React from 'react'
 
 // icons 
-import delete_icon from '../../assets/icons/delete_outline-24px.svg';
-import edit from '../../assets/icons/edit-24px.svg';
 import './WarehouseList.scss';
 
-const WarehouseList = ({ props }) => {
-  const { warehouse_name, address, contact_name, contact_phone, contact_email } = props;
+import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
+import editIcon from "../../assets/Icons/edit-24px.svg";
+import rightArrow from "../../assets/Icons/chevron_right-24px.svg";
+
+import { Link } from 'react-router-dom';
+
+const WarehouseList = ({warehouse}) => {
+
+  const delHandle = () => { };
 
   return (
     <>
-    <div className="">
-      <div className="list flex-mob-row">
+    <div className="warehouse" key={warehouse.id}>
+            <div className="warehouse__text">
+              <div className="warehouse__left">
+                <Link
+                  to={`/warehouses/${warehouse.id}`}
+                  className="warehouse__link"
+                >
+                  <div className="warehouse__nameAndArrow">
+                    <p className="warehouse__name">{warehouse.warehouse_name}</p>
 
-        <div className="list__items list_items_name flex-mob-col">
-          <p className="title forMob">Warehousename</p>
-          <p className="list__items_p name">{warehouse_name}</p>
-          <p className="title forMob">address</p>
-          <p className="list__items_p">{address}</p>
-        </div>
-
-        <div className="list__items flex-mob-col">
-          <p className="title forMob">contact</p>
-          <p>{contact_name}</p>
-
-          <p className="title forMob">contact information</p>
-
-          <div className="list__contact_info">
-            <p className="list__contact_phone">{contact_phone}</p>
-            <p>{contact_email}</p>
+                    <img
+                      src={rightArrow}
+                      className="warehouse__rightArrow"
+                      alt="right arrow"
+                    />
+                  </div>
+                </Link>
+                <p className="warehouse__address">
+                  {warehouse.address}, {warehouse.city}, {warehouse.country}
+                </p>
+              </div>
+              <div className="warehouse__right">
+                <p className="warehouse__contact">{warehouse.contact_name}</p>
+                <p className="warehouse__contactinfo">
+                  <span>{warehouse.contact_phone}</span>
+                  <span>{warehouse.contact_email}</span>
+                </p>
+              </div>
+            </div>
+            <div className="warehouse__icons">
+              <img
+                onClick={() => delHandle(warehouse.name, warehouse.id)} 
+                src={deleteIcon}
+                alt="delete icon"
+                className="warehouse__deleteicon"
+              />
+              <Link to={`editWarehouse/${warehouse.id}`}>
+                <img
+                  src={editIcon}
+                  alt="edit icon"
+                  className="warehouse__editicon"
+                />
+              </Link>
+            </div>
           </div>
-        </div>
-
-
-          <div className="icon-container hideMob">
-            <img src={delete_icon} alt="delete icon" />
-            <img src={edit} alt="edit icon" />
-          </div>
-      </div>
-
-      <div className="mob_icon forMob">
-              <img src={delete_icon} alt="delete icon" />
-            <img src={edit} alt="edit icon" />
-      </div>
-    </div>
     </>
   )
 }
