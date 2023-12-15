@@ -10,6 +10,7 @@ import AddNewInventoryItemOutOfStock from "./pages/AddNewInventoryItemOutOfStock
 import "./App.scss";
 import AddNewWarehouse from "./pages/AddNewWarehouse/AddNewWarehouse";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 export default function App() {
   return (
@@ -24,7 +25,7 @@ export default function App() {
         {/* <Route path="/addWarehouse/:addWarehouseId" element={<EditWarehouses />} /> */}
         <Route path="/inventory" element={<Inventory />} />
         {/* <Route path="/deleteInventory/:deleteInventoryId" element={<Inventory />} /> */}   
-        <Route path="/inventoryItemDetails" element={<InventoryItemDetails />} />
+        <Route path="/inventory/:id" element={<InventoryItemDetails />} />
         <Route path="/editInventoryOutOfStock" element={<EditInventoryOutOfStock />} />
         {/* <Route path="/inStock/:inStockId" element={<EditInventoryOutOfStock  />} /> */}
         <Route path="/addNewInventoryOutOfStock" element={<AddNewInventoryItemOutOfStock />} /> 
@@ -35,6 +36,7 @@ export default function App() {
 
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
