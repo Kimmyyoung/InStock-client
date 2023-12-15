@@ -1,6 +1,6 @@
 
 
-import "./InventoryList.scss";
+import "./InventoryList.scss"; // Import your styles
 import delete_icon from "../../assets/icons/delete_outline-24px.svg";
 import edit from "../../assets/icons/edit-24px.svg";
 
@@ -12,8 +12,10 @@ const InventoryList = ({ item }) => {
 
   return (
     <div>
+      {/* Main inventory list */}
       <div className="inventory__list">
-        <div className="inventory__item inventory__item-icon warehouse__nameAndArrow ">
+        {/* Each inventory item */}
+        <div className="inventory__item inventory__item-icon warehouse__nameAndArrow">
           <p id="item_name" className="item__name">
             {item_name}
           </p>
@@ -29,6 +31,7 @@ const InventoryList = ({ item }) => {
         </div>
 
         <div id="status" className="inventory__item">
+          {/* Apply the appropriate status class */}
           <p className={`status ${statusClass}`}>{status}</p>
         </div>
         <div id="qty" className="inventory__item">
@@ -43,6 +46,7 @@ const InventoryList = ({ item }) => {
         </div>
       </div>
 
+      {/* Mobile view */}
       <div className="inventory__list-mobile">
         <div className="inventory__row1-mobile">
           <div className="left-column">
@@ -64,8 +68,9 @@ const InventoryList = ({ item }) => {
           <div className="right-column">
             <div className="inventory__block3">
               <div className="inventory__title">STATUS</div>
-              <div id="status_mobile" className="inventory__item">
-                <p className={`status ${statusClass}`}>{status}</p>
+              {/* Apply the appropriate status class */}
+              <div id="status_mobile" className={`inventory__item status ${statusClass}`}>
+                <p>{status}</p>
               </div>
             </div>
 
