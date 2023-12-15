@@ -12,6 +12,8 @@ import AddNewWarehouse from "./pages/AddNewWarehouse/AddNewWarehouse";
 import Header from "./components/Header/Header";
 
 export default function App() {
+
+  
   return (
 
     <BrowserRouter>

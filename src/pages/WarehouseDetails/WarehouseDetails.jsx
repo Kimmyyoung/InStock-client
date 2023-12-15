@@ -1,34 +1,80 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+import "./WarehouseDetails.scss";
+import { Link } from "react-router-dom";
+import icon1 from './../../assets/Icons/arrow_back-24px.svg'
+import icon2 from './../../assets/Icons/edit-24px.svg'
 
-
-const wareHouseDetails = () => {
-
-  <section className="warehouse-details">
-
-    <h3 className="warehouse-details__title">Washington</h3>
-
-    <div className="contact-container">
-      <p className="contact__address-title">
-          test
-      </p>
-      <p className="contact__address">
-          test
-      </p>
-      <p className="contact__name-title">
-          test
-      </p>
-      <p className="contact__name-position">
-          test
-      </p>
-
-    </div>
-
-
-
-  </section>
-
+const warehouseDetails = () => {
   
+  const [warehouseDetails, setWarehouseDetails] = useState({});
 
+  useEffect(() => {
+
+    const fetchWarehouse = async (id) => {
+      try {
+        const response = await axios.get(`http://localhost:8080/warehouses/${id}`)
+        console.log("the response is: ", response.data);
+        setWarehouseDetails(response.data);
+      } catch (err) {
+        console.log("error fetching warehouse data: ", err);
+      }
+    }
+
+    fetchWarehouse(3);
+
+  }, [])
+
+  return (
+
+    <>
+
+    <div className="warehouse__container">
+      <div className="warehouse__top">
+        <div className="warehouse__title-box">
+          <h1 className="warehouse__title"><img src={icon1}/>{warehouseDetails.city}</h1>
+          <div className="warehouse__title-icon-frame">
+            <img className="warehouse__title-icon" src={icon2}/>
+            <p className="warehouse__title-icon-text">Edit</p>
+          </div>
+        </div>
+        <div className="warehouse__topright">
+
+          <article className="details__info">
+    
+
+            <div className="details__address">
+              <p className="details__address-title">Warehouse Address:</p>
+              <div className="details__address-places-box">
+                <p className="details__address-info">{warehouseDetails.address} </p>
+                <p className="details__address-info">{warehouseDetails.city}, </p>
+                <p className="details__address-info">{warehouseDetails.country}</p>
+              </div>
+            </div>
+
+            <article className="details__info-contact">
+              <div className="details__info-comm">
+                <p className="details__info-title">Contact name: </p>
+                <p className="details__info-contact-details">{warehouseDetails.contact_name}</p>
+                <p className="details__info-contact-details">{warehouseDetails.contact_position}</p>
+              </div>
+              <div className="details__info-comm">
+                <p className="details__info-title">Contact information: </p>
+                <p className="details__info-contact-details">{warehouseDetails.contact_phone}</p>
+                <p className="details__info-contact-details">{warehouseDetails.contact_email}</p>
+              </div>
+            </article>
+
+          </article>
+
+        </div>
+      </div>
+
+      </div>
+    </>
+
+  )
 
 }
 
-export default wareHouseDetails;
+export default warehouseDetails;
