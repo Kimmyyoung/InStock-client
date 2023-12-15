@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./WarehouseDetails.scss";
+import "./Inventory.scss";
 import { Link } from "react-router-dom";
 import icon1 from './../../assets/Icons/arrow_back-24px.svg'
 import icon2 from './../../assets/Icons/edit-24px.svg'
+import Inventory from "./../Inventory/Inventory";
+
 
 const warehouseDetails = () => {
   
@@ -21,7 +24,7 @@ const warehouseDetails = () => {
       }
     }
 
-    fetchWarehouse(3);
+    fetchWarehouse(8);
 
   }, [])
 
@@ -32,10 +35,12 @@ const warehouseDetails = () => {
     <div className="warehouse__container">
       <div className="warehouse__top">
         <div className="warehouse__title-box">
-          <h1 className="warehouse__title"><img src={icon1}/>{warehouseDetails.city}</h1>
+          <h1 className="warehouse__title"><Link to="/"><img src={icon1}/></Link>{warehouseDetails.city}</h1>
           <div className="warehouse__title-icon-frame">
-            <img className="warehouse__title-icon" src={icon2}/>
-            <p className="warehouse__title-icon-text">Edit</p>
+            <Link to='/editWarehouse'>
+              <img className="warehouse__title-icon" src={icon2}/>
+            </Link>
+              <p className="warehouse__title-icon-text">Edit</p>
           </div>
         </div>
         <div className="warehouse__topright">
@@ -69,6 +74,8 @@ const warehouseDetails = () => {
 
         </div>
       </div>
+
+      <Inventory/>
 
       </div>
     </>

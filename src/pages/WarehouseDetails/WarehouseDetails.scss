@@ -30,12 +30,20 @@
     box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
   }
   &__top {
-    padding: 1.5rem;
+
+    padding: 0rem;
 
     @include tablet {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    @include desktop {
+        padding-left: 4rem;
+        padding-right: 4rem;
     }
   }
 
@@ -43,7 +51,11 @@
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid silver;
-    align-items: center;
+    align-items: flex-end;
+    padding-top: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 0rem;
   }
 
   &__title {
@@ -467,8 +479,8 @@
     &__info {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
-        // border-top: 1px solid silver;
+        gap: 1.5rem;
+        padding: 1rem;
 
         @include tablet {
             display: flex;
@@ -528,6 +540,8 @@
         display: flex;
         justify-content: space-between;
         gap: 1rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid silver;
 
         @include tablet {
 
@@ -538,6 +552,7 @@
             padding-left: 2rem;
             margin-top: 1rem;
             border-left: 1px solid silver;
+            border-bottom: none;
 
         }
     }

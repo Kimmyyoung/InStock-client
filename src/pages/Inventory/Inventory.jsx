@@ -722,7 +722,7 @@ const Inventory = () => {
               ></span>
             </div>
 
-            <button type="button">+ Add New Item</button>
+            <button className="inventory__add-button" type="button">+ Add New Item</button>
           </div>
         </div>
 

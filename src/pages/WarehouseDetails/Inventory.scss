@@ -1,0 +1,25 @@
+.inventory {
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0px 40px 24px 40px;
+    }
+
+    &__header-title {
+        display: none;
+    }
+
+    &__input {
+        display: none;
+    }
+
+    &__search-icon {
+        display: none;
+    }
+
+    &__add-button {
+        display: none;
+    }
+}
