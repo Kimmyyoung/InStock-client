@@ -1,109 +1,31 @@
 import "./Warehouses.scss";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
-import editIcon from "../../assets/Icons/edit-24px.svg";
-import rightArrow from "../../assets/Icons/chevron_right-24px.svg";
+import { useEffect, useState } from "react";
 import sortArrow from "../../assets/Icons/sort-24px.svg";
+import WarehouseList from "../../components/WarehouseList/WarehouseList";
+import axios from "axios";
+
 
 const Home = () => {
   const [deleteWarehouse, setDeleteWarehouse] = useState([""]); 
   const [sort, setSort] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [ warehouses, setWarehouses ] = useState([]);
 
-  const fakeData = [
-    {
-      id: 1,
-      warehouse_name: 'Manhattan',
-      address: '503 Broadway',
-      city: 'New York',
-      country: 'USA',
-      contact_name: 'Parmin Aujla',
-      contact_position: 'Warehouse Manager',
-      contact_phone: '+1 (646) 123-1234',
-      contact_email: 'paujla@instock.com',
-    },
-    {
-      id: 2,
-      warehouse_name: 'Washington',
-      address: '33 Pearl Street SW',
-      city: 'Washington',
-      country: 'USA',
-      contact_name: 'Greame Lyon',
-      contact_position: 'Warehouse Manager',
-      contact_phone: '+1 (646) 123-1234',
-      contact_email: 'glyon@instock.com',
-    },
-    {
-      id: 3,
-      warehouse_name: 'Jersey',
-      address: '300 Main Street',
-      city: 'New Jersey',
-      country: 'USA',
-      contact_name: 'Brad MacDonald',
-      contact_position: 'Warehouse Manager',
-      contact_phone: '+1 (646) 123-1234',
-      contact_email: 'bmcdonald@instock.com',
-    },
-    {
-      id: 4,
-      warehouse_name: 'SF',
-      address: '890 Brannnan Street',
-      city: 'San Francisco',
-      country: 'USA',
-      contact_name: 'Gary Wong',
-      contact_position: 'Warehouse Manager',
-      contact_phone: '+1 (646) 123-1234',
-      contact_email: 'gwong@instock.com',
-    },
-    {
-      id: 5,
-      warehouse_name: 'Santa Monica',
-      address: '520 Broadway',
-      city: 'Santa Monica',
-      country: 'USA',
-      contact_name: 'Sharon Ng',
-      contact_position: 'Warehouse Manager',
-      contact_phone: '+1 (646) 123-1234',
-      contact_email: 'sng@instock.com',
-    },
-    {
-      id: 6,
-      warehouse_name: 'Seattle',
-      address: '1201 Third Avenue',
-      city: 'Seattle',
-      country: 'USA',
-      contact_name: 'Daniel Bachu',
-      contact_position: 'Warehouse Manager',
-      contact_phone: '+1 (646) 123-1234',
-      contact_email: 'dbachu@instock.com',
-    },
-    {
-      id: 7,
-      warehouse_name: 'Miami',
-      address: '2650 NW 5th Avenue',
-      city: 'Miami',
-      country: 'USA',
-      contact_name: 'Alana Thomas',
-      contact_position: 'Warehouse Manager',
-      contact_phone: '+1 (646) 123-1234',
-      contact_email: 'athomas@instock.com',
-    },
-    {
-      id: 8,
-      warehouse_name: 'Boston',
-      address: '215 Essex Street',
-      city: 'Boston',
-      country: 'USA',
-      contact_name: 'Vanessa Mendoza',
-      contact_position: 'Warehouse Manager',
-      contact_phone: '+1 (646) 123-1234',
-      contact_email: 'vmendoza@instock.com',
-    },
-  ]
+  useEffect(()=> {
+    const fetchData = async () => {
+      const result = await axios.get('http://localhost:8080/warehouses');
+      setWarehouses(result.data);
+    }
 
+    fetchData();
+  }, []);
+
+
+  console.log(warehouses);
 
   const sortData = (e) => {
+    // will apply later
     const delHandle = (name, id) => {
       setDeleteWarehouse([name, id]);
     };
@@ -168,7 +90,7 @@ const Home = () => {
               setSearchTerm(event.target.value);
             }}
           ></input>
-          <Link to="/warehouses/new" className="warehouse__button">
+          <Link to="/warehouses/add" className="warehouse__button">
             + Add New Warehouse
           </Link>
         </div>
@@ -204,54 +126,11 @@ const Home = () => {
         <span className="warehouse__category--right">ACTIONS</span>
       </div>
 
-      {fakeData
+      {warehouses
         .map((warehouse) => (
-          <div className="warehouse" key={warehouse.id}>
-            <div className="warehouse__text">
-              <div className="warehouse__left">
-                <Link
-                  to={`/warehouses/${warehouse.id}`}
-                  className="warehouse__link"
-                >
-                  <div className="warehouse__nameAndArrow">
-                    <p className="warehouse__name">{warehouse.warehouse_name}</p>
-
-                    <img
-                      src={rightArrow}
-                      className="warehouse__rightArrow"
-                      alt="right arrow"
-                    />
-                  </div>
-                </Link>
-                <p className="warehouse__address">
-                  {warehouse.address}, {warehouse.city}, {warehouse.country}
-                </p>
-              </div>
-              <div className="warehouse__right">
-                <p className="warehouse__contact">{warehouse.contact_name}</p>
-                <p className="warehouse__contactinfo">
-                  <span>{warehouse.contact_phone}</span>
-                  <span>{warehouse.contact_email}</span>
-                </p>
-              </div>
-            </div>
-            <div className="warehouse__icons">
-              <img
-                onClick={() => delHandle(warehouse.name, warehouse.id)} 
-                src={deleteIcon}
-                alt="delete icon"
-                className="warehouse__deleteicon"
-              />
-              <Link to={`edit-warehouse/${warehouse.id}`}>
-                <img
-                  src={editIcon}
-                  alt="edit icon"
-                  className="warehouse__editicon"
-                />
-              </Link>
-            </div>
-          </div>
+          <WarehouseList key={warehouse.id} warehouse={warehouse} />
         ))}
+
     </div>
     </>
   )
