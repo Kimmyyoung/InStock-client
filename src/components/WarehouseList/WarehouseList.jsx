@@ -15,7 +15,7 @@ const WarehouseList = ({ props }) => {
 
         <div className="list__items list_items_name flex-mob-col">
           <p className="title forMob">Warehousename</p>
-          <p className="list__items_p name">{warehouse_name} > </p>
+          <p className="list__items_p name">{warehouse_name}  </p>
           <p className="title forMob">address</p>
           <p className="list__items_p">{address}</p>
         </div>

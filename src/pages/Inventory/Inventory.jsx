@@ -729,22 +729,27 @@ const Inventory = () => {
         <div className="inventory__content">
           <div className="inventory__row">
             <div id="1" className="inventory__title">
-              Inventory Item
+             <span> INVENTORY ITEM</span>
+              <img src="/src/assets/Icons/sort-24px.svg" alt="sort arrow" className="inventory__sortArrow"></img>
             </div>
             <div id="2" className="inventory__title">
-              Category
+            <span>CATEGORY</span>
+             <img src="/src/assets/Icons/sort-24px.svg" alt="sort arrow" className="inventory__sortArrow"></img>
             </div>
             <div id="3" className="inventory__title">
-              Status
+             <span>STATUS</span>
+             <img src="/src/assets/Icons/sort-24px.svg" alt="sort arrow" className="inventory__sortArrow"></img>
             </div>
             <div id="3" className="inventory__title">
-              Qty
+            <span> QTY</span>
+             <img src="/src/assets/Icons/sort-24px.svg" alt="sort arrow" className="inventory__sortArrow"></img>
             </div>
             <div id="5" className="inventory__title">
-              Warehouse
+           <span>WAREHOUSE</span>
+            <img src="/src/assets/Icons/sort-24px.svg" alt="sort arrow" className="inventory__sortArrow"></img>
             </div>
-            <div id="6" className="inventory__title">
-              Actions
+            <div id="6" className="inventory__title-last">
+            ACTIONS
             </div>
           </div>
 
