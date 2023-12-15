@@ -2,17 +2,21 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./WarehouseDetails.scss";
 import "./Inventory.scss";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import icon1 from './../../assets/Icons/arrow_back-24px.svg'
 import icon2 from './../../assets/Icons/edit-24px.svg'
 import Inventory from "./../Inventory/Inventory";
 
 
 const warehouseDetails = () => {
+
+  const params = useParams();
   
   const [warehouseDetails, setWarehouseDetails] = useState({});
 
   useEffect(() => {
+
+    const id = params.warehouseId;
 
     const fetchWarehouse = async (id) => {
       try {
@@ -24,7 +28,7 @@ const warehouseDetails = () => {
       }
     }
 
-    fetchWarehouse(8);
+    fetchWarehouse(id);
 
   }, [])
 
