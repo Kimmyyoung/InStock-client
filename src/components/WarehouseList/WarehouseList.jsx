@@ -10,7 +10,9 @@ import { Link } from 'react-router-dom';
 
 const WarehouseList = ({warehouse}) => {
 
-  const delHandle = () => { };
+  const delHandle = () => {
+    console.log("delete handled");
+  };
 
   return (
     <>
