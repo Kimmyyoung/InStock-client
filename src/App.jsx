@@ -13,14 +13,16 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 
 export default function App() {
+
+  
   return (
 
     <BrowserRouter>
       <Header/>
       <Routes>
         <Route path="/" element={<Warehouses />} />
-        {/* <Route path="/warehouse/:warehouseId" element={<Warehouses />} /> */}
-        <Route path="/warehouseDetails" element={<WarehouseDetails />} /> 
+        <Route path="/warehouse/:warehouseId" element={<WarehouseDetails />} />
+        {/* <Route path="/warehouseDetails" element={<WarehouseDetails/>} />  */}
         <Route path="/editWarehouse" element={<EditWarehouse />} /> 
         {/* <Route path="/addWarehouse/:addWarehouseId" element={<EditWarehouses />} /> */}
         <Route path="/inventory" element={<Inventory />} />
