@@ -1,37 +1,35 @@
-
-
-import "./InventoryList.scss"; // Import your styles
+import "./InventoryList.scss";
 import delete_icon from "../../assets/icons/delete_outline-24px.svg";
 import edit from "../../assets/icons/edit-24px.svg";
+import { Link } from "react-router-dom";
 
-const InventoryList = ({ item }) => {
-  const { item_name, category, status, quantity } = item;
+const InventoryList = ({ inventory }) => {
+  const { item_name, category, status, quantity } = inventory;
 
-  // Determine the appropriate CSS classes based on the item's status
-  const statusClass = status === "In Stock" ? "status-instock" : "status-outofstock";
+  const statusClass =
+    status === "In Stock" ? "status-instock" : "status-outofstock";
 
   return (
     <div>
-      {/* Main inventory list */}
-      <div className="inventory__list">
-        {/* Each inventory item */}
-        <div className="inventory__item inventory__item-icon warehouse__nameAndArrow">
-          <p id="item_name" className="item__name">
-            {item_name}
-          </p>
-          <img
-            src="/src/assets/Icons/chevron_right-24px.svg"
-            className="inventory__rightArrow"
-            alt="right arrow"
-          />
+      <div className="inventory__list" key={inventory.id}>
+        <div className="inventory__item inventory__item-icon warehouse__nameAndArrow ">
+          <Link to={`/inventories/${inventory.id}`} className="inventory__item-link">
+            <p id="item_name" className="item__name">
+              {item_name}
+            </p>
+            <img
+              src="/src/assets/Icons/chevron_right-24px.svg"
+              className="inventory__rightArrow"
+              alt="right arrow"
+            />
+          </Link>
         </div>
 
         <div id="category" className="inventory__item">
-          <p className="category">{category}</p>
+          <p className="category"> {category}</p>
         </div>
 
         <div id="status" className="inventory__item">
-          {/* Apply the appropriate status class */}
           <p className={`status ${statusClass}`}>{status}</p>
         </div>
         <div id="qty" className="inventory__item">
@@ -46,7 +44,6 @@ const InventoryList = ({ item }) => {
         </div>
       </div>
 
-      {/* Mobile view */}
       <div className="inventory__list-mobile">
         <div className="inventory__row1-mobile">
           <div className="left-column">
@@ -60,7 +57,7 @@ const InventoryList = ({ item }) => {
             <div className="inventory__block2">
               <div className="inventory__title">CATEGORY</div>
               <div id="category_mobile" className="inventory__item">
-                <p className="category">{category}</p>
+                <p className="category"> {category}</p>
               </div>
             </div>
           </div>
@@ -68,9 +65,8 @@ const InventoryList = ({ item }) => {
           <div className="right-column">
             <div className="inventory__block3">
               <div className="inventory__title">STATUS</div>
-              {/* Apply the appropriate status class */}
-              <div id="status_mobile" className={`inventory__item status ${statusClass}`}>
-                <p>{status}</p>
+              <div id="status_mobile" className="inventory__item">
+                <p className={`status ${statusClass}`}>{status}</p>
               </div>
             </div>
 

@@ -1,8 +1,12 @@
-@use "../../styles/partials/mixins" as *;
+
 @use "../../styles/partials/colors" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/breakpoints" as *;
+
+
 
 .inventory {
-  
   
     &__header {
       display: flex;
@@ -41,27 +45,35 @@
       & input {
         width: 100%;
         height: 38px;
-        flex-shrink: 0;
+        flex-shrink: 2;
         border-radius: 20px;
-        border: 1px solid #bdc5d5;
         background: #ffffff;
         padding: 0px 16px;
+        background-image: url(/src/assets/Icons/search-24px.svg);
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-position-y: center;
+        border: solid 1px #BDC5D5;
+        border-radius: 1.25rem;
   
         @include tablet {
-          width: 11.5625rem;
+          width: 13.5625rem;
         }
       }
   
-      & button {
+      &__button-link{
         color: $white;
         border: none;
         padding: 8px 16px;
         border-radius: 20px;
         background: $interactiveElements;
         width: 100%;
+
+        
   
         @include tablet {
-          max-width: 10rem;
+          width: 20rem;
+
         }
       }
   
@@ -164,7 +176,7 @@
   
     &__list {
       border-bottom: 1px solid #ccc;
-      padding:  1.5rem;
+      padding: 1.5rem;
       display: none;
   
       @include tablet {
@@ -267,14 +279,10 @@
       }
 
   }
-  
 
-  .status {
-    padding: 0 8px;
-    border-radius: 20px;
-    height: 26px;
-    display: inline-block;
-  }
+
+
+
   
   .in-stock {
     background: #15846314;
@@ -282,31 +290,49 @@
   }
   
   .out-of-stock {
-    background: #C94515; 
-    color: #FFFFFF; 
+    background: #C94515;
+    color: #FFFFFF;
   }
   
   .status {
-    padding: 0 8px;
-    border-radius: 20px;
-    height: 26px;
-  }
-  
-  .status-instock {
-    background-color: #15846314;
-    color: #158463;
-  }
-  
-  .status-outofstock {
-    background-color: #c9451510;
-    color: #c94515;
-  }
-  
-  .inventory__container {
-    max-height: calc(8 * (your-row-height + 1px)); /* Adjust based on your row height */
-    overflow-y: auto;
-  }
+  padding: 0 8px;
+  border-radius: 20px;
+  height: 26px;
+}
 
-  .inventory__list:hover {
-  background-color: #f7f8f9;
+.status-instock {
+  background-color: #15846314;
+  color: #158463;
+}
+
+.status-outofstock {
+  background-color: #c9451518;
+  color: #c94515;
+}
+
+.inventory__button-link {
+  color: #FFFFFF;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: #2E66E5;
+  width: 100%;
+text-decoration: none;
+text-align: center;
+}
+
+
+.inventory__item-link  {
+  display: flex;
+  align-items: center;
+  color: #2E66E5;
+}
+
+.inventory__item-link a  {
+
+  color: #2E66E5;
+}
+
+#item_name {
+  color: #2E66E5; 
 }
