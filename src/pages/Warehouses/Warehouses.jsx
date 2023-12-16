@@ -74,52 +74,52 @@ const Home = () => {
   return (
     <>
     
-    <div className="warehouse__container">
-      <div className="warehouse__top">
-        <h1 className="warehouse__title">Warehouses</h1>
-        <div className="warehouse__topright">
+    <div className="home__container">
+      <div className="home__top">
+        <h1 className="home__title">Warehouses</h1>
+        <div className="home__topright">
           <input
             type="text"
-            className="warehouse__search"
+            className="home__search"
             placeholder="Search..."
             onChange={(event) => {
               setSearchTerm(event.target.value);
             }}
           ></input>
-          <Link to="/warehouses/add" className="warehouse__button">
+          <Link to="/warehouses/add" className="home__button">
             + Add New Warehouse
           </Link>
         </div>
       </div>
 
-      <div className="warehouse__categories">
-        <div className="warehouse__categoryAndArrow warehouse__categoryAndArrow-sort">
-          <span className="warehouse__category " onClick={sortData}>
+      <div className="home__categories">
+        <div className="home__categoryAndArrow home__categoryAndArrow-sort">
+          <span className="home__category " onClick={sortData}>
             WAREHOUSE
           </span>
           <img
             src={sortArrow}
             alt="sort arrow"
-            className="warehouse__sortArrow"
+            className="home__sortArrow"
           />
         </div>
-        <div className="warehouse__categoryAndArrow warehouse__categoryAndArrow-sort">
-          <span className="warehouse__category" onClick={sortData}>
+        <div className="home__categoryAndArrow home__categoryAndArrow-sort">
+          <span className="home__category" onClick={sortData}>
             ADDRESS
           </span>
           <img
             src={sortArrow}
-            className="warehouse__sortArrow"
+            className="home__sortArrow"
             alt="sort arrow"
           />
         </div>
-        <div className="warehouse__categoryAndArrow">
-          <span className="warehouse__category">CONTACT NAME</span>
+        <div className="home__categoryAndArrow">
+          <span className="home__category">CONTACT NAME</span>
         </div>
-        <div className="warehouse__categoryAndArrow">
-          <span className="warehouse__category">CONTACT INFORMATION</span>
+        <div className="home__categoryAndArrow">
+          <span className="home__category">CONTACT INFORMATION</span>
         </div>
-        <span className="warehouse__category--right">ACTIONS</span>
+        <span className="home__category--right">ACTIONS</span>
       </div>
 
       {warehouses
