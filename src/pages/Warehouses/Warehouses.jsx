@@ -73,8 +73,8 @@ const Home = () => {
 
   return (
     <>
-    <div className="warehouse__container">
     
+    <div className="warehouse__container">
       <div className="warehouse__top">
         <h1 className="warehouse__title">Warehouses</h1>
         <div className="warehouse__topright">
