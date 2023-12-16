@@ -59,7 +59,7 @@ const Inventory = () => {
             </div>
 
             <Link to="inventory/add" className="inventory__button-link">
-              + Add Inventory
+              + Add New Item
             </Link>
           </div>
         </div>
