@@ -5,8 +5,8 @@ import sortArrow from "../../assets/Icons/sort-24px.svg";
 import WarehouseList from "../../components/WarehouseList/WarehouseList";
 import axios from "axios";
 
-
 const Home = () => {
+  
   const [deleteWarehouse, setDeleteWarehouse] = useState([""]); 
   const [sort, setSort] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,12 +17,8 @@ const Home = () => {
       const result = await axios.get('http://localhost:8080/warehouses');
       setWarehouses(result.data);
     }
-
     fetchData();
-  }, []);
-
-
-  console.log(warehouses);
+  }, [deleteWarehouse]);
 
   const sortData = (e) => {
     // will apply later
@@ -128,7 +124,7 @@ const Home = () => {
 
       {warehouses
         .map((warehouse) => (
-          <WarehouseList key={warehouse.id} warehouse={warehouse} />
+          <WarehouseList key={warehouse.id} warehouse={warehouse} setDeleteWarehouse={setDeleteWarehouse}/>
         ))}
 
     </div>

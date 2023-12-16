@@ -2,45 +2,65 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/colors" as *;
 
-.AddWarehouse {
-    border-radius: 0.1875rem;
-    background: $white;
-    padding: 2rem 1.5rem;
-    padding: 8.5rem 1rem 0rem 1rem;
-    color: $globalText;
-
-    /* Card Shadow */
-    box-shadow: 0px 2px 5px 0px rgba(19, 24, 44, 0.10);
+body {
+    background: linear-gradient(to bottom,
+            #232940 0%,
+            #232940 17%,
+            #F7F8F9 17%,
+            #F7F8F9 100%) !important;
+    background-repeat: no-repeat !important;
+    width: 100%;
+    height: max-content !important;
 
     @include tablet {
-        padding: 5.75rem 2rem 0 2rem;
+        background: linear-gradient(to bottom,
+                #232940 0%,
+                #232940 18.3%,
+                #F7F8F9 18.3%,
+                #F7F8F9 100%) !important;
     }
 
+    @include desktop {
+        background: linear-gradient(to bottom,
+                #232940 0%,
+                #232940 21.5%,
+                #F7F8F9 21.5%,
+                #F7F8F9 100%) !important;
+    }
+
+}
+
+.AddWarehouse {
+    padding: 0 1rem;
+
     @include tablet {
+        padding: 0 2rem 20rem 2rem;
+    }
+
+    @include desktop {
         max-width: 1020px;
         margin: 0 auto;
+        padding-bottom: 9.6rem;
+    }
+
+    &__main-container {
+        background-color: $white;
+        border: solid 1px $dividers;
+        border-radius: 0.1875rem;
+        box-shadow: 0px 2px 5px 0px rgba(19, 24, 44, 0.10);
     }
 
     &__container {
-        //border-bottom: 1px solid $borders;
+        border-bottom: 1px solid $borders;
         display: flex;
         gap: 0.5rem;
         padding-left: 1.5rem;
+        padding-top: 2rem;
 
-        &::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            top: 12.3rem;
-            width: 100%;
-            height: 1px;
-            background-color: $borders;
-
-            @include tablet {
-                top: 10rem;
-            }
+        @include desktop {
+            padding-left: 2.5rem;
         }
+
     }
 
     &__title {
@@ -56,10 +76,14 @@
     }
 
     &__details-container {
-        padding: 1rem 1.5rem;
+
 
         @include tablet {
             padding: 1.5rem 2rem;
+        }
+
+        @include desktop {
+            padding: 1.5rem 2.5rem 2rem 2.5rem;
         }
 
     }
@@ -75,7 +99,7 @@
         }
     }
 
-    input {
+    &__input {
         border-radius: 1.25rem;
         border: 1px solid $borders;
         background: $white;
@@ -85,12 +109,35 @@
         flex-shrink: 0;
         padding-left: 1rem;
 
+        @include tablet {
+            margin-bottom: 1.5rem;
+        }
+
         &::placeholder {
             font-size: 0.8125rem;
             line-height: 1.25rem;
             color: $placeholder;
         }
+
+        &:focus{
+            outline: none;
+            border: 1px solid $interactiveElements;
+        }
+
+        &:focus-visible {
+            border: 1px solid $interactiveElements; 
+        }
+        &--last {
+            margin-bottom: 0;
+        }
+
+        &--error {
+            border: 1px solid $error;
+        }
+
+
     }
+
 
     label {
         font-size: 0.8125rem;
@@ -108,10 +155,15 @@
         border-radius: 0rem 0rem 0.1875rem 0.1875rem;
         background: rgba(247, 248, 249, 0.70);
         height: 4.25rem;
-        padding: 0;
+        padding: 0 1rem;
 
-        @include tablet{
+        @include tablet {
             justify-content: flex-end;
+            padding-right: 2rem;
+        }
+
+        @include desktop {
+            padding-right: 2.5rem;
         }
     }
 
@@ -125,16 +177,18 @@
         color: $placeholder;
         align-items: center;
 
-        :hover {
+        &:hover {
             background: $white;
             border: 1px solid $buttonHover;
             color: $buttonHover;
+            cursor: pointer;
         }
 
         @include tablet {
             height: 2.375rem;
             width: 4.5rem;
         }
+
     }
 
     &__add-btn {
@@ -149,7 +203,7 @@
         color: $white;
         align-items: center;
 
-        :hover {
+        &:hover {
             background: $buttonHover;
         }
 
@@ -163,53 +217,67 @@
     }
 
     &__warehouse {
-        //border-bottom: 1px solid $borders;
-        margin-top: 1.5rem;
-
         @include tablet {
             margin-top: 0;
         }
 
-        &::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            top: 37.15rem;
-            width: 100%;
-            height: 1px;
-            background-color: $borders;
 
-            @include tablet {
-                display: none;
-            }
-        }
     }
 
     &__contact-container {
-        margin-top: 1rem;
+        padding: 1rem 1.5rem 1.5rem 1.5rem;
 
         @include tablet {
             width: 50%;
             margin-top: 0;
+            padding-left: 2rem;
+            padding-right: 0;
+            padding-bottom: 0;
+            padding-top: 0;
         }
+
     }
 
     &__subcontainer {
         @include tablet {
             display: flex;
-            gap: 2rem;
             width: 100%;
         }
     }
 
     &__warehouse-container {
+        border-bottom: 1px solid $borders;
+        padding: 1rem 1.5rem 1.5rem 1.5rem;
+
         @include tablet {
+            border-bottom: none;
             width: 50%;
+            padding-left: 0;
             padding-right: 2rem;
+            padding-bottom: 0;
+            padding-top: 0;
             border-right: 1px solid $borders;
-            ;
+
         }
+
+    }
+
+    &__error{
+        display: flex;
+        padding-bottom: 0.2rem;
+    }
+
+    &__error-text {
+        color: $error;
+        font-size: 0.75rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.125rem;
+    }
+
+    &__error-icon{
+        width: 1rem;
+        height: 1rem;
     }
 
 }
