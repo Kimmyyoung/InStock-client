@@ -9,7 +9,6 @@ import errorIcon from "../../assets/Icons/error-24px.svg";
 
 export default function EditWarehouse() {
   const { id } = useParams();
-  console.log(id);
   const navigate = useNavigate();
   const hasError = false; //----For Validation----//
 
@@ -65,7 +64,7 @@ export default function EditWarehouse() {
 
       if (response.status === 200) {
         console.log('Edited Warehouse', response.data);
-        //navigate("/");
+        navigate("/");
       } else {
         console.error('Major error editing warehouse:', response.data);
       }
@@ -76,7 +75,7 @@ export default function EditWarehouse() {
 
   return (
     <section className='EditWarehouse'>
-      <form className='EditWarehouse__main-container' >
+      <form className='EditWarehouse__main-container' onSubmit={handleEditWarehouse} >
 
         <div className="EditWarehouse__container">
           <NavLink to="/">
