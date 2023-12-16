@@ -22,16 +22,11 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Warehouses />} />
         <Route path="/warehouse/:warehouseId" element={<WarehouseDetails />} />
-        {/* <Route path="/warehouseDetails" element={<WarehouseDetails/>} />  */}
         <Route path="/editWarehouse/:id" element={<EditWarehouse />} /> 
-        {/* <Route path="/addWarehouse/:addWarehouseId" element={<EditWarehouses />} /> */}
         <Route path="/inventory" element={<Inventory />} />
-        {/* <Route path="/deleteInventory/:deleteInventoryId" element={<Inventory />} /> */}   
         <Route path="/inventory/:id" element={<InventoryItemDetails />} />
-        <Route path="/editInventoryOutOfStock" element={<EditInventoryOutOfStock />} />
-        {/* <Route path="/inStock/:inStockId" element={<EditInventoryOutOfStock  />} /> */}
+        <Route path="/editInventory/:id" element={<EditInventoryOutOfStock />} />
         <Route path="/addNewInventoryOutOfStock" element={<AddNewInventoryItemOutOfStock />} /> 
-        {/* <Route path="/inStock/:inStockId" element={<AddNewInventoryItemOutOfStock  />} /> */}
 
         {/* Add New Warehouse */}
         <Route path= "/addNewWarehouse" element={<AddNewWarehouse />} />
