@@ -5,9 +5,11 @@ import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
 import editIcon from "../../assets/Icons/edit-24px.svg";
 import rightArrow from "../../assets/Icons/chevron_right-24px.svg";
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import './DeletionModal.scss';
+
+import axios from 'axios';
 
 Modal.setAppElement('#root');
 
@@ -56,13 +58,31 @@ const DeletionModal = ({ isOpen, onRequestClose, onDelete, city }) => {
   );
 };
 
-const WarehouseList = ({warehouse}) => {
+const WarehouseList = ({warehouse, setDeleteWarehouse}) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const deleteWarehouse = () => {
-    console.log("warehouse deleted");
+  const deleteWarehouse = async () => {
+
+    try {
+      const deleteRes = await axios.delete(`http://localhost:8080/warehouses/${warehouse.id}`)
+      
+    } catch (err) {
+      console.log("Json error deleting data: ", err);
+    }
+  
   }
+
+  const handleDelete = async () => {
+    try {
+      await deleteWarehouse(); // Wait for the deletion to complete
+      setIsModalOpen(false);
+      setDeleteWarehouse('something');
+    } catch (err) {
+      console.error("Error deleting warehouse:", err);
+    }
+  };
+
 
   return (
     <>
@@ -112,8 +132,10 @@ const WarehouseList = ({warehouse}) => {
             </div>
             <DeletionModal
               isOpen={isModalOpen}
-              onRequestClose={() => setIsModalOpen(false)}
-              onDelete={deleteWarehouse}
+              onRequestClose={() => {
+                setIsModalOpen(false);
+              }}
+              onDelete={handleDelete}
               city={warehouse.city}
             />
           </div>
