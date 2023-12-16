@@ -78,7 +78,11 @@
     }
 
     &__title {
-        padding-left: 2rem;
+
+        @include tablet {
+            padding-left: 2rem;
+        }
+        
     }
 
     &__message {
