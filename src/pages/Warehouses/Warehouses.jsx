@@ -22,8 +22,6 @@ const Home = () => {
   }, []);
 
 
-  console.log(warehouses);
-
   const sortData = (e) => {
     // will apply later
     const delHandle = (name, id) => {
