@@ -53,21 +53,21 @@ const AddWarehouse = () => {
 
     return (
         <section className='AddWarehouse'>
-            <div className="AddWarehouse__container">
-                <NavLink to="/">
-                    <div className="AddWarehouse__back-icon">
-                        <img src={arrow_back} alt="back_button" />
-                    </div>
-                </NavLink>
-                <div className='AddWarehouse__title'>Add New Warehouse</div>
-            </div>
+            <form className='AddWarehouse__main-container' onSubmit={handleAddWarehouse} >
+                <div className="AddWarehouse__container">
+                    <NavLink to="/">
+                        <div className="AddWarehouse__back-icon">
+                            <img src={arrow_back} alt="back_button" />
+                        </div>
+                    </NavLink>
+                    <div className='AddWarehouse__title'>Add New Warehouse</div>
+                </div>
 
-            {/* Warehouse Details */}
-            <div className="AddWarehouse__details-container">
+                {/* Warehouse Details & Contact Details */}
+                <div className="AddWarehouse__details-container">
 
-                <div className='AddWarehouse__main-container'>
+                    <div className='AddWarehouse__components-container' >
 
-                    <form className='AddWarehouse__components-container' onSubmit={handleAddWarehouse}>
                         <div className='AddWarehouse__subcontainer'>
                             <div className='AddWarehouse__warehouse-container'>
                                 <h2 className='AddWarehouse__sub-title'>Warehouse Details</h2>
@@ -75,7 +75,7 @@ const AddWarehouse = () => {
                                     <div>
                                         <label htmlFor="warehouseName">Warehouse Name</label>
                                         <br />
-                                        <input
+                                        <input className="AddWarehouse__input"
                                             type="text"
                                             id="warehouseName"
                                             name="warehouse_name"
@@ -87,7 +87,7 @@ const AddWarehouse = () => {
                                     <div>
                                         <label htmlFor="streetAddress">Street Address</label>
                                         <br />
-                                        <input
+                                        <input className="AddWarehouse__input"
                                             type="text"
                                             id="streetAddress"
                                             name="address"
@@ -99,7 +99,7 @@ const AddWarehouse = () => {
                                     <div>
                                         <label htmlFor="city">City</label>
                                         <br />
-                                        <input
+                                        <input className="AddWarehouse__input"
                                             type="text"
                                             id="city"
                                             name="city"
@@ -111,7 +111,7 @@ const AddWarehouse = () => {
                                     <div>
                                         <label htmlFor="country">Country</label>
                                         <br />
-                                        <input
+                                        <input className="AddWarehouse__input AddWarehouse__input--last"
                                             type="text"
                                             id="country"
                                             name="country"
@@ -127,7 +127,7 @@ const AddWarehouse = () => {
                                 <div>
                                     <label htmlFor="contactName">Contact Name</label>
                                     <br />
-                                    <input
+                                    <input className="AddWarehouse__input"
                                         type="text"
                                         id="contactName"
                                         name="contact_name"
@@ -139,7 +139,7 @@ const AddWarehouse = () => {
                                 <div>
                                     <label htmlFor="position">Position</label>
                                     <br />
-                                    <input
+                                    <input className="AddWarehouse__input"
                                         type="text"
                                         id="position"
                                         name="contact_position"
@@ -151,7 +151,7 @@ const AddWarehouse = () => {
                                 <div>
                                     <label htmlFor="phoneNumber">Phone Number</label>
                                     <br />
-                                    <input
+                                    <input className="AddWarehouse__input"
                                         type="text"
                                         id="phoneNumber"
                                         name="contact_phone"
@@ -163,7 +163,7 @@ const AddWarehouse = () => {
                                 <div>
                                     <label htmlFor="email">Email</label>
                                     <br />
-                                    <input
+                                    <input className="AddWarehouse__input AddWarehouse__input--last"
                                         type="email"
                                         id="email"
                                         name="contact_email"
@@ -177,7 +177,12 @@ const AddWarehouse = () => {
                         </div>
 
 
-                        <div className='AddWarehouse__button-container'>
+                   </div>
+
+
+                </div>
+
+                <div className='AddWarehouse__button-container'>
                             <button className='AddWarehouse__cancel-btn' type="button" onClick={handleCancel}>
                                 Cancel
                             </button>
@@ -185,11 +190,7 @@ const AddWarehouse = () => {
                                 + Add Warehouse
                             </button>
                         </div>
-                    </form>
-                </div>
-
-            </div>
-
+            </form>
         </section>
 
     )
