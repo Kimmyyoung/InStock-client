@@ -4,16 +4,16 @@
 @use "../../styles/partials/breakpoints" as *;
 
 .inventory {
-  border-top: solid 1px $dividers;
+  // border-top: solid 1px $dividers;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
   font-family: "Titillium Web";
 
 
-  &:hover {
-    background-color: $pageBackground;
-  }
+  // &:hover {
+  //   background-color: $pageBackground;
+  // }
 
   @include tablet {
     display: flex;
