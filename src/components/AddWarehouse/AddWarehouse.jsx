@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import arrow_back from "../../assets/Icons/arrow_back-24px.svg";
+import errorIcon from "../../assets/Icons/error-24px.svg";
 import { NavLink, useNavigate } from 'react-router-dom';
 import "./AddWarehouse.scss";
 import axios from "axios";
 
 const AddWarehouse = () => {
     const navigate = useNavigate();
-
+    const hasError = true; 
     const [warehouseDetails, setWarehouseDetails] = useState({
         warehouse_name: '',
         address: '',
@@ -83,6 +84,13 @@ const AddWarehouse = () => {
                                             value={warehouseDetails.warehouse_name}
                                             onChange={handleChange}
                                         />
+                                        {/* Error Validation */}
+                                        {hasError && (
+                                            <span className='EditWarehouse__error'>
+                                                <img src={errorIcon} alt="Error Icon" className="EditWarehouse__error-icon" />
+                                                <span className="EditWarehouse__error-text">This field is required</span>
+                                            </span>
+                                        )}
                                     </div>
                                     <div>
                                         <label htmlFor="streetAddress">Street Address</label>
@@ -95,6 +103,13 @@ const AddWarehouse = () => {
                                             value={warehouseDetails.address}
                                             onChange={handleChange}
                                         />
+                                        {/* Error Validation */}
+                                        {hasError && (
+                                            <span className='EditWarehouse__error'>
+                                                <img src={errorIcon} alt="Error Icon" className="EditWarehouse__error-icon" />
+                                                <span className="EditWarehouse__error-text">This field is required</span>
+                                            </span>
+                                        )}
                                     </div>
                                     <div>
                                         <label htmlFor="city">City</label>
@@ -107,6 +122,13 @@ const AddWarehouse = () => {
                                             value={warehouseDetails.city}
                                             onChange={handleChange}
                                         />
+                                        {/* Error Validation */}
+                                        {hasError && (
+                                            <span className='EditWarehouse__error'>
+                                                <img src={errorIcon} alt="Error Icon" className="EditWarehouse__error-icon" />
+                                                <span className="EditWarehouse__error-text">This field is required</span>
+                                            </span>
+                                        )}
                                     </div>
                                     <div>
                                         <label htmlFor="country">Country</label>
@@ -119,6 +141,13 @@ const AddWarehouse = () => {
                                             value={warehouseDetails.country}
                                             onChange={handleChange}
                                         />
+                                        {/* Error Validation */}
+                                        {hasError && (
+                                            <span className='EditWarehouse__error'>
+                                                <img src={errorIcon} alt="Error Icon" className="EditWarehouse__error-icon" />
+                                                <span className="EditWarehouse__error-text">This field is required</span>
+                                            </span>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -135,6 +164,13 @@ const AddWarehouse = () => {
                                         value={warehouseDetails.contact_name}
                                         onChange={handleChange}
                                     />
+                                    {/* Error Validation */}
+                                    {hasError && (
+                                        <span className='EditWarehouse__error'>
+                                            <img src={errorIcon} alt="Error Icon" className="EditWarehouse__error-icon" />
+                                            <span className="EditWarehouse__error-text">This field is required</span>
+                                        </span>
+                                    )}
                                 </div>
                                 <div>
                                     <label htmlFor="position">Position</label>
@@ -147,6 +183,13 @@ const AddWarehouse = () => {
                                         value={warehouseDetails.contact_position}
                                         onChange={handleChange}
                                     />
+                                    {/* Error Validation */}
+                                    {hasError && (
+                                        <span className='EditWarehouse__error'>
+                                            <img src={errorIcon} alt="Error Icon" className="EditWarehouse__error-icon" />
+                                            <span className="EditWarehouse__error-text">This field is required</span>
+                                        </span>
+                                    )}
                                 </div>
                                 <div>
                                     <label htmlFor="phoneNumber">Phone Number</label>
@@ -159,6 +202,13 @@ const AddWarehouse = () => {
                                         value={warehouseDetails.contact_phone}
                                         onChange={handleChange}
                                     />
+                                    {/* Error Validation */}
+                                    {hasError && (
+                                        <span className='EditWarehouse__error'>
+                                            <img src={errorIcon} alt="Error Icon" className="EditWarehouse__error-icon" />
+                                            <span className="EditWarehouse__error-text">This field is required</span>
+                                        </span>
+                                    )}
                                 </div>
                                 <div>
                                     <label htmlFor="email">Email</label>
@@ -171,25 +221,30 @@ const AddWarehouse = () => {
                                         value={warehouseDetails.contact_email}
                                         onChange={handleChange}
                                     />
+                                    {/* Error Validation */}
+                                    {hasError && (
+                                        <span className='EditWarehouse__error'>
+                                            <img src={errorIcon} alt="Error Icon" className="EditWarehouse__error-icon" />
+                                            <span className="EditWarehouse__error-text">This field is required</span>
+                                        </span>
+                                    )}
                                 </div>
                             </div>
 
                         </div>
 
-
-                   </div>
-
+                    </div>
 
                 </div>
 
                 <div className='AddWarehouse__button-container'>
-                            <button className='AddWarehouse__cancel-btn' type="button" onClick={handleCancel}>
-                                Cancel
-                            </button>
-                            <button className='AddWarehouse__add-btn' type="submit" >
-                                + Add Warehouse
-                            </button>
-                        </div>
+                    <button className='AddWarehouse__cancel-btn' type="button" onClick={handleCancel}>
+                        Cancel
+                    </button>
+                    <button className='AddWarehouse__add-btn' type="submit" >
+                        + Add Warehouse
+                    </button>
+                </div>
             </form>
         </section>
 
