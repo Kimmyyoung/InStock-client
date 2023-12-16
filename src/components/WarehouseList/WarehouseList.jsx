@@ -90,7 +90,7 @@ const WarehouseList = ({warehouse, setDeleteWarehouse}) => {
             <div className="warehouse__text">
               <div className="warehouse__left">
                 <Link
-                  to={`/warehouses/${warehouse.id}`}
+                  to={`/warehouse/${warehouse.id}`}
                   className="warehouse__link"
                 >
                   <div className="warehouse__nameAndArrow">
