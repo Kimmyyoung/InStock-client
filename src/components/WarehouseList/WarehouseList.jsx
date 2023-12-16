@@ -12,6 +12,15 @@ import './DeletionModal.scss';
 Modal.setAppElement('#root');
 
 const DeletionModal = ({ isOpen, onRequestClose, onDelete, city }) => {
+
+  // couldn't target this with the css so this was the best i could figure out on how to change the background color
+  const modalStyle = {
+    overlay: {
+      backgroundColor: '#13182cc7',
+      border: '2px solid #2E66E5',
+    }
+  };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -22,11 +31,12 @@ const DeletionModal = ({ isOpen, onRequestClose, onDelete, city }) => {
         afterOpen: 'deletion-modal__content',
         beforeClose: 'deletion-modal__content',
       }}
-      // overlayClassName={{
-      //   base: 'deletion-modal__overlay',
-      //   afterOpen: 'deletion-modal__overlay',
-      //   beforeClose: 'deletion-modal__overlay',
-      // }}
+      ClassName={{
+        base: 'deletion-modal__overlay',
+        afterOpen: 'deletion-modal__overlay',
+        beforeClose: 'deletion-modal__overlay',
+      }}
+      style={modalStyle}
     >
       <div>
         <div className='deletion-modal__close-button-box'>
@@ -34,13 +44,14 @@ const DeletionModal = ({ isOpen, onRequestClose, onDelete, city }) => {
             X
           </button>
         </div>
-        <h2>Delete {city} Warehouse?</h2>
+        <h2 className='deletion-modal__title'>Delete {city} Warehouse?</h2>
         <p className='deletion-modal__message'>Please confirm that you'd like to delete {city} from the list of warehouses. You won't be able to undo this action.</p>
         <div className='deletion-modal__button-box'>
           <button className='deletion-modal__button-cancel' onClick={onRequestClose}>Cancel</button>
           <button className='deletion-modal__button-delete' onClick={onDelete}>Delete</button>
         </div>
       </div>
+      
     </Modal>
   );
 };
