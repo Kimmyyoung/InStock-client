@@ -17,7 +17,6 @@
         margin-right: 12.5%;
         margin-left: 12.5%;
         margin-top: 11rem;
-        border: 1px solid blue;
     }
 
     @include desktop {
@@ -34,11 +33,6 @@
 
 
         }
-
-        // &--after-open {
-        //     background-color: #13182cc4;
-        //     border: 1px solid #2E66E5;
-        // }
 
     }
 
@@ -58,6 +52,7 @@
         align-items: flex-start;
         justify-content: center;
         background: #fff;
+        border-radius: 0.25rem;
 
     }
 
