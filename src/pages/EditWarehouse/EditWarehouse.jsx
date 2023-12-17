@@ -110,7 +110,6 @@ export default function EditWarehouse() {
     const hasValidationError = Object.values(errors).some((error) => error);
 
     if (hasValidationError) {
-      console.log("form has a validation error.");
       return;
     }
 
