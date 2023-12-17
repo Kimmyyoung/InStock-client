@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import arrow_back from "../../assets/Icons/arrow_back-24px.svg";
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import "./EditIventoryOutOfStock.scss";
 import axios from "axios";
 
@@ -92,11 +92,9 @@ export default function EditInventory() {
       <form className='EditInventory__main-container' onSubmit={updateData}>
 
         <div className="EditInventory__container">
-          <NavLink to="/">
-            <div className="EditInventory__back-icon">
+            <div className="EditInventory__back-icon" onClick={()=> navigate('/inventory')}>
               <img src={arrow_back} alt="back_button" />
             </div>
-          </NavLink>
           <div className='EditInventory__title'>Edit Inventory Item</div>
         </div>
 
@@ -210,7 +208,7 @@ export default function EditInventory() {
         </div>
 
         <div className='EditInventory__button-container'>
-          <button className='EditInventory__cancel-btn' type="button" >
+          <button className='EditInventory__cancel-btn' type="button" onClick={()=> navigate('/inventory')}>
             Cancel
           </button>
           <button className='EditInventory__save-btn' type="submit" >

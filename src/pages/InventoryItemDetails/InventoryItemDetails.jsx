@@ -1,5 +1,5 @@
 import './InventoryItemDetails.scss';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -15,6 +15,7 @@ export default function InventoryItemDetails() {
 
     const { id } = useParams();
     const [inventory, setInventory] = useState({});
+    const navigate = useNavigate();
 
 
     useEffect(()=>{
@@ -50,7 +51,7 @@ export default function InventoryItemDetails() {
         <div className="inventory__container">
           <div className="inventory__top">
 
-            <div className="inventory__top__right">
+            <div className="inventory__top__right" onClick={()=> navigate('/inventory')}>
               <img src={ArrowBack} className="inventory__top__back" />
               <h1 className="inventory__name">
               {inventory.item_name}
