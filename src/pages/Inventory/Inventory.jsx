@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Inventory = () => {
+
+  const [deleteInventory, setDeleteInventory] = useState(""); 
   const [inventories, setInventories] = useState([]);
   const [sortAscending, setSortAscending] = useState(true);
 
@@ -22,7 +24,7 @@ const Inventory = () => {
     };
 
     fetchData();
-  }, []);
+  }, [deleteInventory]);
 
   const sortData = (field) => {
     const sortedInventories = [...inventories].sort((a, b) => {
@@ -92,7 +94,7 @@ const Inventory = () => {
           </div>
 
           {inventories.slice(0, 8).map((inventory) => (
-            <InventoryList key={inventory.id} inventory={inventory} />
+            <InventoryList key={inventory.id} inventory={inventory} setDeleteWarehouse={setDeleteInventory}/>
           ))}
    
         </div>

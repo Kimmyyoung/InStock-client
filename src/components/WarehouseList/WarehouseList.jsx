@@ -66,7 +66,6 @@ const WarehouseList = ({warehouse, setDeleteWarehouse}) => {
 
     try {
       const deleteRes = await axios.delete(`http://localhost:8080/warehouses/${warehouse.id}`)
-      
     } catch (err) {
       console.log("Json error deleting data: ", err);
     }
@@ -77,7 +76,7 @@ const WarehouseList = ({warehouse, setDeleteWarehouse}) => {
     try {
       await deleteWarehouse(); // Wait for the deletion to complete
       setIsModalOpen(false);
-      setDeleteWarehouse('something');
+      setDeleteWarehouse(Math.random() * 100);
     } catch (err) {
       console.error("Error deleting warehouse:", err);
     }
