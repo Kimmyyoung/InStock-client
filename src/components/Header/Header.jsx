@@ -13,10 +13,11 @@ const Header = () => {
                 </section>
 
                 <section className="header__pages">
-                    <p className="header__pages-name"> Warehouses </p>
+                    <Link to="/"><p className="header__pages-name"> Warehouses </p></Link>
+                    <Link to="/inventory">
                     <p className="header__pages-name"> Inventories </p>
+                    </Link>
                 </section>
-            
         </header>
     )
 }
