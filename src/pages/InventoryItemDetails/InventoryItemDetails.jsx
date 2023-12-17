@@ -59,7 +59,7 @@ export default function InventoryItemDetails() {
 
 
             <div className="inventory__topright">
-              <Link to="/inventorys/add" className="inventory__button">
+              <Link to={`/editInventory/${id}`} className="inventory__button">
                 <img src={EditIcon} className="inventory__button__icons" />
                 {isMobile? '' : 'Edit'}
               </Link>
