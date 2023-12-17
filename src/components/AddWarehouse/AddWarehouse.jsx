@@ -5,11 +5,11 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import "./AddWarehouse.scss";
 import axios from "axios";
 import { validatePhoneNumber, validateEmail } from '../../utils/validation';
-
+import validator from 'validator'; 
 
 const AddWarehouse = () => {
     const navigate = useNavigate();
-    //let hasError = false;
+
     const [warehouseDetails, setWarehouseDetails] = useState({
         warehouse_name: '',
         address: '',
@@ -20,17 +20,6 @@ const AddWarehouse = () => {
         contact_phone: '',
         contact_email: '',
     });
-
-    // const [validationErrors, setValidationErrors] = useState({
-    //     warehouse_name: '',
-    //     address: '',
-    //     city: '',
-    //     country: '',
-    //     contact_name: '',
-    //     contact_position: '',
-    //     contact_phone: '',
-    //     contact_email: '',
-    // });
 
     const [hasError, setHasError] = useState({
         warehouse_name: false,
@@ -276,7 +265,7 @@ const AddWarehouse = () => {
                                 <div>
                                     <label htmlFor="phoneNumber">Phone Number</label>
                                     <br />
-                                    <input className= {`AddWarehouse__input ${hasError.contact_phone ? 'AddWarehouse__input--error' : ''}`}
+                                    <input className={`AddWarehouse__input ${hasError.contact_phone ? 'AddWarehouse__input--error' : ''}`}
                                         type="text"
                                         id="phoneNumber"
                                         name="contact_phone"
@@ -297,7 +286,7 @@ const AddWarehouse = () => {
                                 <div>
                                     <label htmlFor="email">Email</label>
                                     <br />
-                                    <input className= {`AddWarehouse__input AddWarehouse__input--last ${hasError.contact_email ? 'AddWarehouse__input--error' : ''}`}
+                                    <input className={`AddWarehouse__input AddWarehouse__input--last ${hasError.contact_email ? 'AddWarehouse__input--error' : ''}`}
                                         type="email"
                                         id="email"
                                         name="contact_email"

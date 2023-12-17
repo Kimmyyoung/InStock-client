@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import arrow_back from "../../assets/Icons/arrow_back-24px.svg";
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import errorIcon from "../../assets/Icons/error-24px.svg";
+import { NavLink, useNavigate } from 'react-router-dom';
 import "./AddNewInventoryItemOutOfStock.scss";
 import axios from "axios";
-
+import validator from 'validator';
 
 export default function AddNewInventoryItemOutOfStock() {
   const [inventoryData, setInventoryData] = useState({
@@ -17,13 +18,17 @@ export default function AddNewInventoryItemOutOfStock() {
 
   const [categories, setCategories] = useState([]);
   const [warehouseList, setWarehouseList] = useState([]);
-
   const [isSelected, setIsSelected] = useState("stock");
 
-
-  const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { id } = useParams();
+
+  const [hasError, setHasError] = useState({
+    item_name: false,
+    description: false,
+    category: false,
+    warehouse_id: false,
+    quantity: false
+  });
   //--------------------------------------//
 
   useEffect(() => {
@@ -42,7 +47,7 @@ export default function AddNewInventoryItemOutOfStock() {
           }))
           .filter((warehouse) => {
             if (uniqueWarehousesSet.has(warehouse.id)) {
-              return false; 
+              return false;
             }
             uniqueWarehousesSet.add(warehouse.id);
             return true;
@@ -87,13 +92,35 @@ export default function AddNewInventoryItemOutOfStock() {
       quantity: inventoryData.quantity,
     };
 
-    console.log("The new inventory will be created: ", dataToSend);
+  
+    const errors = {};
+    if (validator.isEmpty(inventoryData.item_name)) {
+      errors.item_name = true;
+    }
+    if (validator.isEmpty(inventoryData.description)) {
+      errors.description = true;
+    }
+    if (validator.isEmpty(inventoryData.category)) {
+      errors.category = true;
+    }
+    if (validator.isEmpty(inventoryData.warehouse_id)) {
+      errors.warehouse_id = true;
+    }
+    if (validator.isEmpty(inventoryData.quantity) || !validator.isNumeric(inventoryData.quantity)) {
+      errors.quantity = true;
+    }
 
+    setHasError(errors);
+    const hasValidationError = Object.values(errors).some((error) => error);
+
+    if (hasValidationError) {
+      return;
+    }
     try {
       const response = await axios.post('http://localhost:8080/api/inventories', dataToSend);
 
       if (response.status === 201) {
-        console.log('Added to Inventory', response.data);
+        alert('A new record has been added to Inventory', response.data);
         navigate("/inventory");
       } else {
         console.error('Error adding to inventory:', response.data);
@@ -126,13 +153,13 @@ export default function AddNewInventoryItemOutOfStock() {
         <div className="AddInventory__details-container">
           <div className='AddInventory__components-container'>
             <div className='AddInventory__subcontainer'>
-              <div className='AddInventory__warehouse-container'>
+              <div className='AddInventory__itemDetails-container'>
                 <h2 className='AddInventory__sub-title'>Item Details</h2>
                 <div className='AddInventory__warehouse'>
                   <div>
                     <label htmlFor="item_name">Item Name</label>
                     <br />
-                    <input className="AddInventory__input"
+                    <input className={`AddInventory__input ${hasError.item_name ? 'AddInventory__input--error' : ''}`}
                       type="text"
                       id="item_name"
                       name="item_name"
@@ -140,12 +167,18 @@ export default function AddNewInventoryItemOutOfStock() {
                       value={inventoryData.item_name}
                       onChange={handleChange}
                     />
-
+                    {/* Error Validation */}
+                    {hasError.item_name && (
+                      <span className='AddInventory__error'>
+                        <img src={errorIcon} alt="Error Icon" className="AddInventory__error-icon" />
+                        <span className="AddInventory__error-text">This field is required</span>
+                      </span>
+                    )}
                   </div>
                   <div>
                     <label htmlFor="description">Description</label>
                     <br />
-                    <textarea className="AddInventory__textarea"
+                    <textarea className={`AddInventory__textarea ${hasError.description ? 'AddInventory__textarea--error' : ''}`}
                       type="text"
                       id="description"
                       name="description"
@@ -153,17 +186,23 @@ export default function AddNewInventoryItemOutOfStock() {
                       value={inventoryData.description}
                       onChange={handleChange}
                     />
-
+                    {/* Error Validation */}
+                    {hasError.description && (
+                      <span className='AddInventory__error'>
+                        <img src={errorIcon} alt="Error Icon" className="AddInventory__error-icon" />
+                        <span className="AddInventory__error-text">This field is required</span>
+                      </span>
+                    )}
                   </div>
                   <div>
                     <label htmlFor="category">Category</label>
                     <br />
 
-                    <div className="AddInventory__dropdown">
+                    <div>
                       <select
                         id="category"
                         name="category"
-                        className="AddInventory__dropdownSelect"
+                        className={`AddInventory__dropdownSelect ${hasError.category ? 'AddInventory__dropdownSelect--error' : ''}`}
                         value={inventoryData.category}
                         onChange={handleChange}
                       >
@@ -172,6 +211,14 @@ export default function AddNewInventoryItemOutOfStock() {
                           <option key={category} value={category}>{category}</option>
                         ))}
                       </select>
+                      {/* Error Validation */}
+                      {hasError.category && (
+                        <span className='AddInventory__error'>
+                          <img src={errorIcon} alt="Error Icon" className="AddInventory__error-icon" />
+                          <span className="AddInventory__error-text">This field is required</span>
+                        </span>
+                      )}
+
                     </div>
 
                   </div>
@@ -214,7 +261,7 @@ export default function AddNewInventoryItemOutOfStock() {
                 <div>
                   <label htmlFor="quantity">Quantity</label>
                   <br />
-                  <input className="AddInventory__input"
+                  <input className={`AddInventory__input ${hasError.quantity ? 'AddInventory__input--error' : ''}`}
                     type="text"
                     id="quantity"
                     name="quantity"
@@ -222,25 +269,38 @@ export default function AddNewInventoryItemOutOfStock() {
                     value={inventoryData.quantity}
                     onChange={handleChange}
                   />
-
+                  {/* Error Validation */}
+                  {hasError.quantity && (
+                    <span className='AddInventory__error'>
+                      <img src={errorIcon} alt="Error Icon" className="AddInventory__error-icon" />
+                      <span className="AddInventory__error-text">This field is required and must be a number</span>
+                    </span>
+                  )}
                 </div>
 
                 <div>
                   <label htmlFor="warehouse">Warehouse</label>
                   <br />
-                  <div className="AddInventory__dropdown">
+                  <div>
                     <select
                       id="warehouse"
                       name="warehouse"
-                      className="AddInventory__dropdownSelect"
+                      className={`AddInventory__dropdownSelect ${hasError.warehouse_id ? 'AddInventory__dropdownSelect--error' : ''}`}
                       value={inventoryData.warehouse_id}
                       onChange={handleChange}
                     >
                       <option value="" disabled >Please select</option>
                       {warehouseList.map((warehouseOptions) => (
                         <option key={warehouseOptions.id} value={warehouseOptions.id} data-warehouse-id={warehouseOptions.id}>{warehouseOptions.name}</option>
-                      ))}
-                    </select>
+                      ))}</select>
+                    {/* Error Validation */}
+                    {hasError.warehouse_id && (
+                      <span className='AddInventory__error'>
+                        <img src={errorIcon} alt="Error Icon" className="AddInventory__error-icon" />
+                        <span className="AddInventory__error-text">This field is required</span>
+                      </span>
+                    )}
+
                   </div>
                 </div>
               </div>

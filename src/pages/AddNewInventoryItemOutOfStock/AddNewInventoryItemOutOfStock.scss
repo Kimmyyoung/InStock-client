@@ -262,8 +262,6 @@ body {
         @include tablet {
             margin-top: 0;
         }
-
-
     }
 
     &__availability-container {
@@ -287,7 +285,7 @@ body {
         }
     }
 
-    &__warehouse-container {
+    &__itemDetails-container {
         border-bottom: 1px solid $borders;
         padding: 1rem 1.5rem 1.5rem 1.5rem;
 
@@ -299,7 +297,6 @@ body {
             padding-bottom: 0;
             padding-top: 0;
             border-right: 1px solid $borders;
-
         }
 
     }
@@ -330,75 +327,24 @@ body {
         background: $white;
         margin-bottom: 1rem;
         height: 2.25rem;
-        flex-shrink: 0;
         padding: 0rem 1rem;
         width: 100%;
-        margin-top: 1rem;
-        justify-content: center;
-        // -webkit-appearance: none;
-        //   -moz-appearance: none;
-        //   appearance: none;
         cursor: pointer;
 
         &:focus {
             outline: 1px solid $interactiveElements;
         }
-    }
-
-
-    &___dropdown {
-        border-radius: 1.25rem;
-        border: 1px solid $borders;
-        background: $white;
-        margin-bottom: 1rem;
-        height: 2.25rem;
-        flex-shrink: 0;
-        padding-left: 1rem;
-        padding-top: 1rem;
-        position: relative;
-        width: 100%;
-
-        @include tablet {
-            margin-bottom: 1.5rem;
-        }
-
-        &::placeholder {
-            font-size: 0.8125rem;
-            line-height: 1.25rem;
-            color: $placeholder;
-        }
-
-        &::after {
-            content: url('../../../src/assets/Icons/arrow_drop_down-24px.svg');
-            position: absolute;
-            top: 50%;
-            right: 10px;
-            transform: translateY(-50%);
-            pointer-events: none;
-            width: 16px;
-            height: 16px;
-        }
-
-        &--last {
-            margin-bottom: 0;
-        }
-
+        
         &--error {
             border: 1px solid $error;
         }
-
-        // &:focus{
-        //     outline: none;
-        //     border: 1px solid $interactiveElements;
-        // }
-        // &:focus-visible {
-        //     border: 1px solid $interactiveElements; 
-        // }
     }
 
-
     &__status {
-        margin-bottom: 2.5rem;
+        margin-bottom: 1rem;
+        @include tablet {
+            margin-bottom: 1.5rem;
+        }
     }
 
     // radio button 
