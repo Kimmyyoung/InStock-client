@@ -102,7 +102,6 @@ const AddNewWarehouse = () => {
             const response = await axios.post('http://localhost:8080/api/warehouses', warehouseDetails);
 
             if (response.status === 201) {
-                console.log('Added Warehouse', response.data);
                 navigate("/");
             } else {
                 console.error('Error adding warehouse:', response.data);
