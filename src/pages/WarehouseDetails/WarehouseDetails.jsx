@@ -20,7 +20,7 @@ const warehouseDetails = () => {
 
     const fetchWarehouse = async (id) => {
       try {
-        const response = await axios.get(`http://localhost:8080/warehouses/${id}`)
+        const response = await axios.get(`http://localhost:8080/api/warehouses/${id}`)
         console.log("the response is: ", response.data);
         setWarehouseDetails(response.data);
       } catch (err) {

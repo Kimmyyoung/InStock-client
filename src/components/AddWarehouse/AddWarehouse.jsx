@@ -5,7 +5,6 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import "./AddWarehouse.scss";
 import axios from "axios";
 import { validatePhoneNumber, validateEmail } from '../../utils/validation';
-import validator from 'validator'; 
 
 const AddWarehouse = () => {
     const navigate = useNavigate();
@@ -98,7 +97,7 @@ const AddWarehouse = () => {
         }
 
         try {
-            const response = await axios.post('http://localhost:8080/warehouses', warehouseDetails);
+            const response = await axios.post('http://localhost:8080/api/warehouses', warehouseDetails);
 
             if (response.status === 201) {
                 console.log('Added Warehouse', response.data);
@@ -109,7 +108,6 @@ const AddWarehouse = () => {
         } catch (error) {
             console.error('Error adding warehouse:', error.message);
         }
-        
     };
 
     return (
