@@ -26,7 +26,7 @@ export default function App() {
         <Route path="/inventory" element={<Inventory />} />
         <Route path="/inventory/:id" element={<InventoryItemDetails />} />
         <Route path="/editInventory/:id" element={<EditInventoryOutOfStock />} />
-        <Route path="/addNewInventoryOutOfStock" element={<AddNewInventoryItemOutOfStock />} /> 
+        <Route path="/addInventory" element={<AddNewInventoryItemOutOfStock />} /> 
 
         {/* Add New Warehouse */}
         <Route path= "/addNewWarehouse" element={<AddNewWarehouse />} />

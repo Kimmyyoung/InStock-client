@@ -1,0 +1,424 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/colors" as *;
+
+body {
+    background: linear-gradient(to bottom,
+            #232940 0%,
+            #232940 17%,
+            #F7F8F9 17%,
+            #F7F8F9 100%) !important;
+    background-repeat: no-repeat !important;
+    width: 100%;
+    height: max-content !important;
+
+    @include tablet {
+        background: linear-gradient(to bottom,
+                #232940 0%,
+                #232940 18.3%,
+                #F7F8F9 18.3%,
+                #F7F8F9 100%) !important;
+    }
+
+    @include desktop {
+        background: linear-gradient(to bottom,
+                #232940 0%,
+                #232940 21.5%,
+                #F7F8F9 21.5%,
+                #F7F8F9 100%) !important;
+    }
+
+}
+
+.AddInventory {
+    padding: 0 1rem;
+
+    @include tablet {
+        padding: 0 2rem 20rem 2rem;
+    }
+
+    @include desktop {
+        max-width: 1020px;
+        margin: 0 auto;
+        padding-bottom: 9.6rem;
+    }
+
+    &__main-container {
+        background-color: $white;
+        border: solid 1px $dividers;
+        border-radius: 0.1875rem;
+        box-shadow: 0px 2px 5px 0px rgba(19, 24, 44, 0.10);
+    }
+
+    &__container {
+        border-bottom: 1px solid $borders;
+        display: flex;
+        gap: 0.5rem;
+        padding-left: 1.5rem;
+        padding-top: 2rem;
+
+        @include desktop {
+            padding-left: 2.5rem;
+        }
+
+    }
+
+    &__title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        line-height: 2.25rem;
+        padding-bottom: 1.5rem;
+    }
+
+    &__back-icon {
+
+        margin-top: 0.4rem;
+    }
+
+    &__details-container {
+
+
+        @include tablet {
+            padding: 1.5rem 2rem;
+        }
+
+        @include desktop {
+            padding: 1.5rem 2.5rem 2rem 2.5rem;
+        }
+
+    }
+
+    &__sub-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        line-height: 1.75rem;
+        padding-bottom: 1.5rem;
+
+        @include tablet {
+            padding-bottom: 2rem;
+        }
+    }
+
+    &__input {
+        border-radius: 1.25rem;
+        border: 1px solid $borders;
+        background: $white;
+        width: 100%;
+        margin-bottom: 1rem;
+        height: 2.25rem;
+        flex-shrink: 0;
+        padding-left: 1rem;
+
+        @include tablet {
+            margin-bottom: 1.5rem;
+        }
+
+        &::placeholder {
+            font-size: 0.8125rem;
+            line-height: 1.25rem;
+            color: $placeholder;
+        }
+
+        &--last {
+            margin-bottom: 0;
+        }
+
+        &--error {
+            border: 1px solid $error;
+        }
+
+        &:focus {
+            outline: none;
+            border: 1px solid $interactiveElements;
+        }
+
+        &:focus-visible {
+            border: 1px solid $interactiveElements;
+        }
+
+
+    }
+
+    &__textarea {
+        border-radius: 1.25rem;
+        border: 1px solid $borders;
+        background: $white;
+        width: 100%;
+        margin-bottom: 1rem;
+        height: 6.25rem;
+        flex-shrink: 0;
+        padding-left: 1rem;
+        padding-top: 1rem;
+
+        @include tablet {
+            margin-bottom: 1.5rem;
+        }
+
+        &::placeholder {
+            font-size: 0.8125rem;
+            line-height: 1.25rem;
+            color: $placeholder;
+        }
+
+        &--last {
+            margin-bottom: 0;
+        }
+
+        &--error {
+            border: 1px solid $error;
+        }
+
+        &:focus {
+            outline: none;
+            border: 1px solid $interactiveElements;
+        }
+
+        &:focus-visible {
+            border: 1px solid $interactiveElements;
+        }
+    }
+
+
+
+    label {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        line-height: 1.25rem;
+        margin-bottom: 0.25rem;
+    }
+
+    &__button-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 1rem;
+        border-radius: 0rem 0rem 0.1875rem 0.1875rem;
+        background: rgba(247, 248, 249, 0.70);
+        height: 4.25rem;
+        padding: 0 1rem;
+
+        @include tablet {
+            justify-content: flex-end;
+            padding-right: 2rem;
+        }
+
+        @include desktop {
+            padding-right: 2.5rem;
+        }
+    }
+
+    &__cancel-btn {
+        border-radius: 1.25rem;
+        border: 1px solid $borders;
+        font-weight: 600;
+        background: $white;
+        height: 2.25rem;
+        width: 50%;
+        color: $placeholder;
+        align-items: center;
+
+        &:hover {
+            background: $white;
+            border: 1px solid $buttonHover;
+            color: $buttonHover;
+            cursor: pointer;
+        }
+
+        @include tablet {
+            height: 2.375rem;
+            width: 4.5rem;
+        }
+
+    }
+
+    &__add-btn {
+        border-radius: 1.25rem;
+        background: $interactiveElements;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        line-height: 1.25rem;
+        height: 2.25rem;
+        width: 50%;
+        border: none;
+        color: $white;
+        text-align: center;
+
+        &:hover {
+            background: $buttonHover;
+            cursor: pointer;
+        }
+
+        @include tablet {
+            height: 2.375rem;
+            width: 8.625rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            line-height: 1.375rem
+        }
+    }
+
+    &__warehouse {
+        @include tablet {
+            margin-top: 0;
+        }
+
+
+    }
+
+    &__availability-container {
+        padding: 1rem 1.5rem 1.5rem 1.5rem;
+
+        @include tablet {
+            width: 50%;
+            margin-top: 0;
+            padding-left: 2rem;
+            padding-right: 0;
+            padding-bottom: 0;
+            padding-top: 0;
+        }
+
+    }
+
+    &__subcontainer {
+        @include tablet {
+            display: flex;
+            width: 100%;
+        }
+    }
+
+    &__warehouse-container {
+        border-bottom: 1px solid $borders;
+        padding: 1rem 1.5rem 1.5rem 1.5rem;
+
+        @include tablet {
+            border-bottom: none;
+            width: 50%;
+            padding-left: 0;
+            padding-right: 2rem;
+            padding-bottom: 0;
+            padding-top: 0;
+            border-right: 1px solid $borders;
+
+        }
+
+    }
+
+    &__error {
+        display: flex;
+        padding-bottom: 0.2rem;
+    }
+
+    &__error-text {
+        color: $error;
+        font-size: 0.75rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.125rem;
+    }
+
+    &__error-icon {
+        width: 1rem;
+        height: 1rem;
+    }
+
+
+    // drop down menu
+    &__dropdownSelect {
+        border-radius: 1.25rem;
+        border: 1px solid $borders;
+        background: $white;
+        margin-bottom: 1rem;
+        height: 2.25rem;
+        flex-shrink: 0;
+        padding: 0rem 1rem;
+        width: 100%;
+        margin-top: 1rem;
+        justify-content: center;
+        // -webkit-appearance: none;
+        //   -moz-appearance: none;
+        //   appearance: none;
+        cursor: pointer;
+
+        &:focus {
+            outline: 1px solid $interactiveElements;
+        }
+    }
+
+
+    &___dropdown {
+        border-radius: 1.25rem;
+        border: 1px solid $borders;
+        background: $white;
+        margin-bottom: 1rem;
+        height: 2.25rem;
+        flex-shrink: 0;
+        padding-left: 1rem;
+        padding-top: 1rem;
+        position: relative;
+        width: 100%;
+
+        @include tablet {
+            margin-bottom: 1.5rem;
+        }
+
+        &::placeholder {
+            font-size: 0.8125rem;
+            line-height: 1.25rem;
+            color: $placeholder;
+        }
+
+        &::after {
+            content: url('../../../src/assets/Icons/arrow_drop_down-24px.svg');
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            pointer-events: none;
+            width: 16px;
+            height: 16px;
+        }
+
+        &--last {
+            margin-bottom: 0;
+        }
+
+        &--error {
+            border: 1px solid $error;
+        }
+
+        // &:focus{
+        //     outline: none;
+        //     border: 1px solid $interactiveElements;
+        // }
+        // &:focus-visible {
+        //     border: 1px solid $interactiveElements; 
+        // }
+    }
+
+
+    &__status {
+        margin-bottom: 2.5rem;
+    }
+
+    // radio button 
+    &__radio {
+        margin-right: 0.5rem;
+    }
+
+
+
+}
+
+
+.radio_button {
+    margin-right: 1rem;
+}
+
+.label {
+    color: $placeholder !important;
+}
+
+.label_active {
+    color: #000 !important;
+}
