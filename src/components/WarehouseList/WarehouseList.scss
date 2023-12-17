@@ -6,22 +6,22 @@
 
 
 .warehouse {
+  display: flex;
+  flex-direction: row !important;
+
   &__text {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 85% !important;
+
     @include tablet {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       width: 85%;
     }
-    // @include desktop{
-    //     width: 90%;
-    // }
   }
 
   &__left {
-    width: 50%;
     padding-right: 2rem;
 
     @include tablet {
@@ -194,13 +194,12 @@
   }
 
   &__icons {
-    display: flex;
-    justify-content: space-between;
+    display: flex; 
+    justify-content: flex-end !important;
 
     @include tablet {
       width: 15%;
       height: 1.5rem;
-      justify-content: flex-end;
     }
     // @include desktop {
     //     width: 10%;
@@ -220,4 +219,8 @@
       cursor: pointer;
     }
   }
+}
+
+.edit_icon {
+  fill: $interactiveElements;
 }
