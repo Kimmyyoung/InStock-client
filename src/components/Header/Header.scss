@@ -66,15 +66,15 @@
             color: $white;
         }
 
-        &:active {
-            color: $white;
-            background-color: #13182C;
-        }
-
         @include tablet {
             width: 6.6875rem;
             height: 2.375rem;
             font-size: 0.875rem;
+        }
+
+        &--active {
+            color: $white;
+            background-color: #13182C;
         }
     }
 }
