@@ -21,17 +21,6 @@ const AddWarehouse = () => {
         contact_email: '',
     });
 
-    // const [validationErrors, setValidationErrors] = useState({
-    //     warehouse_name: '',
-    //     address: '',
-    //     city: '',
-    //     country: '',
-    //     contact_name: '',
-    //     contact_position: '',
-    //     contact_phone: '',
-    //     contact_email: '',
-    // });
-
     const [hasError, setHasError] = useState({
         warehouse_name: false,
         address: false,
@@ -120,6 +109,7 @@ const AddWarehouse = () => {
         } catch (error) {
             console.error('Error adding warehouse:', error.message);
         }
+        
     };
 
     return (
