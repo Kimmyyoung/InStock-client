@@ -96,17 +96,17 @@
     }
 
     &__button-box {
-        height: 67.5vh;
+        height: 70.5vh;
         display: flex;
         align-items: flex-end;
         justify-content: space-between;
 
         @media screen and (min-width: 364px) {
-            height: 73vh;
+            height: 70.5vh;
         }
 
-        @media screen and (min-width: 422px) {
-            height: 76.5vh;
+        @media screen and (min-width: 425px) {
+            height: 73.5vh;
         }
 
         @include tablet {

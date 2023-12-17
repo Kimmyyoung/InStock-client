@@ -9,7 +9,7 @@ import axios from "axios";
 
 const Inventory = () => {
 
-  const [deleteInventory, setDeleteInventory] = useState(""); 
+  const [deleteInventory, setDeleteInventory] = useState(0); 
   const [inventories, setInventories] = useState([]);
   const [sortAscending, setSortAscending] = useState(true);
 
@@ -94,7 +94,7 @@ const Inventory = () => {
           </div>
 
           {inventories.slice(0, 8).map((inventory) => (
-            <InventoryList key={inventory.id} inventory={inventory} setDeleteWarehouse={setDeleteInventory}/>
+            <InventoryList key={inventory.id} inventory={inventory} setDeleteInventory={setDeleteInventory}/>
           ))}
    
         </div>

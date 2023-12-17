@@ -74,7 +74,7 @@ const WarehouseList = ({warehouse, setDeleteWarehouse}) => {
 
   const handleDelete = async () => {
     try {
-      await deleteWarehouse(); // Wait for the deletion to complete
+      await deleteWarehouse();
       setIsModalOpen(false);
       setDeleteWarehouse(Math.random() * 100);
     } catch (err) {
