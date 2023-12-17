@@ -7,7 +7,7 @@ import axios from "axios";
 
 const Home = () => {
   
-  const [deleteWarehouse, setDeleteWarehouse] = useState([""]); 
+  const [deleteWarehouse, setDeleteWarehouse] = useState(0); 
   const [sort, setSort] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [ warehouses, setWarehouses ] = useState([]);
