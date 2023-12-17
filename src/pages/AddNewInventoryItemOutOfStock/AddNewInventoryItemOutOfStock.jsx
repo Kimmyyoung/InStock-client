@@ -6,11 +6,14 @@ import axios from "axios";
 
 
 export default function AddNewInventoryItemOutOfStock() {
-  const [itemName, setItemName] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [warehouse, setWarehouse] = useState("");
-  const [quantity, setQuantity] = useState("0");
+  const [inventoryData, setInventoryData] = useState({
+    item_name: "",
+    description: "",
+    category: "",
+    warehouse_id: "",
+    quantity: "0",
+    status: "stock",
+  });
 
   const [categories, setCategories] = useState([]);
   const [warehouseList, setWarehouseList] = useState([]);
@@ -24,28 +27,87 @@ export default function AddNewInventoryItemOutOfStock() {
   //--------------------------------------//
 
   useEffect(() => {
-    const fetchData = axios.get("http://localhost:8080/api/inventories")
-      .then((res) => {
-        const uniqueCategories = [...new Set(res.data.map(item => item.category))];
-        const uniqueWarehouses = [...new Set(res.data.map(item => item.warehouse_name))];
+    const fetchData = async () => {
+      try {
+        const res = await axios.get("http://localhost:8080/api/inventories");
+        const uniqueCategories = [...new Set(res.data.map((item) => item.category))];
         setCategories(uniqueCategories);
-        setWarehouseList(uniqueWarehouses);
-      })
-      .catch((err) => console.error(err));
 
-    fetchData;
+        // Create a Set to store unique warehouses
+        const uniqueWarehousesSet = new Set();
+        const uniqueWarehouses = res.data
+          .map((item) => ({
+            id: item.warehouse_id,
+            name: item.warehouse_name,
+          }))
+          .filter((warehouse) => {
+            if (uniqueWarehousesSet.has(warehouse.id)) {
+              return false; 
+            }
+            uniqueWarehousesSet.add(warehouse.id);
+            return true;
+          });
+
+        setWarehouseList(uniqueWarehouses);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchData();
   }, []);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if (name === 'warehouse') {
+      const warehouse_id = e.target.options[e.target.selectedIndex].dataset.warehouseId;
+      setInventoryData((prevDetails) => ({
+        ...prevDetails,
+        warehouse_id,
+      }));
+    } else {
+      setInventoryData((prevDetails) => ({
+        ...prevDetails,
+        [name]: value,
+      }));
+    }
+  };
+
   // On submit - Add New Item
-  const addNewItem = (e) => {
+  const addNewItem = async (e) => {
     e.preventDefault();
-    console.log("The new inventory will be created: ");
+
+    const dataToSend = {
+      warehouse_id: inventoryData.warehouse_id,
+      item_name: inventoryData.item_name,
+      description: inventoryData.description,
+      category: inventoryData.category,
+      status: isSelected === 'stock' ? 'In Stock' : 'Out of Stock',
+      quantity: inventoryData.quantity,
+    };
+
+    console.log("The new inventory will be created: ", dataToSend);
+
+    try {
+      const response = await axios.post('http://localhost:8080/api/inventories', dataToSend);
+
+      if (response.status === 201) {
+        console.log('Added to Inventory', response.data);
+        navigate("/inventory");
+      } else {
+        console.error('Error adding to inventory:', response.data);
+      }
+    } catch (error) {
+      console.error('Major Error adding to inventory:', error.message);
+    }
+
   };
 
   // Handle cancel Button
   const handleCancel = (e) => {
     e.preventDefault();
-    navigate("/");
+    navigate("/inventory");
   };
 
   return (
@@ -75,8 +137,8 @@ export default function AddNewInventoryItemOutOfStock() {
                       id="item_name"
                       name="item_name"
                       placeholder="Item Name"
-                      value={itemName}
-                      onChange={(e) => setItemName(e.target.value)}
+                      value={inventoryData.item_name}
+                      onChange={handleChange}
                     />
 
                   </div>
@@ -88,8 +150,8 @@ export default function AddNewInventoryItemOutOfStock() {
                       id="description"
                       name="description"
                       placeholder="Please enter a brief item description..."
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
+                      value={inventoryData.description}
+                      onChange={handleChange}
                     />
 
                   </div>
@@ -102,8 +164,8 @@ export default function AddNewInventoryItemOutOfStock() {
                         id="category"
                         name="category"
                         className="AddInventory__dropdownSelect"
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
+                        value={inventoryData.category}
+                        onChange={handleChange}
                       >
                         <option value="" disabled>Please select</option>
                         {categories.map((category) => (
@@ -132,7 +194,7 @@ export default function AddNewInventoryItemOutOfStock() {
                       checked={isSelected === "stock"}
                       onChange={() => setIsSelected("stock")}
                     />
-                    <label htmlFor="stock" className={`label ${isSelected === "stock" ? 'label_active' : ''}`}>In Stock</label>
+                    <label htmlFor="inStock" className={`label ${isSelected === "stock" ? 'label_active' : ''}`}>In Stock</label>
                   </span>
 
                   <span className="radio_button">
@@ -145,7 +207,7 @@ export default function AddNewInventoryItemOutOfStock() {
                       checked={isSelected === "outofstock"}
                       onChange={() => setIsSelected("outofstock")}
                     />
-                    <label htmlFor="stock" className={`label ${isSelected === "outofstock" ? 'label_active' : ''}`}>Out of Stock</label>
+                    <label htmlFor="outofStock" className={`label ${isSelected === "outofstock" ? 'label_active' : ''}`}>Out of Stock</label>
                   </span>
                 </div>
 
@@ -157,8 +219,8 @@ export default function AddNewInventoryItemOutOfStock() {
                     id="quantity"
                     name="quantity"
 
-                    value={quantity}
-                    onChange={(e) => setQuantity(e.target.value)}
+                    value={inventoryData.quantity}
+                    onChange={handleChange}
                   />
 
                 </div>
@@ -171,12 +233,12 @@ export default function AddNewInventoryItemOutOfStock() {
                       id="warehouse"
                       name="warehouse"
                       className="AddInventory__dropdownSelect"
-                      value={warehouse}
-                      onChange={(e) => setWarehouse(e.target.value)}
+                      value={inventoryData.warehouse_id}
+                      onChange={handleChange}
                     >
                       <option value="" disabled >Please select</option>
                       {warehouseList.map((warehouseOptions) => (
-                        <option key={warehouseOptions} value={warehouseOptions}>{warehouseOptions}</option>
+                        <option key={warehouseOptions.id} value={warehouseOptions.id} data-warehouse-id={warehouseOptions.id}>{warehouseOptions.name}</option>
                       ))}
                     </select>
                   </div>
