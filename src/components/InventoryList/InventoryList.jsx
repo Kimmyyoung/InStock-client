@@ -1,10 +1,83 @@
 import "./InventoryList.scss";
+import { useState } from "react";
 import delete_icon from "../../assets/icons/delete_outline-24px.svg";
 import edit from "../../assets/icons/edit-24px.svg";
 import { Link } from "react-router-dom";
+import Modal from 'react-modal';
+import './DeletionModal.scss';
 
-const InventoryList = ({ inventory }) => {
+import axios from 'axios';
+
+Modal.setAppElement('#root');
+
+const DeletionModal = ({ isOpen, onRequestClose, onDelete, item }) => {
+
+  // couldn't target this with the css so this was the best i could figure out on how to change the background color
+  const modalStyle = {
+    overlay: {
+      backgroundColor: '#13182cc7',
+      border: '2px solid #2E66E5',
+    }
+  };
+
+  return (
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
+      contentLabel="Delete Confirmation"
+      className={{
+        base: 'deletion-modal',
+        afterOpen: 'deletion-modal__content',
+        beforeClose: 'deletion-modal__content',
+      }}
+      ClassName={{
+        base: 'deletion-modal__overlay',
+        afterOpen: 'deletion-modal__overlay',
+        beforeClose: 'deletion-modal__overlay',
+      }}
+      style={modalStyle}
+    >
+      <div>
+        <div className='deletion-modal__close-button-box'>
+          <button onClick={onRequestClose} className="deletion-modal__close-btn">
+            X
+          </button>
+        </div>
+        <h2 className='deletion-modal__title'>Delete {item} Inventory Item?</h2>
+        <p className='deletion-modal__message'>Please confirm that you’d like to delete {item} from the inventory list. You won’t be able to undo this action.</p>
+        <div className='deletion-modal__button-box'>
+          <button className='deletion-modal__button-cancel' onClick={onRequestClose}>Cancel</button>
+          <button className='deletion-modal__button-delete' onClick={onDelete}>Delete</button>
+        </div>
+      </div>
+      
+    </Modal>
+  );
+};
+
+const InventoryList = ({ inventory, setDeleteInventory }) => {
   const { item_name, category, status, quantity } = inventory;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const deleteInventoryItem = async () => {
+
+    try {
+      const deleteRes = await axios.delete(`http://localhost:8080/api/inventories/${inventory.id}`)
+    } catch (err) {
+      console.log("Json error deleting data: ", err);
+    }
+  
+  }
+
+  const handleDelete = async () => {
+    try {
+      await deleteInventoryItem();
+      setIsModalOpen(false);
+      setDeleteInventory(Math.random() * 100);
+    } catch (err) {
+      console.error("Error deleting Inventory Item:", err);
+    }
+  };
 
   const statusClass =
     status === "In Stock" ? "status-instock" : "status-outofstock";
@@ -39,7 +112,7 @@ const InventoryList = ({ inventory }) => {
           <div>Warehouse Name</div>
         </div>
         <div className="inventory__item inventory__item--move">
-          <img className="delete_icon" src={delete_icon} alt="delete icon" />
+          <img onClick={() => setIsModalOpen(true)} className="delete_icon" src={delete_icon} alt="delete icon" />
           <img className="edit_icon" src={edit} alt="edit icon" />
         </div>
       </div>
@@ -95,10 +168,23 @@ const InventoryList = ({ inventory }) => {
         </div>
 
         <div className="inventory__row4-mobile">
-          <img className="delete_icon" src={delete_icon} alt="delete icon" />
+          <img
+            onClick={() => setIsModalOpen(true)}
+            className="delete_icon"
+            src={delete_icon}
+            alt="delete icon"    
+          />
           <img className="edit_icon" src={edit} alt="edit icon" />
         </div>
       </div>
+      <DeletionModal
+        isOpen={isModalOpen}
+        onRequestClose={() => {
+          setIsModalOpen(false);
+        }}
+        onDelete={handleDelete}
+        item={inventory.item_name}
+      />
     </div>
   );
 };

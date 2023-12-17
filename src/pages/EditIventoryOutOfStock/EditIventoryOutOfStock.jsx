@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import arrow_back from "../../assets/Icons/arrow_back-24px.svg";
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import "./EditIventoryOutOfStock.scss";
 import axios from "axios";
-import errorIcon from "../../assets/Icons/error-24px.svg";
 
 
 export default function EditInventory() {
@@ -11,30 +10,109 @@ export default function EditInventory() {
   const [ description, setDescription ] = useState("");
   const [ category, setCategory ] = useState("");
   const [ warehouse, setWarehouse ] = useState("");
-  const [ isStock, setIsStock ] = useState(false);
-  const [ isOutOfStock, setIsOutOfStock ] = useState(false);
-  const [ error, setError ] = useState("");
+  const [ quantity, setQuantity ] = useState("");
+  const [selectedWarehouse, setSelectedWarehouse] = useState({ id: '', name: '' });
+
+  const [ categories, setCategories ] = useState([]);
   const [ warehouseList, setWarehouseList ] = useState([]);
+
+  const [ isSelected, setIsSelected ] = useState(""); 
+
+
+  const [ error, setError ] = useState("");
   const navigate = useNavigate();
-  const params = useParams();
+  const { id } = useParams();
 
-  // useEffect(() => {
-  //   try {
-  //     const fetc
-  //   }
-  // }, [params]);
+  useEffect(() => {
+      const fetchData = axios.get(`http://localhost:8080/api/inventories/${id}`)
+      .then((res) => { 
+        const inventory = res.data;
 
+        setItemName(inventory.item_name);
+        setDescription(inventory.description);
+        setCategory(inventory.category);
+        setWarehouse(inventory.warehouse_name);
+        setQuantity(inventory.quantity);
+        if(inventory.status === "In Stock") {
+          setIsSelected("stock");
+        }else {
+          setIsSelected("outofstock");
+        }
+      })
+      .catch((err) => { 
+        console.error(err);
+      });
+   
+      fetchData;
+  }, [id]);
+
+
+  useEffect(() => {
+    const fetchData = axios.get("http://localhost:8080/api/inventories")
+      .then((res) => {
+        const uniqueCategories = [...new Set(res.data.map(item => item.category))];
+        const uniqueWarehouses = [...new Set(res.data.map(item => `${item.warehouse_id}-${item.warehouse_name}`))]
+        .map(warehouse => {
+          const [id, name] = warehouse.split('-');
+          return { id, name };
+        });
+        
+        setCategories(uniqueCategories);
+        setWarehouseList(uniqueWarehouses);
+      })
+      .catch((err) => console.error(err));
+  
+    fetchData;
+  }, []);
+
+
+  // Update
+
+
+  const updateData = (e) => {
+    e.preventDefault();
+    const status = isSelected === "stock" ? "In Stock" : "Out of Stock";
+    const updateQuantity = isSelected === "stock" ? 100 : 0;
+    
+    console.log(selectedWarehouse);
+    
+    // Frontend validation
+    if(!itemName || !description || !category || !selectedWarehouse || !status) {
+      setError("Please fill all the fields.");
+      console.log('Frontend validation');
+      return;
+    }
+  
+    axios.put(`http://localhost:8080/api/inventories/${id}`, {
+      item_name: itemName,
+      description: description,
+      category: category,
+      warehouse_id: selectedWarehouse.id, 
+      status: status,
+      quantity: updateQuantity,
+    })
+    .then((res) => {
+      console.log(res);
+      navigate(`/inventory/${id}`);
+    })
+    .catch((err) => {
+      // backend validation
+      if(err.response.status === 400) {
+        setError("Bad request. Please check your input.");
+        console.log('Backend validation');
+      }
+      console.error(err);
+    });
+  };
 
   return (
     <section className='EditInventory'>
-      <form className='EditInventory__main-container'  >
+      <form className='EditInventory__main-container' onSubmit={updateData}>
 
         <div className="EditInventory__container">
-          <NavLink to="/">
-            <div className="EditInventory__back-icon">
+            <div className="EditInventory__back-icon" onClick={()=> navigate('/inventory')}>
               <img src={arrow_back} alt="back_button" />
             </div>
-          </NavLink>
           <div className='EditInventory__title'>Edit Inventory Item</div>
         </div>
 
@@ -73,10 +151,16 @@ export default function EditInventory() {
                     <br />
 
                     <div className="EditInventory__dropdown">
-                      <select id="dropdown" name="dropdown" className="EditInventory__dropdownSelect">
-                        <option value="option1">option1</option>
-                        <option value="option2">option1</option>
-                        <option value="option3">option1</option>
+                    <select
+                      id="category"
+                      name="category"
+                      className="EditInventory__dropdownSelect"
+                      value={category}
+                      onChange={(e) => setCategory(e.target.value)}
+                    >                          
+                          {categories.map((category) => (
+                            <option key={category} value={category}>{category}</option>
+                          ))}
                       </select>
                     </div>
 
@@ -91,37 +175,51 @@ export default function EditInventory() {
                   <br />
 
                   <span className="radio_button">
-                  <input className="EditInventory__radio EditInventory__stock"
+                  <input
+                    className="EditInventory__radio EditInventory__stock"
                     type="radio"
                     id="stock"
                     name="stock"
-                    value={isStock}
-                    onChange={(e)=>setIsStock(e.target.value)}
+                    value="stock" 
+                    checked={isSelected === "stock"}
+                    onChange={() => setIsSelected("stock")}
                   />
-                  <label htmlFor="stock">In Stock</label>
+                  <label htmlFor="stock" className={`label ${isSelected === "stock" ? 'label_active' : ''}`}>In Stock</label>
                   </span>
 
                   <span className="radio_button">
-                  <input className="EditInventory__radio EditInventory__outofstock"
+                  <input
+                    className="EditInventory__radio EditInventory__stock"
                     type="radio"
-                    id="outofstock"
-                    name="outofstock"
-                    value={isOutOfStock}
-                    onChange={(e)=>setIsOutOfStock(e.target.value)}
+                    id="stock"
+                    name="stock"
+                    value="stock" 
+                    checked={isSelected === "outofstock"}
+                    onChange={() => setIsSelected("outofstock")}
                   />
-                  <label htmlFor="outofstock">Out of Stock</label>
+                  <label htmlFor="stock" className={`label ${isSelected === "outofstock" ? 'label_active' : ''}`}>Out of Stock</label>
                   </span>
                 </div>
                 <div>
                   <label htmlFor="position">Warehouse</label>
                   <br />
                   <div className="EditInventory__dropdown">
-                      <select id="dropdown" name="dropdown" className="EditInventory__dropdownSelect">
-                        <option value="option1">option1</option>
-                        <option value="option2">option1</option>
-                        <option value="option3">option1</option>
-                      </select>
+                  <select
+                      id="warehouse"
+                      name="warehouse"
+                      className="EditInventory__dropdownSelect"
+                      value={selectedWarehouse.name}
+                      onChange={(e) => {
+                        const selectedWarehouseObject = warehouseList.find(warehouse => warehouse.name === e.target.value);
+                        setSelectedWarehouse(selectedWarehouseObject);
+                      }}
+                    >
+                      {warehouseList.map((warehouse) => (
+                        <option key={warehouse.id} value={warehouse.name}>{warehouse.name}</option>
+                      ))}
+                    </select>
                     </div>
+                    {error && <p className="EditInventory__error">{error}</p>}
                 </div>
               </div>
 
@@ -132,7 +230,7 @@ export default function EditInventory() {
         </div>
 
         <div className='EditInventory__button-container'>
-          <button className='EditInventory__cancel-btn' type="button" >
+          <button className='EditInventory__cancel-btn' type="button" onClick={()=> navigate('/inventory')}>
             Cancel
           </button>
           <button className='EditInventory__save-btn' type="submit" >
