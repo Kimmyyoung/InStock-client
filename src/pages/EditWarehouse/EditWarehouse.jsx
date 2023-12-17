@@ -3,14 +3,12 @@ import arrow_back from "../../assets/Icons/arrow_back-24px.svg";
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import "./EditWarehouse.scss";
 import axios from "axios";
+import { validatePhoneNumber, validateEmail } from '../../utils/validation';
 import errorIcon from "../../assets/Icons/error-24px.svg";
-
-
 
 export default function EditWarehouse() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const hasError = false; //----For Validation----//
 
   const [warehouseDetails, setWarehouseDetails] = useState({
     warehouse_name: '',
@@ -21,6 +19,17 @@ export default function EditWarehouse() {
     contact_position: '',
     contact_phone: '',
     contact_email: '',
+  });
+
+  const [hasError, setHasError] = useState({
+    warehouse_name: false,
+    address: false,
+    city: false,
+    country: false,
+    contact_name: false,
+    contact_position: false,
+    contact_phone: false,
+    contact_email: false,
   });
 
   useEffect(() => {
@@ -59,6 +68,52 @@ export default function EditWarehouse() {
 
     console.log("Values: ", updatedDetails);
     //Validation still required
+    const errors = {};
+    if (!warehouseDetails.warehouse_name || warehouseDetails.warehouse_name.trim() === '') {
+      errors.warehouse_name = true;
+    }
+
+        // Validate address
+    if (!warehouseDetails.address || warehouseDetails.address.trim() === '') {
+      errors.address = true;
+    }
+
+        // Validate city
+    if (!warehouseDetails.city || warehouseDetails.city.trim() === '') {
+      errors.city = true;
+    }
+
+        // Validate country
+    if (!warehouseDetails.country || warehouseDetails.country.trim() === '') {
+      errors.country = true;
+    }
+
+        // Validate contact_name
+    if (!warehouseDetails.contact_name || warehouseDetails.contact_name.trim() === '') {
+      errors.contact_name = true;
+    }
+
+        // Validate contact_position
+    if (!warehouseDetails.contact_position || warehouseDetails.contact_position.trim() === '') {
+      errors.contact_position = true;
+    }
+        // Validate contact_phone
+    if (!warehouseDetails.contact_phone || !validatePhoneNumber(warehouseDetails.contact_phone)) {
+      errors.contact_phone = true;
+    }
+        // Validate contact_email
+    if (!warehouseDetails.contact_email || !validateEmail(warehouseDetails.contact_email)) {
+      errors.contact_email = true;
+    }
+
+    setHasError(errors);
+    const hasValidationError = Object.values(errors).some((error) => error);
+
+    if (hasValidationError) {
+      console.log("form has a validation error.");
+      return;
+    }
+
     try {
       const response = await axios.put(`http://localhost:8080/warehouses/${id}`, updatedDetails);
 
