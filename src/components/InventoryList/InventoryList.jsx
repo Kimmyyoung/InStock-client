@@ -10,7 +10,7 @@ const InventoryList = ({ inventory }) => {
     status === "In Stock" ? "status-instock" : "status-outofstock";
 
   return (
-    <div>
+    <div >
       <div className="inventory__list" key={inventory.id}>
         <div className="inventory__item inventory__item-icon warehouse__nameAndArrow ">
           <Link to={`/inventory/${inventory.id}`} className="inventory__item-link">
@@ -44,7 +44,9 @@ const InventoryList = ({ inventory }) => {
         </div>
       </div>
 
-      <div className="inventory__list-mobile">
+      {/* Mobile  */}
+
+      <div className="inventory__list-mobile inventory__list-mobile--warehouse">
         <div className="inventory__row1-mobile">
           <div className="left-column">
             <div className="inventory__block1">
