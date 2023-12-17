@@ -11,6 +11,7 @@ export default function EditInventory() {
   const [ category, setCategory ] = useState("");
   const [ warehouse, setWarehouse ] = useState("");
   const [ quantity, setQuantity ] = useState("");
+  const [selectedWarehouse, setSelectedWarehouse] = useState({ id: '', name: '' });
 
   const [ categories, setCategories ] = useState([]);
   const [ warehouseList, setWarehouseList ] = useState([]);
@@ -32,7 +33,6 @@ export default function EditInventory() {
         setCategory(inventory.category);
         setWarehouse(inventory.warehouse_name);
         setQuantity(inventory.quantity);
-
         if(inventory.status === "In Stock") {
           setIsSelected("stock");
         }else {
@@ -51,7 +51,12 @@ export default function EditInventory() {
     const fetchData = axios.get("http://localhost:8080/api/inventories")
       .then((res) => {
         const uniqueCategories = [...new Set(res.data.map(item => item.category))];
-        const uniqueWarehouses = [...new Set(res.data.map(item => item.warehouse_name))];
+        const uniqueWarehouses = [...new Set(res.data.map(item => `${item.warehouse_id}-${item.warehouse_name}`))]
+        .map(warehouse => {
+          const [id, name] = warehouse.split('-');
+          return { id, name };
+        });
+        
         setCategories(uniqueCategories);
         setWarehouseList(uniqueWarehouses);
       })
@@ -68,24 +73,37 @@ export default function EditInventory() {
     e.preventDefault();
     const status = isSelected === "stock" ? "In Stock" : "Out of Stock";
     const updateQuantity = isSelected === "stock" ? 100 : 0;
-
+    
+    console.log(selectedWarehouse);
+    
+    // Frontend validation
+    if(!itemName || !description || !category || !selectedWarehouse || !status) {
+      setError("Please fill all the fields.");
+      console.log('Frontend validation');
+      return;
+    }
+  
     axios.put(`http://localhost:8080/api/inventories/${id}`, {
       item_name: itemName,
       description: description,
       category: category,
-      warehouse_name: warehouse,
+      warehouse_id: selectedWarehouse.id, 
       status: status,
       quantity: updateQuantity,
     })
-      .then((res) => {
-        console.log(res);
-        navigate(`/inventory/${id}`);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    .then((res) => {
+      console.log(res);
+      navigate(`/inventory/${id}`);
+    })
+    .catch((err) => {
+      // backend validation
+      if(err.response.status === 400) {
+        setError("Bad request. Please check your input.");
+        console.log('Backend validation');
+      }
+      console.error(err);
+    });
   };
-
 
   return (
     <section className='EditInventory'>
@@ -190,14 +208,18 @@ export default function EditInventory() {
                       id="warehouse"
                       name="warehouse"
                       className="EditInventory__dropdownSelect"
-                      value={warehouse}
-                      onChange={(e) => setWarehouse(e.target.value)}
+                      value={selectedWarehouse.name}
+                      onChange={(e) => {
+                        const selectedWarehouseObject = warehouseList.find(warehouse => warehouse.name === e.target.value);
+                        setSelectedWarehouse(selectedWarehouseObject);
+                      }}
                     >
                       {warehouseList.map((warehouse) => (
-                        <option key={warehouse} value={warehouse}>{warehouse}</option>
+                        <option key={warehouse.id} value={warehouse.name}>{warehouse.name}</option>
                       ))}
                     </select>
                     </div>
+                    {error && <p className="EditInventory__error">{error}</p>}
                 </div>
               </div>
 
