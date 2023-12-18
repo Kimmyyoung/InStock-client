@@ -48,6 +48,8 @@ export default function InventoryItemDetails() {
 
     return (
       <>
+
+      <div className="inventoryItem">
         <div className="inventoryItem__container">
           <div className="inventoryItem__top">
 
@@ -111,6 +113,7 @@ export default function InventoryItemDetails() {
             </div>
 
          </div>
+      </div>
       </div>
     </>
     );

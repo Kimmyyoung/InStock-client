@@ -112,7 +112,9 @@ const InventoryList = ({ inventory, setDeleteInventory }) => {
         </div>
         <div className="inventory__item inventory__item--move">
           <img onClick={() => setIsModalOpen(true)} className="delete_icon" src={delete_icon} alt="delete icon" />
-          <img className="edit_icon" src={edit} alt="edit icon" />
+          <Link to={`/editInventory/${id}`} className="edit_icon-link">
+            <img className="edit_icon" src={edit} alt="edit icon" />
+          </Link>
         </div>
       </div>
 

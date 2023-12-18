@@ -5,41 +5,57 @@
 
 
 body {
-  font-family: "Titillium Web";
+  background: linear-gradient(to bottom,
+          #232940 0%,
+          #232940 17%,
+          #F7F8F9 17%,
+          #F7F8F9 100%) !important;
+  background-repeat: no-repeat !important;
+  width: 100%;
+  height: max-content !important;
+
+  @include tablet {
+      background: linear-gradient(to bottom,
+              #232940 0%,
+              #232940 18.3%,
+              #F7F8F9 18.3%,
+              #F7F8F9 100%) !important;
+  }
 }
 
+
 .home {
-  border-top: solid 1px $dividers;
-  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   font-family: "Titillium Web";
-
-  &:hover {
-    background-color: $pageBackground;
-  }
+  padding: 1.5rem 2rem;
 
   @include tablet {
     display: flex;
     flex-direction: row;
     align-items: center;
+    // padding: 1.5rem auto;
+
   }
 
   &__container {
     background-color: white;
     border-radius: 5px;
-    width: 80%;
+    width: 100%;
     margin: auto !important;
-    padding: auto;
     box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
 
+
     @include tablet {
-      margin: 0rem 2rem 3rem;
+        // padding: 0 2rem 20rem 2rem;
     }
+
     @include desktop {
-      min-width: $breakpoint-desktop;
-      margin: 0rem auto 3rem;
+        max-width: 1020px;
+        margin: 0 auto;
+        padding-bottom: 9.6rem;
     }
+
   }
   &__top {
     padding: 1.5rem;
