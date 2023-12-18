@@ -12,6 +12,7 @@ const Home = () => {
   const [ searchTerm, setSearchTerm] = useState("");
   const [ warehouses, setWarehouses ] = useState([]);
 
+
   useEffect(()=> {
     const fetchData = async () => {
       const result = await axios.get('http://localhost:8080/api/warehouses');
