@@ -81,50 +81,8 @@
     }
   }
 
-  &__title-icon-frame {
-    display: flex;
-    width: 2.25rem;
-    height: 2.25rem;
-    padding: 0.5rem;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    background-color: $interactiveElements;
-    border-radius: 20px;
-    margin-bottom: 1rem;
-
-    @include tablet {
-        width: 5.06rem;
-        height: 2rem;
-        display: inline-flex;
-        padding: 0.5rem 1rem;
-        align-items: center;
-        gap: 0.625rem;
-    }
-
-  }
-
-  &__title-icon {
-    color: white;
-
-    @include tablet {
-        width: 1.25rem;
-        height: 1.25rem;
-        flex-shrink: 0;
-    }
-  }
-
-  &__title-icon-text {
-    display: none;
-    @include tablet {
-        display: inline;
-        color: var(--White, #FFF);
-        font-feature-settings: 'clig' off, 'liga' off;
-        font-size: 0.875rem;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 1.375rem; /* 157.143% */
-    }
+  &__title-icon-frame { 
+    padding-bottom: 1rem;
   }
 
   &__topright {
@@ -464,6 +422,41 @@
       cursor: pointer;
     }
   }
+
+  &__button {
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem;
+    color: white;
+    border-radius: 1.25rem;
+    height: 2.25rem;
+    background-color: $interactiveElements;
+    border: none;
+    padding: 0.5rem;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+
+    gap: 5px;
+    align-items: center;
+    @include tablet {
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1.375rem;
+      padding: 0.5rem 1rem;
+      height: 2.375rem;
+    }
+    &:hover {
+      background-color: $interactiveElements;
+    }
+    &__icons {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+
 }
 
 .details {

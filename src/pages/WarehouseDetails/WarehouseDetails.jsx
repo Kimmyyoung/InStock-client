@@ -3,15 +3,16 @@ import axios from "axios";
 import "./WarehouseDetails.scss";
 import "./Inventory.scss";
 import { Link, useParams } from "react-router-dom";
-import icon1 from './../../assets/Icons/arrow_back-24px.svg'
-import icon2 from './../../assets/Icons/edit-24px.svg'
+import arrowBack from './../../assets/Icons/arrow_back-24px.svg'
+import editIcon from './../../assets/Icons/edit-24px.svg'
 import Inventory from "./../Inventory/Inventory";
 
 
 const warehouseDetails = () => {
 
   const params = useParams();
-  
+
+  const [isMobile, setIsMobile ] = useState(false);
   const [warehouseDetails, setWarehouseDetails] = useState({});
 
   useEffect(() => {
@@ -32,6 +33,19 @@ const warehouseDetails = () => {
 
   }, [])
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+      window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [setIsMobile]); 
+
   return (
 
     <>
@@ -39,12 +53,16 @@ const warehouseDetails = () => {
     <div className="warehouse__container">
       <div className="warehouse__top">
         <div className="warehouse__title-box">
-          <h1 className="warehouse__title"><Link to="/"><img src={icon1}/></Link>{warehouseDetails.city}</h1>
+          <h1 className="warehouse__title"><Link to="/"><img src={arrowBack}/></Link>{warehouseDetails.city}</h1>
           <div className="warehouse__title-icon-frame">
-            <Link to={`/editWarehouse/:${params}`}>
-              <img className="warehouse__title-icon" src={icon2}/>
+            {/* <Link to={`/editWarehouse/:${params}`}>
+              <img className="warehouse__title-icon" src={editIcon}/>
+            </Link> */}
+            <Link to={`/editWarehouse/:${params}`} className="warehouse__button">
+                <img src={editIcon} className="warehouse__button__icons" />
+                {isMobile? '' : 'Edit'}
             </Link>
-              <p className="warehouse__title-icon-text">Edit</p>
+              {/* <p className="warehouse__title-icon-text">Edit</p> */}
           </div>
         </div>
         <div className="warehouse__topright">
