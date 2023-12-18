@@ -6,12 +6,20 @@ import searchIcon from "./../../../src/assets/Icons/search-24px.svg";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ReactPaginate from 'react-paginate';
+import './inventory.scss';
 
 const Inventory = () => {
 
   const [deleteInventory, setDeleteInventory] = useState(0); 
   const [inventories, setInventories] = useState([]);
   const [sortAscending, setSortAscending] = useState(true);
+
+  
+  const [page, setPage] = useState(0);
+  const [filterData, setFilterData] = useState();
+  const n = 8
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +32,22 @@ const Inventory = () => {
     };
 
     fetchData();
-  }, [deleteInventory]);
+    setFilterData(
+      inventories.filter((item, index) => {
+        return (index >= page * n) & (index < (page + 1) * n);
+      })
+    );
+  }, [deleteInventory, page]);
+
+  useEffect(() => {
+    setFilterData(
+      inventories.filter((item, index) => {
+        return (index >= page * n) & (index < (page + 1) * n);
+      })
+    );
+  }
+  , [page, inventories]);
+  
 
   const sortData = (field) => {
     const sortedInventories = [...inventories].sort((a, b) => {
@@ -40,6 +63,7 @@ const Inventory = () => {
   };
 
   return (
+    <>
     <main className="inventory">
       <div className="inventory__wrap">
         <div className="inventory__header">
@@ -92,15 +116,27 @@ const Inventory = () => {
               ACTIONS
             </div>
           </div>
-
-          {inventories.slice(0, 8).map((inventory) => (
+          
+          {filterData && filterData.map((inventory) => (
             <InventoryList key={inventory.id} inventory={inventory} setDeleteInventory={setDeleteInventory}/>
           ))}
-   
+          <ReactPaginate
+            containerClassName={"pagination"}
+            pageClassName={"page-item"}
+            activeClassName={"active-pagingation"}
+            onPageChange={(event) => setPage(event.selected)}
+            pageCount={Math.ceil(inventories.length / n)}
+            breakLabel="..."
+            previousLabel="< previous"
+            nextLabel="next >"
+            style={{display: "flex", justifyContent: "center"}} 
+          />;
         </div>
       </div>
     </main>
+      </>
   );
 };
+
 
 export default Inventory;
