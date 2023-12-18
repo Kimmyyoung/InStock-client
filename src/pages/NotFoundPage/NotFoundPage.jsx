@@ -1,13 +1,11 @@
+import "./NotFoundPage.scss";
 
 export default function NotFoundPage() {
-
-    // useEffect(() => {
-  
-    // }, []);
-  
     return (
       <>
-  <h1>This is the Not Found Page</h1>
+        <div className="notFound__container">
+          <h1>Page Not Found</h1>
+        </div>
       </>
     );
   }
