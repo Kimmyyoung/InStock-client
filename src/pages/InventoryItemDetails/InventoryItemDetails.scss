@@ -6,12 +6,10 @@
 
 
 body{
-  // background: black;
   background: linear-gradient(to bottom, #232940 20%, #F7F8F9 20%);
   background-repeat: no-repeat !important;
-
   width: 100%;
-  height: max-content !important;
+  height: 100vh !important;
 }
 
 
@@ -21,7 +19,6 @@ body{
   display: flex;
   flex-direction: column;
   font-family: "Titillium Web";
-
 
   // &:hover {
   //   background-color: $pageBackground;
@@ -41,7 +38,7 @@ body{
     padding: auto;
     box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
     border-bottom : 1px solid $dividers !important;
-
+    
     @include tablet {
       // margin: 0rem 2rem 3rem;
     }

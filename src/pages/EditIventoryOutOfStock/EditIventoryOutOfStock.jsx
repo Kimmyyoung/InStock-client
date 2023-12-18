@@ -74,7 +74,7 @@ export default function EditInventory() {
     e.preventDefault();
     const status = isSelected === "stock" ? "In Stock" : "Out of Stock";
     const updateQuantity = isSelected === "stock" ? 100 : 0;
-        
+
     if(itemName.length < 3) {
       setError("Item name must be less than 20 characters.");
       return;
