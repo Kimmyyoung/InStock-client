@@ -45,6 +45,7 @@ const Home = () => {
 
   return (
     <>
+    <div className="home">
     <div className="home__container">
       <div className="home__top">
         <h1 className="home__title">Warehouses</h1>
@@ -98,6 +99,7 @@ const Home = () => {
           <WarehouseList key={warehouse.id} warehouse={warehouse} setDeleteWarehouse={setDeleteWarehouse}/>
         ))}
 
+    </div>
     </div>
     </>
   )

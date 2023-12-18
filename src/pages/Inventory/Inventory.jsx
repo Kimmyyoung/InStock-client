@@ -130,7 +130,7 @@ const Inventory = () => {
             previousLabel="< "
             nextLabel=" >"
             style={{display: "flex", justifyContent: "center"}} 
-          />;
+          />
         </div>
       </div>
     </main>
