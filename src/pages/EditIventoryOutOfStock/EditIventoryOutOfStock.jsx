@@ -33,6 +33,7 @@ export default function EditInventory() {
         setCategory(inventory.category);
         setWarehouse(inventory.warehouse_name);
         setQuantity(inventory.quantity);
+        setSelectedWarehouse({ id: inventory.warehouse_id, name: inventory.warehouse_name });
         if(inventory.status === "In Stock") {
           setIsSelected("stock");
         }else {
@@ -73,15 +74,28 @@ export default function EditInventory() {
     e.preventDefault();
     const status = isSelected === "stock" ? "In Stock" : "Out of Stock";
     const updateQuantity = isSelected === "stock" ? 100 : 0;
-    
-    console.log(selectedWarehouse);
-    
-    // Frontend validation
-    if(!itemName || !description || !category || !selectedWarehouse || !status) {
-      setError("Please fill all the fields.");
-      console.log('Frontend validation');
+
+    if(itemName.length < 3) {
+      setError("Item name must be less than 20 characters.");
       return;
     }
+    
+    if(description.length < 10) {
+      setError("Description must be less than 100 characters.");
+      return;
+    }
+
+    if(category === "Category") {
+      setError("Please select a category.");
+      return;
+    }
+
+    if(selectedWarehouse.name === "Warehouse") {
+      setError("Please select a warehouse.");
+      return;
+    }
+
+
   
     axios.put(`http://localhost:8080/api/inventories/${id}`, {
       item_name: itemName,

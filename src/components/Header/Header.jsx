@@ -78,7 +78,6 @@ const Header = () => {
                         Inventories
                     </NavLink> */}
                 </section>
-            
         </header>
     )
 }

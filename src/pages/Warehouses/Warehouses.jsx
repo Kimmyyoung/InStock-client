@@ -7,9 +7,9 @@ import axios from "axios";
 
 const Home = () => {
   
-  const [deleteWarehouse, setDeleteWarehouse] = useState(0); 
-  const [sort, setSort] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [ deleteWarehouse, setDeleteWarehouse] = useState(0); 
+  const [ sort, setSort] = useState(false);
+  const [ searchTerm, setSearchTerm] = useState("");
   const [ warehouses, setWarehouses ] = useState([]);
 
   useEffect(()=> {
@@ -20,60 +20,31 @@ const Home = () => {
     fetchData();
   }, [deleteWarehouse]);
 
-  const sortData = (e) => {
-    // will apply later
-    const delHandle = (name, id) => {
-      setDeleteWarehouse([name, id]);
-    };
-    const newWarehouses = [...fakeData];
+  const sortData = (category) => {
+    const sortedWarehouses = [...warehouses];
 
-    const fieldName =
-      e.target.innerText !== "" ? e.target.innerText : e.target.name;
+    const newSortOrder = !sort;
 
-    let field = "";
+    sortedWarehouses.sort((a, b) => {
+      const valueA = a[category].toUpperCase(); 
+      const valueB = b[category].toUpperCase();
 
-    switch (fieldName) {
-      case "WAREHOUSE":
-        field = "name";
-        break;
-      case "ADDRESS":
-        field = "address";
-        break;
-    }
-
-    if (!sort) {
-      const compare = (a, b) => {
-        if (a[field] < b[field]) {
-          return -1;
-        }
-        if (a[field] > b[field]) {
-          return 1;
-        }
-        return 0;
-      };
-      setSort(true);
-      
-      return;
-    }
-
-    if (sort) {
-      const compare = (a, b) => {
-        if (a[field] < b[field]) {
-          return 1;
-        }
-        if (a[field] > b[field]) {
-          return -1;
-        }
-        return 0;
-      };
-      setSort(false);
-    }
+      if (valueA < valueB) {
+        return newSortOrder ? -1 : 1;
+      }
+      if (valueA > valueB) {
+        return newSortOrder ? 1 : -1;
+      }
+      return 0;
+    });
+    setWarehouses(sortedWarehouses);
+    setSort(newSortOrder);
   };
+
 
 
   return (
     <>
-    
     <div className="home__container">
       <div className="home__top">
         <h1 className="home__title">Warehouses</h1>
@@ -94,7 +65,7 @@ const Home = () => {
 
       <div className="home__categories">
         <div className="home__categoryAndArrow home__categoryAndArrow-sort">
-          <span className="home__category " onClick={sortData}>
+        <span className="home__category" onClick={() => sortData('warehouse_name')}>
             WAREHOUSE
           </span>
           <img
@@ -104,7 +75,7 @@ const Home = () => {
           />
         </div>
         <div className="home__categoryAndArrow home__categoryAndArrow-sort">
-          <span className="home__category" onClick={sortData}>
+        <span className="home__category" onClick={() => sortData('address')}>
             ADDRESS
           </span>
           <img

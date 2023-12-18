@@ -55,7 +55,7 @@ const DeletionModal = ({ isOpen, onRequestClose, onDelete, item }) => {
 };
 
 const InventoryList = ({ inventory, setDeleteInventory }) => {
-  const { item_name, category, status, quantity } = inventory;
+  const { id, item_name, category, status, quantity, warehouse_name } = inventory;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const deleteInventoryItem = async () => {
@@ -83,9 +83,9 @@ const InventoryList = ({ inventory, setDeleteInventory }) => {
 
   return (
     <div >
-      <div className="inventory__list" key={inventory.id}>
+      <div className="inventory__list" key={id}>
         <div className="inventory__item inventory__item-icon warehouse__nameAndArrow ">
-          <Link to={`/inventory/${inventory.id}`} className="inventory__item-link">
+          <Link to={`/inventory/${id}`} className="inventory__item-link">
             <p id="item_name" className="item__name">
               {item_name}
             </p>
@@ -108,7 +108,7 @@ const InventoryList = ({ inventory, setDeleteInventory }) => {
           <p className="qty">{quantity}</p>
         </div>
         <div id="warehouse_name" className="inventory__item">
-          <div>Warehouse Name</div>
+          <div>{warehouse_name}</div>
         </div>
         <div className="inventory__item inventory__item--move">
           <img onClick={() => setIsModalOpen(true)} className="delete_icon" src={delete_icon} alt="delete icon" />
@@ -160,7 +160,7 @@ const InventoryList = ({ inventory, setDeleteInventory }) => {
             <div className="inventory__block5">
               <div className="inventory__title">WAREHOUSE</div>
               <div id="warehouse_name_mobile" className="inventory__item">
-                <div>Warehouse Name</div>
+                <div>{warehouse_name}</div>
               </div>
             </div>
           </div>

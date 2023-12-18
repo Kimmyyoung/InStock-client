@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 // icon
-import EditIcon from '../../assets/Icons/edit-24px.svg';
+import EditIcon from '../../assets/Icons/edit-24px_white.svg';
 import ArrowBack from '../../assets/Icons/arrow_back-24px.svg';
 
 
@@ -48,20 +48,20 @@ export default function InventoryItemDetails() {
 
     return (
       <>
-        <div className="inventory__container">
-          <div className="inventory__top">
+        <div className="inventoryItem__container">
+          <div className="inventoryItem__top">
 
-            <div className="inventory__top__right" onClick={()=> navigate('/inventory')}>
-              <img src={ArrowBack} className="inventory__top__back" />
-              <h1 className="inventory__name">
+            <div className="inventoryItem__top__right" onClick={()=> navigate('/inventory')}>
+              <img src={ArrowBack} className="inventoryItem__top__back" />
+              <h1 className="inventoryItem__name">
               {inventory.item_name}
               </h1>
             </div>
 
 
-            <div className="inventory__topright">
-              <Link to={`/editInventory/${id}`} className="inventory__button">
-                <img src={EditIcon} className="inventory__button__icons" />
+            <div className="inventoryItem__topright">
+              <Link to={`/editInventory/${id}`} className="inventoryItem__button">
+                <img src={EditIcon} className="inventoryItem__button__icons" />
                 {isMobile? '' : 'Edit'}
               </Link>
             </div>
