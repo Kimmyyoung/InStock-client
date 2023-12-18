@@ -1,6 +1,10 @@
 @import './../../styles/partials/colors';
 @import './../../styles/partials/mixins';
 
+NavLink {
+    text-decoration: none;
+}
+
 .header {
 
     display: flex;
@@ -60,6 +64,7 @@
         font-size: 0.8125rem;
         width: 10.25rem;
         height: 2.25rem;
+        text-decoration: none;
 
         &:hover {
             text-decoration: underline;

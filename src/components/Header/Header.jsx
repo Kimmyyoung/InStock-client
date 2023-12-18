@@ -35,7 +35,7 @@ const Header = () => {
         <header className="header">
             
                 <section className="header__logo-container">
-                    <NavLink to="/">
+                    <NavLink to="/" className="link">
                         <img className="header__logo" src={logo} />
                     </NavLink>
                 </section>
