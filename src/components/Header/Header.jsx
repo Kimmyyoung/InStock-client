@@ -1,7 +1,7 @@
 import logo from "./../../assets/Logo/inStock-Logo_2x.png";
 import './Header.scss';
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Header = () => {
 
@@ -12,30 +12,71 @@ const Header = () => {
         setActivePage(pageName);
     };
 
+    const isActiveWarehouse = () => {
+        const isActive =
+            location.pathname === "/warehouses" ||
+            location.pathname.startsWith("/warehouse/") ||
+            location.pathname.startsWith("/editWarehouse/") ||
+            location.pathname.startsWith("/addNewWarehouse") ||
+            location.pathname === "/";
+        return isActive;
+    };
+    
+    const isActiveInventories = () => {
+        const isActive =
+            location.pathname === "/inventory" ||
+            location.pathname.startsWith("/inventory/") ||
+            location.pathname.startsWith("/editInventory/") ||
+            location.pathname === "/addInventory";
+        return isActive;
+    };
+
     return (
         <header className="header">
             
                 <section className="header__logo-container">
-                    <Link to="/">
+                    <NavLink to="/">
                         <img className="header__logo" src={logo} />
-                    </Link>
+                    </NavLink>
                 </section>
 
                 <section className="header__pages">
-                    <Link
+                    <NavLink
                         to="/"
+                        className={`header__pages-name ${isActiveWarehouse('/warehouses') ? 'header__pages-name--active' : ''}`}
                         onClick={() => handlePageClick('Warehouses')}
-                        className={`header__pages-name ${activePage === 'Warehouses' ? 'header__pages-name--active' : ''}`}
                     >
                         Warehouses
-                    </Link>
-                    <Link
+                    </NavLink>
+                    <NavLink
                         to="/inventory"
+                        className={`header__pages-name ${isActiveInventories('/inventory') ? 'header__pages-name--active' : ''}`}
                         onClick={() => handlePageClick('Inventories')}
-                        className={`header__pages-name ${activePage === 'Inventories' ? 'header__pages-name--active' : ''}`}
+                    >
+                        Inventory
+                    </NavLink>
+                    {/* <NavLink
+                        to="/"
+                        // className={(isActivePage('/warehouses') ? 'header__pages-name--active' : '')}
+                        className={`header__pages-name ${isActivePage('/warehouses') ? 'header__pages-name--active' : ''}`}
+                        // className={({ isActive }) =>
+                        // `header__pages-name ${isActivePage('/warehouses') ? 'header__pages-name--active' : ''}`
+                        // }
+                        onClick={() => handlePageClick('Warehouses')}
+                    >
+                        Warehouses
+                    </NavLink>
+                    <NavLink
+                        to="/inventory"
+                        className={`header__pages-name ${isActivePage('/inventory') ? 'header__pages-name--active' : ''}`}
+                        // className={(isActivePage('/inventory') ? 'header__pages-name--active' : '')}
+                        // className={({ isActive }) =>
+                        //     `header__pages-name ${isActive ? 'header__pages-name--active' : ''}`
+                        // }
+                        onClick={() => handlePageClick('Inventories')}
                     >
                         Inventories
-                    </Link>
+                    </NavLink> */}
                 </section>
             
         </header>

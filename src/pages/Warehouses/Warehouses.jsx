@@ -86,7 +86,7 @@ const Home = () => {
               setSearchTerm(event.target.value);
             }}
           ></input>
-          <Link to="/warehouses/add" className="home__button">
+          <Link to="/addNewWarehouse" className="home__button">
             + Add New Warehouse
           </Link>
         </div>
