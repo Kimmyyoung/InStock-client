@@ -84,7 +84,7 @@ const Inventory = () => {
               ></span>
             </div>
 
-            <Link to="/addNewInventoryOutOfStock" className="inventory__button-link">
+            <Link to="/addInventory" className="inventory__button-link">
               + Add New Item
             </Link>
           </div>
