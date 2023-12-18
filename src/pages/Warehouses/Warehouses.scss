@@ -42,7 +42,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 1.5rem 5rem;
+    padding: 1.5rem auto;
 
   }
 
@@ -54,13 +54,18 @@ body {
     padding: auto;
     box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
 
+    padding: 0 1rem;
+
     @include tablet {
-      margin: 0rem 2rem 3rem;
+        padding: 0 2rem 20rem 2rem;
     }
+
     @include desktop {
-      min-width: $breakpoint-desktop;
-      margin: 0rem auto 3rem;
+        max-width: 1020px;
+        margin: 0 auto;
+        padding-bottom: 9.6rem;
     }
+
   }
   &__top {
     padding: 1.5rem;
