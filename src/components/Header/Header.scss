@@ -1,6 +1,10 @@
 @import './../../styles/partials/colors';
 @import './../../styles/partials/mixins';
 
+NavLink {
+    text-decoration: none;
+}
+
 .header {
 
     display: flex;
@@ -60,21 +64,22 @@
         font-size: 0.8125rem;
         width: 10.25rem;
         height: 2.25rem;
+        text-decoration: none;
 
         &:hover {
             text-decoration: underline;
             color: $white;
         }
 
-        &:active {
-            color: $white;
-            background-color: #13182C;
-        }
-
         @include tablet {
             width: 6.6875rem;
             height: 2.375rem;
             font-size: 0.875rem;
+        }
+
+        &--active {
+            color: $white;
+            background-color: #13182C;
         }
     }
 }

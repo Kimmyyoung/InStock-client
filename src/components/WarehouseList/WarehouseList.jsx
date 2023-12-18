@@ -19,7 +19,6 @@ const DeletionModal = ({ isOpen, onRequestClose, onDelete, warehouse_name }) => 
   const modalStyle = {
     overlay: {
       backgroundColor: '#13182cc7',
-      border: '2px solid #2E66E5',
     }
   };
 
