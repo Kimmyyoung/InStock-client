@@ -119,6 +119,15 @@ body {
             color: $placeholder;
         }
 
+        &:focus{
+            outline: none;
+            border: 1px solid $interactiveElements;
+        }
+
+        &:focus-visible {
+            border: 1px solid $interactiveElements; 
+        }
+
         &--last {
             margin-bottom: 0;
         }
