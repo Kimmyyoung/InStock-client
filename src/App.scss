@@ -1,0 +1,31 @@
+@use "./styles/partials/breakpoints" as *;
+@use "./styles/partials/colors" as *;
+@use "./styles/partials/mixins" as *;
+@use "./styles/partials/typography" as * ;
+
+
+* {
+  box-sizing: border-box;
+  font-family: "Titillium";
+  margin: 0;
+  color: $globalText;
+}
+
+body {
+  background: linear-gradient(to bottom,
+          #232940 0%,
+          #232940 17%,
+          #F7F8F9 17%,
+          #F7F8F9 100%) !important;
+  background-repeat: no-repeat !important;
+  width: 100%;
+  height: max-content !important;
+
+  @include tablet {
+      background: linear-gradient(to bottom,
+              #232940 0%,
+              #232940 18.3%,
+              #F7F8F9 18.3%,
+              #F7F8F9 100%) !important;
+  }
+}

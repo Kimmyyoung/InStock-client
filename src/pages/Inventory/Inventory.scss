@@ -1,0 +1,93 @@
+
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/breakpoints" as *;
+
+.inventory {
+  padding: 3rem 2rem;
+  @include tablet {
+    padding: 3rem 5rem;
+  
+
+  }
+  &__wrap{
+    padding: 0px;
+  }
+
+  &__categories {
+    display: none;
+    @include tablet {
+      background-color: $pageBackground;
+      height: 2.5rem;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+  &__categoryAndArrow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 21.25%;
+    &-sort {
+      cursor: pointer;
+    }
+    // @include desktop {
+    //     width: 22.5%;
+    // }
+  }
+  &__category {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+    color: $tableHeader;
+    &--right {
+      text-align: right;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 0.75rem;
+      line-height: 1.125rem;
+      width: 15%;
+      color: $tableHeader;
+      // @include desktop {
+      //     width: 10%;
+      // }
+    }
+  }
+  &__sortArrow {
+    padding-left: 0.25rem;
+    height: 1rem;
+  }
+}
+
+
+.pagination {
+  list-style: none;
+  height: 31.5px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+.active-pagingation {
+  background-color: lightgray;
+  border-radius: 50%;
+}
+
+.page-item {
+  list-style: none;
+  padding: 2px 12px;
+  height: 31.5px;
+  width: 31.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2px;
+}
