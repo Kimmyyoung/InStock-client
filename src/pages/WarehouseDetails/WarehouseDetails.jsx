@@ -68,7 +68,7 @@ const warehouseDetails = () => {
               {warehouseDetails.city}
             </h1>
             <div className="warehouse__title-icon-frame">
-              <Link to={`/editWarehouse/:${params}`}>
+              <Link to={`/editWarehouse/:${params.warehouseId}`}>
                 <img className="warehouse__title-icon" src={icon2} alt="Edit" />
               </Link>
               <p className="warehouse__title-icon-text">Edit</p>

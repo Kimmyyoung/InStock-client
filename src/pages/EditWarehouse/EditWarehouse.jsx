@@ -9,6 +9,7 @@ import errorIcon from "../../assets/Icons/error-24px.svg";
 export default function EditWarehouse() {
   const { id } = useParams();
   const navigate = useNavigate();
+  console.log("the params id is: ", typeof id);
 
   const [warehouseDetails, setWarehouseDetails] = useState({
     warehouse_name: '',
@@ -35,7 +36,7 @@ export default function EditWarehouse() {
   useEffect(() => {
     const fetchWarehouseDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/warehouses/${id}`);
+        const response = await axios.get(`http://localhost:8080/api/warehouses/${id.split(':').join('')}`);
         setWarehouseDetails(response.data);
       } catch (error) {
         console.error('Error fetching warehouse details:', error.message);
