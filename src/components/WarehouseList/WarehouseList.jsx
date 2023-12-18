@@ -13,13 +13,12 @@ import axios from 'axios';
 
 Modal.setAppElement('#root');
 
-const DeletionModal = ({ isOpen, onRequestClose, onDelete, city }) => {
+const DeletionModal = ({ isOpen, onRequestClose, onDelete, warehouse_name }) => {
 
   // couldn't target this with the css so this was the best i could figure out on how to change the background color
   const modalStyle = {
     overlay: {
       backgroundColor: '#13182cc7',
-      border: '2px solid #2E66E5',
     }
   };
 
@@ -46,8 +45,8 @@ const DeletionModal = ({ isOpen, onRequestClose, onDelete, city }) => {
             X
           </button>
         </div>
-        <h2 className='deletion-modal__title'>Delete {city} Warehouse?</h2>
-        <p className='deletion-modal__message'>Please confirm that you'd like to delete {city} from the list of warehouses. You won't be able to undo this action.</p>
+        <h2 className='deletion-modal__title'>Delete {warehouse_name} Warehouse?</h2>
+        <p className='deletion-modal__message'>Please confirm that you'd like to delete {warehouse_name} from the list of warehouses. You won't be able to undo this action.</p>
         <div className='deletion-modal__button-box'>
           <button className='deletion-modal__button-cancel' onClick={onRequestClose}>Cancel</button>
           <button className='deletion-modal__button-delete' onClick={onDelete}>Delete</button>
@@ -65,7 +64,7 @@ const WarehouseList = ({warehouse, setDeleteWarehouse}) => {
   const deleteWarehouse = async () => {
 
     try {
-      const deleteRes = await axios.delete(`http://localhost:8080/warehouses/${warehouse.id}`)
+      const deleteRes = await axios.delete(`http://localhost:8080/api/warehouses/${warehouse.id}`)
     } catch (err) {
       console.log("Json error deleting data: ", err);
     }
@@ -135,7 +134,7 @@ const WarehouseList = ({warehouse, setDeleteWarehouse}) => {
                 setIsModalOpen(false);
               }}
               onDelete={handleDelete}
-              city={warehouse.city}
+              warehouse_name={warehouse.warehouse_name}
             />
           </div>
     </>

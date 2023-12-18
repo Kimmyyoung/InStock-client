@@ -35,7 +35,7 @@ export default function EditWarehouse() {
   useEffect(() => {
     const fetchWarehouseDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/warehouses/${id}`);
+        const response = await axios.get(`http://localhost:8080/api/warehouses/${id}`);
         setWarehouseDetails(response.data);
       } catch (error) {
         console.error('Error fetching warehouse details:', error.message);
@@ -114,7 +114,7 @@ export default function EditWarehouse() {
     }
 
     try {
-      const response = await axios.put(`http://localhost:8080/warehouses/${id}`, updatedDetails);
+      const response = await axios.put(`http://localhost:8080/api/warehouses/${id}`, updatedDetails);
 
       if (response.status === 200) {
         console.log('Edited Warehouse', response.data);

@@ -14,7 +14,7 @@ const Home = () => {
 
   useEffect(()=> {
     const fetchData = async () => {
-      const result = await axios.get('http://localhost:8080/warehouses');
+      const result = await axios.get('http://localhost:8080/api/warehouses');
       setWarehouses(result.data);
     }
     fetchData();

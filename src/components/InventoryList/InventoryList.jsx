@@ -16,7 +16,6 @@ const DeletionModal = ({ isOpen, onRequestClose, onDelete, item }) => {
   const modalStyle = {
     overlay: {
       backgroundColor: '#13182cc7',
-      border: '2px solid #2E66E5',
     }
   };
 
@@ -83,7 +82,7 @@ const InventoryList = ({ inventory, setDeleteInventory }) => {
     status === "In Stock" ? "status-instock" : "status-outofstock";
 
   return (
-    <div>
+    <div >
       <div className="inventory__list" key={inventory.id}>
         <div className="inventory__item inventory__item-icon warehouse__nameAndArrow ">
           <Link to={`/inventory/${inventory.id}`} className="inventory__item-link">
@@ -117,7 +116,9 @@ const InventoryList = ({ inventory, setDeleteInventory }) => {
         </div>
       </div>
 
-      <div className="inventory__list-mobile">
+      {/* Mobile  */}
+
+      <div className="inventory__list-mobile inventory__list-mobile--warehouse">
         <div className="inventory__row1-mobile">
           <div className="left-column">
             <div className="inventory__block1">

@@ -3,7 +3,7 @@
 @use "../../styles/partials/typography" as *;
 @use "../../styles/partials/breakpoints" as *;
 
-.inventory {
+.warehouse-inventory {
   &__header {
     display: flex;
     flex-direction: column;
@@ -113,6 +113,9 @@
     color: #5c667e;
     display: flex;
     align-items: center;
+    @include tablet {
+    
+    }
   }
 
   &__title span {
@@ -195,7 +198,7 @@
   }
 
   &__list-mobile {
-    padding: 0 2.5rem;
+    padding: 0 ;
 
     @include tablet {
       display: none;
@@ -209,6 +212,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding: 0 1rem 0 1rem;
   }
 
   &__block1,
@@ -222,7 +226,7 @@
 
   &__row4-mobile {
     border-bottom: 1px solid #ccc;
-    padding: 0 0 1rem 0;
+    padding: 0 1rem 2rem 1rem;
   }
 
   &__wrap {
@@ -336,6 +340,4 @@
   color: #c94515;
 }
 
-.inventory__nested {
-  padding: 0;
-}
+
