@@ -73,35 +73,35 @@ export default function EditWarehouse() {
       errors.warehouse_name = true;
     }
 
-        // Validate address
+    // Validate address
     if (!warehouseDetails.address || warehouseDetails.address.trim() === '') {
       errors.address = true;
     }
 
-        // Validate city
+    // Validate city
     if (!warehouseDetails.city || warehouseDetails.city.trim() === '') {
       errors.city = true;
     }
 
-        // Validate country
+    // Validate country
     if (!warehouseDetails.country || warehouseDetails.country.trim() === '') {
       errors.country = true;
     }
 
-        // Validate contact_name
+    // Validate contact_name
     if (!warehouseDetails.contact_name || warehouseDetails.contact_name.trim() === '') {
       errors.contact_name = true;
     }
 
-        // Validate contact_position
+    // Validate contact_position
     if (!warehouseDetails.contact_position || warehouseDetails.contact_position.trim() === '') {
       errors.contact_position = true;
     }
-        // Validate contact_phone
+    // Validate contact_phone
     if (!warehouseDetails.contact_phone || !validatePhoneNumber(warehouseDetails.contact_phone)) {
       errors.contact_phone = true;
     }
-        // Validate contact_email
+    // Validate contact_email
     if (!warehouseDetails.contact_email || !validateEmail(warehouseDetails.contact_email)) {
       errors.contact_email = true;
     }
@@ -152,7 +152,7 @@ export default function EditWarehouse() {
                   <div>
                     <label htmlFor="warehouseName">Warehouse Name</label>
                     <br />
-                    <input className="EditWarehouse__input"
+                    <input className={`EditWarehouse__input ${hasError.warehouse_name ? 'EditWarehouse__input--error' : ''}`}
                       type="text"
                       id="warehouseName"
                       name="warehouse_name"
@@ -161,7 +161,7 @@ export default function EditWarehouse() {
                       onChange={handleChange}
                     />
                     {/* Error Validation */}
-                    {hasError && (
+                    {hasError.warehouse_name && (
                       <span className='EditWarehouse__error'>
                         <img src={errorIcon} alt="Error Icon" className="EditWarehouse__error-icon" />
                         <span className="EditWarehouse__error-text">This field is required</span>
@@ -171,7 +171,7 @@ export default function EditWarehouse() {
                   <div>
                     <label htmlFor="streetAddress">Street Address</label>
                     <br />
-                    <input className="EditWarehouse__input"
+                    <input className={`EditWarehouse__input ${hasError.address ? 'EditWarehouse__input--error' : ''}`}
                       type="text"
                       id="streetAddress"
                       name="address"
@@ -180,17 +180,17 @@ export default function EditWarehouse() {
                       onChange={handleChange}
                     />
                     {/* Error Validation */}
-                    {/* {hasError && (
+                    {hasError.address && (
                       <span className='EditWarehouse__error'>
                         <img src={errorIcon} alt="Error Icon" className="EditWarehouse__error-icon" />
                         <span className="EditWarehouse__error-text">This field is required</span>
                       </span>
-                    )} */}
+                    )}
                   </div>
                   <div>
                     <label htmlFor="city">City</label>
                     <br />
-                    <input className="EditWarehouse__input"
+                    <input className={`EditWarehouse__input ${hasError.city ? 'EditWarehouse__input--error' : ''}`}
                       type="text"
                       id="city"
                       name="city"
@@ -199,17 +199,17 @@ export default function EditWarehouse() {
                       onChange={handleChange}
                     />
                     {/* Error Validation */}
-                    {/* {hasError && (
+                    {hasError.city && (
                       <span className='EditWarehouse__error'>
                         <img src={errorIcon} alt="Error Icon" className="EditWarehouse__error-icon" />
                         <span className="EditWarehouse__error-text">This field is required</span>
                       </span>
-                    )} */}
+                    )}
                   </div>
                   <div>
                     <label htmlFor="country">Country</label>
                     <br />
-                    <input className="EditWarehouse__input EditWarehouse__input--last"
+                    <input className={`EditWarehouse__input AddWarehouse__input--last ${hasError.country ? 'EditWarehouse__input--error' : ''}`}
                       type="text"
                       id="country"
                       name="country"
@@ -218,12 +218,12 @@ export default function EditWarehouse() {
                       onChange={handleChange}
                     />
                     {/* Error Validation */}
-                    {/* {hasError && (
+                    {hasError.country && (
                       <span className='EditWarehouse__error'>
                         <img src={errorIcon} alt="Error Icon" className="EditWarehouse__error-icon" />
                         <span className="EditWarehouse__error-text">This field is required</span>
                       </span>
-                    )} */}
+                    )}
                   </div>
                 </div>
               </div>
@@ -232,7 +232,7 @@ export default function EditWarehouse() {
                 <div>
                   <label htmlFor="contactName">Contact Name</label>
                   <br />
-                  <input className="EditWarehouse__input"
+                  <input className={`EditWarehouse__input ${hasError.contact_name ? 'EditWarehouse__input--error' : ''}`}
                     type="text"
                     id="contactName"
                     name="contact_name"
@@ -241,17 +241,17 @@ export default function EditWarehouse() {
                     onChange={handleChange}
                   />
                   {/* Error Validation */}
-                  {/* {hasError && (
-                      <span className='EditWarehouse__error'>
-                        <img src={errorIcon} alt="Error Icon" className="EditWarehouse__error-icon" />
-                        <span className="EditWarehouse__error-text">This field is required</span>
-                      </span>
-                    )} */}
+                  {hasError.contact_name && (
+                    <span className='EditWarehouse__error'>
+                      <img src={errorIcon} alt="Error Icon" className="EditWarehouse__error-icon" />
+                      <span className="EditWarehouse__error-text">This field is required</span>
+                    </span>
+                  )}
                 </div>
                 <div>
                   <label htmlFor="position">Position</label>
                   <br />
-                  <input className="EditWarehouse__input"
+                  <input className={`EditWarehouse__input ${hasError.contact_position ? 'EditWarehouse__input--error' : ''}`}
                     type="text"
                     id="position"
                     name="contact_position"
@@ -259,11 +259,18 @@ export default function EditWarehouse() {
                     value={warehouseDetails.contact_position}
                     onChange={handleChange}
                   />
+                  {/* Error Validation */}
+                  {hasError.contact_position && (
+                    <span className='EditWarehouse__error'>
+                      <img src={errorIcon} alt="Error Icon" className="EditWarehouse__error-icon" />
+                      <span className="EditWarehouse__error-text">This field is required</span>
+                    </span>
+                  )}
                 </div>
                 <div>
                   <label htmlFor="phoneNumber">Phone Number</label>
                   <br />
-                  <input className="EditWarehouse__input"
+                  <input className={`EditWarehouse__input ${hasError.contact_phone ? 'EditWarehouse__input--error' : ''}`}
                     type="text"
                     id="phoneNumber"
                     name="contact_phone"
@@ -272,17 +279,17 @@ export default function EditWarehouse() {
                     onChange={handleChange}
                   />
                   {/* Error Validation */}
-                  {/* {hasError && (
-                      <span className='EditWarehouse__error'>
-                        <img src={errorIcon} alt="Error Icon" className="EditWarehouse__error-icon" />
-                        <span className="EditWarehouse__error-text">This field is required</span>
-                      </span>
-                    )} */}
+                  {hasError.contact_phone && (
+                    <span className='EditWarehouse__error'>
+                      <img src={errorIcon} alt="Error Icon" className="EditWarehouse__error-icon" />
+                      <span className="EditWarehouse__error-text">Please enter a valid phone number in the format +X (XXX) XXX-XXXX</span>
+                    </span>
+                  )}
                 </div>
                 <div>
                   <label htmlFor="email">Email</label>
                   <br />
-                  <input className="EditWarehouse__input EditWarehouse__input--last"
+                  <input className={`AddWarehouse__input AddWarehouse__input--last ${hasError.contact_email ? 'AddWarehouse__input--error' : ''}`}
                     type="email"
                     id="email"
                     name="contact_email"
@@ -291,12 +298,12 @@ export default function EditWarehouse() {
                     onChange={handleChange}
                   />
                   {/* Error Validation */}
-                  {/* {hasError && (
+                  {hasError.contact_email && (
                       <span className='EditWarehouse__error'>
                         <img src={errorIcon} alt="Error Icon" className="EditWarehouse__error-icon" />
                         <span className="EditWarehouse__error-text">This field is required</span>
                       </span>
-                    )} */}
+                    )}
                 </div>
               </div>
 
