@@ -127,8 +127,8 @@ const Inventory = () => {
             onPageChange={(event) => setPage(event.selected)}
             pageCount={Math.ceil(inventories.length / n)}
             breakLabel="..."
-            previousLabel="< previous"
-            nextLabel="next >"
+            previousLabel="< "
+            nextLabel=" >"
             style={{display: "flex", justifyContent: "center"}} 
           />;
         </div>

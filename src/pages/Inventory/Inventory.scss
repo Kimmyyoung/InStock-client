@@ -5,8 +5,12 @@
 @use "../../styles/partials/breakpoints" as *;
 
 .inventory {
-  padding: 5rem;
+  padding: 3rem 2rem;
+  @include tablet {
+    padding: 3rem 5rem;
   
+
+  }
   &__wrap{
     padding: 0px;
   }
