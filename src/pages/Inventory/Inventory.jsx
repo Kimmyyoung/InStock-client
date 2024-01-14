@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ReactPaginate from 'react-paginate';
-import './inventory.scss';
+import './Inventory.scss';
 
 const Inventory = () => {
 
