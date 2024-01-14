@@ -34,7 +34,7 @@ export default function AddNewInventoryItemOutOfStock() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:8080/api/inventories");
+        const res = await axios.get("https://instock-0dd5e310830f.herokuapp.com/api/inventories");
         const uniqueCategories = [...new Set(res.data.map((item) => item.category))];
         setCategories(uniqueCategories);
 

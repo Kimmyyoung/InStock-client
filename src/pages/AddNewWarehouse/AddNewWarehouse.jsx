@@ -99,7 +99,7 @@ const AddNewWarehouse = () => {
         }
 
         try {
-            const response = await axios.post('http://localhost:8080/api/warehouses', warehouseDetails);
+            const response = await axios.post('https://instock-0dd5e310830f.herokuapp.com/api/warehouses', warehouseDetails);
 
             if (response.status === 201) {
                 navigate("/");

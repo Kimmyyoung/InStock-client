@@ -18,7 +18,7 @@ const warehouseDetails = () => {
 
     const fetchWarehouse = async (id) => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/warehouses/${id}`)
+        const response = await axios.get(`https://instock-0dd5e310830f.herokuapp.com/api/warehouses/${id}`)
         console.log("the response is: ", response.data);
         setWarehouseDetails(response.data);
       } catch (err) {
@@ -32,7 +32,7 @@ const warehouseDetails = () => {
     const fetchData = async () => {
       try {
         const result = await axios.get(
-          "http://localhost:8080/api/inventories/"
+          "https://instock-0dd5e310830f.herokuapp.com/api/inventories/"
         );
         setInventories(result.data);
       } catch (error) {
@@ -58,6 +58,7 @@ const warehouseDetails = () => {
 
   return (
     <>
+    <div className="warehouse_details">
       <div className="warehouse__container warehouse__container--width">
         <div className="warehouse__top warehouse__top--width">
           <div className="warehouse__title-box">
@@ -165,6 +166,7 @@ const warehouseDetails = () => {
             </article>
           </div>
         </div>
+      </div>
       </div>
     </>
   );

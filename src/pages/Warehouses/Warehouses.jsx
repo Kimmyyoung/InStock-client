@@ -15,7 +15,7 @@ const Home = () => {
 
   useEffect(()=> {
     const fetchData = async () => {
-      const result = await axios.get('http://localhost:8080/api/warehouses');
+      const result = await axios.get('https://instock-0dd5e310830f.herokuapp.com/api/warehouses');
       setWarehouses(result.data);
     }
     fetchData();
