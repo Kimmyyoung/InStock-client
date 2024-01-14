@@ -1,4 +1,4 @@
-import logo from "./../../assets/Logo/inStock-Logo_2x.png";
+import logo from "./../../assets/Logo/InStock-Logo_2x.png";
 import './Header.scss';
 import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
