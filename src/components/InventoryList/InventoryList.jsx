@@ -1,7 +1,7 @@
 import "./InventoryList.scss";
 import { useState } from "react";
-import delete_icon from "../../assets/icons/delete_outline-24px.svg";
-import edit from "../../assets/icons/edit-24px.svg";
+import delete_icon from "../../assets/Icons/delete_outline-24px.svg";
+import edit from "../../assets/Icons/edit-24px.svg";
 import { Link } from "react-router-dom";
 import Modal from 'react-modal';
 import './DeletionModal.scss';

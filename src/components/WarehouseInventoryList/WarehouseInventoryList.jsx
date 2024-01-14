@@ -1,6 +1,6 @@
 import "./WarehouseInventoryList.scss"
-import delete_icon from "../../assets/icons/delete_outline-24px.svg";
-import edit from "../../assets/icons/edit-24px.svg";
+import delete_icon from "../../assets/Icons/delete_outline-24px.svg";
+import edit from "../../assets/Icons/edit-24px.svg";
 import { Link } from "react-router-dom";
 
 const WarehouseInventoryList = ({ inventory }) => {
