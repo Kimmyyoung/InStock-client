@@ -36,7 +36,7 @@ export default function EditWarehouse() {
   useEffect(() => {
     const fetchWarehouseDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/warehouses/${id.split(':').join('')}`);
+        const response = await axios.get(`https://instock-0dd5e310830f.herokuapp.com/api/warehouses/${id.split(':').join('')}`);
         setWarehouseDetails(response.data);
       } catch (error) {
         console.error('Error fetching warehouse details:', error.message);

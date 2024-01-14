@@ -17,9 +17,9 @@ body {
           #232940 17%,
           #F7F8F9 17%,
           #F7F8F9 100%) !important;
-  background-repeat: no-repeat !important;
-  width: 100%;
-  height: max-content !important;
+        background-repeat: no-repeat !important;
+        width: 100%;
+        height: max-content !important;
 
   @include tablet {
       background: linear-gradient(to bottom,

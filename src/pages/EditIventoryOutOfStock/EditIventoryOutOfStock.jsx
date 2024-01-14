@@ -24,7 +24,7 @@ export default function EditInventory() {
   const { id } = useParams();
 
   useEffect(() => {
-      const fetchData = axios.get(`http://localhost:8080/api/inventories/${id}`)
+      const fetchData = axios.get(`https://instock-0dd5e310830f.herokuapp.com/api/inventories/${id}`)
       .then((res) => { 
         const inventory = res.data;
 
@@ -49,7 +49,7 @@ export default function EditInventory() {
 
 
   useEffect(() => {
-    const fetchData = axios.get("http://localhost:8080/api/inventories")
+    const fetchData = axios.get("https://instock-0dd5e310830f.herokuapp.com/api/inventories")
       .then((res) => {
         const uniqueCategories = [...new Set(res.data.map(item => item.category))];
         const uniqueWarehouses = [...new Set(res.data.map(item => `${item.warehouse_id}-${item.warehouse_name}`))]
@@ -97,7 +97,7 @@ export default function EditInventory() {
 
 
   
-    axios.put(`http://localhost:8080/api/inventories/${id}`, {
+    axios.put(`https://instock-0dd5e310830f.herokuapp.com/api/inventories/${id}`, {
       item_name: itemName,
       description: description,
       category: category,

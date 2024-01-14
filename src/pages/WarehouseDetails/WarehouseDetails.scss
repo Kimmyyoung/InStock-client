@@ -9,7 +9,8 @@
   display: flex;
   flex-direction: column;
   font-family: "Titillium Web";
-
+  height: 100%;
+  
   &:hover {
     background-color: $pageBackground;
   }

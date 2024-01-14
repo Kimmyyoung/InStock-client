@@ -24,7 +24,7 @@ const Inventory = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios.get('http://localhost:8080/api/inventories/');
+        const result = await axios.get('https://instock-0dd5e310830f.herokuapp.com/api/inventories/');
         setInventories(result.data);
       } catch (error) {
         console.error("Error fetching data:", error);

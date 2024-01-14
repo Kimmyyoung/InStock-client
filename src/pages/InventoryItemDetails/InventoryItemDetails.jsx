@@ -20,7 +20,7 @@ export default function InventoryItemDetails() {
 
     useEffect(()=>{
       const fetchData = () => {
-        axios.get('http://localhost:8080/api/inventories/' + id)
+        axios.get('https://instock-0dd5e310830f.herokuapp.com/api/inventories/' + id)
         .then((res)=> {
           setInventory(res.data);
           setIsOutOfStock(res.data.quantity === 0);
