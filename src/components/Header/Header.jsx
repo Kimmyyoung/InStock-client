@@ -42,7 +42,7 @@ const Header = () => {
 
                 <section className="header__pages">
                     <NavLink
-                        to="/"
+                        to="/warehouses"
                         className={`header__pages-name ${isActiveWarehouse('/warehouses') ? 'header__pages-name--active' : ''}`}
                         onClick={() => handlePageClick('Warehouses')}
                     >
@@ -55,28 +55,13 @@ const Header = () => {
                     >
                         Inventory
                     </NavLink>
-                    {/* <NavLink
-                        to="/"
-                        // className={(isActivePage('/warehouses') ? 'header__pages-name--active' : '')}
-                        className={`header__pages-name ${isActivePage('/warehouses') ? 'header__pages-name--active' : ''}`}
-                        // className={({ isActive }) =>
-                        // `header__pages-name ${isActivePage('/warehouses') ? 'header__pages-name--active' : ''}`
-                        // }
-                        onClick={() => handlePageClick('Warehouses')}
-                    >
-                        Warehouses
-                    </NavLink>
+
                     <NavLink
-                        to="/inventory"
-                        className={`header__pages-name ${isActivePage('/inventory') ? 'header__pages-name--active' : ''}`}
-                        // className={(isActivePage('/inventory') ? 'header__pages-name--active' : '')}
-                        // className={({ isActive }) =>
-                        //     `header__pages-name ${isActive ? 'header__pages-name--active' : ''}`
-                        // }
-                        onClick={() => handlePageClick('Inventories')}
+                        to="/"
+                        className={`header__pages-name`}
                     >
-                        Inventories
-                    </NavLink> */}
+                        Login
+                    </NavLink>
                 </section>
         </header>
     )

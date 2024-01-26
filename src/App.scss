@@ -12,20 +12,22 @@
 }
 
 body {
+  background-color: #F7F8F9;
   background: linear-gradient(to bottom,
           #232940 0%,
-          #232940 17%,
-          #F7F8F9 17%,
-          #F7F8F9 100%) !important;
-        background-repeat: no-repeat !important;
-        width: 100%;
-        height: max-content !important;
+          #232940 25%,
+          #F7F8F9 25%,
+          #F7F8F9 100%);
+  background-repeat: no-repeat;
+  width: 100%;
+  height: max-content;
 
   @include tablet {
+      background-color: #F7F8F9;
       background: linear-gradient(to bottom,
               #232940 0%,
               #232940 18.3%,
               #F7F8F9 18.3%,
-              #F7F8F9 100%) !important;
+              #F7F8F9 max-content);
   }
 }

@@ -4,25 +4,6 @@
 @use "../../styles/partials/breakpoints" as *;
 
 
-body {
-  background: linear-gradient(to bottom,
-          #232940 0%,
-          #232940 17%,
-          #F7F8F9 17%,
-          #F7F8F9 100%) !important;
-  background-repeat: no-repeat !important;
-  width: 100%;
-  height: max-content !important;
-
-  @include tablet {
-      background: linear-gradient(to bottom,
-              #232940 0%,
-              #232940 18.3%,
-              #F7F8F9 18.3%,
-              #F7F8F9 100%) !important;
-  }
-}
-
 
 .home {
   display: flex;
@@ -42,9 +23,9 @@ body {
     background-color: white;
     border-radius: 5px;
     width: 100%;
+    height: max-content;
     margin: auto !important;
     box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
-
 
     @include tablet {
         // padding: 0 2rem 20rem 2rem;
@@ -53,7 +34,7 @@ body {
     @include desktop {
         max-width: 1020px;
         margin: 0 auto;
-        padding-bottom: 9.6rem;
+        // padding-bottom: 9.6rem;
     }
 
   }

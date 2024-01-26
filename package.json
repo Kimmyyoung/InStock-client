@@ -19,6 +19,7 @@
     "react-modal": "^3.16.1",
     "react-paginate": "^8.2.0",
     "react-router-dom": "^6.20.1",
+    "react-toastify": "^10.0.4",
     "sass": "^1.69.5",
     "validator": "^13.11.0"
   },
